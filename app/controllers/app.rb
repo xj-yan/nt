@@ -127,6 +127,7 @@ get '/test/tweet?user_id=x&tweet_count=y' do
   tweets = Tweet.all.select{ |t|
       t["user_id"] == user["id"]
     }
+  end
   @user = user.to_json
   @tweets = tweets.sample(y).to_json
   status 200

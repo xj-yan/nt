@@ -23,13 +23,14 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.2)
     pg (1.2.2)
-    puma (4.3.1)
+    puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rake (13.0.1)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -39,8 +40,6 @@ GEM
     sinatra-activerecord (2.0.14)
       activerecord (>= 3.2)
       sinatra (>= 1.0)
-    sinatra-flash (0.3.0)
-      sinatra (>= 1.0.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.6)
@@ -55,11 +54,11 @@ DEPENDENCIES
   bcrypt
   faker
   pg
-  puma
+  puma (>= 4.3.3)
   rack-test
+  rake
   sinatra
   sinatra-activerecord
-  sinatra-flash
 
 BUNDLED WITH
    1.17.2

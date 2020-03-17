@@ -6,12 +6,6 @@ require_relative './models/user'
 
 set :database_file, 'config/database.yml'
 
-# # Retrieve all users from database.
-# get '/users' do
-#   {
-#     response: User.all,
-#   }.to_json
-# end
 
 # create a user account
 post '/user/register' do

@@ -1,6 +1,9 @@
 # endpoint related to test interface
 
 class App < Sinatra::Base
+	get '/test/reset' do
+		# this is a test route
+	end
 	# Test: reset and add n random test users and t tweets
 	get '/test/reset?users=n&tweets=t' do
 		# load seed data

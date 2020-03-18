@@ -1,6 +1,6 @@
 # endpoint related to test timeline
 
-class Timeline < Sinatra::Base
+class App < Sinatra::Base
 	# Get y latest tweets of particular user x
 	get '/users/tweet?user_id=x&tweet_count=y' do
 		# find all tweets of a user with id x and sort by created_at in reverse chronological order

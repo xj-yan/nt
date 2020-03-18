@@ -1,6 +1,6 @@
 # endpoint related to test interface
 
-class TestController < Sinatra::Base
+class App < Sinatra::Base
 	# Test: reset and add n random test users and t tweets
 	get '/test/reset?users=n&tweets=t' do
 		# load seed data

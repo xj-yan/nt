@@ -10,15 +10,16 @@ class App < Sinatra::Base
     def logged_in?
       !!session[:user_id]
     end
-	end
-	
+  end
+   
 	get "/" do
 		erb :index,locals: { title: 'NanoTwitter' }
 	end
 	
 	 # routes for login and logout
   get "/login" do
-    erb :login, locals: { title: 'Log In' }
+    # erb :index, locals: { title: 'Log In' }
+    erb :login
   end
 
   post '/login' do

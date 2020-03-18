@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    <h3>Total users: <%= users.length %></h3>
+    <h3>Total users: <%= @users.length %></h3>
         <ul class="list-inline">
             <li class="list-inline-item">
                 <form action="/users" class="form-inline pull-right btn-group" method="post">
@@ -43,7 +43,7 @@
         </tr>
     </thead>
     <tbody>
-        <% users.each do |user| %>
+        <% @users.each do |user| %>
         <tr>
             <td><%= user["name"] %></td>
             <td><%= user["email"] %></td>

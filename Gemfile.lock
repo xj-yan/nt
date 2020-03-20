@@ -18,6 +18,7 @@ GEM
       i18n (>= 1.6, < 2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    json (2.3.0)
     minitest (5.14.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -31,6 +32,7 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rake (13.0.1)
+    require_all (3.0.0)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -53,12 +55,14 @@ DEPENDENCIES
   activerecord
   bcrypt
   faker
+  json
   pg
   puma (>= 4.3.3)
   rack-test
   rake
+  require_all
   sinatra
   sinatra-activerecord
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

@@ -1,6 +1,7 @@
 require "sinatra/base"
 require "json"
 
+require_relative 'config/environment'
 require_relative "./app/routes/home"
 require_relative "./app/routes/test"
 require_relative "./app/routes/timeline"

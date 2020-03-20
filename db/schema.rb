@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2020_03_11_152939) do
   create_table "tweets", force: :cascade do |t|
     t.string "tweet"
     t.integer "user_id"
-    t.datetime "created_time"
   end
 
   create_table "users", force: :cascade do |t|

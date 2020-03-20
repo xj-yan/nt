@@ -1,8 +1,8 @@
-ENV['APP_ENV'] ||= "development"
+ENV['RACK_ENV'] ||= "development"
 
 require 'bundler/setup'
-Bundler.require(:default, ENV['APP_ENV'])
+Bundler.require(:default, ENV['RACK_ENV'])
 
-ActiveRecord::Base.establish_connection(ENV['APP_ENV'].to_sym)
+ActiveRecord::Base.establish_connection(ENV['RACK_ENV'].to_sym)
 
 require_all 'app'

@@ -2,8 +2,10 @@ require 'sinatra/activerecord'
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+  include BCrypt
+
   def as_json(options = {})
-    super(options.merge({ except: [:password] }))
+    super(options.merge({ except: [:password_digest] }))
   end
   
   has_secure_password
@@ -35,4 +37,16 @@ class User < ActiveRecord::Base
 
   has_many :tweets
 
+  # def password
+  #   @password ||= Password.new(password_digest)
+  # end
+
+  # def password=(new_password)
+  #   @password = Password.create(new_password)
+  #   self.password_digest = @password
+  # end
+
+  # def create_account(password)
+  #   self.password = password
+  # end
 end

@@ -1,32 +1,3 @@
-<head>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <script>
-    window.addEventListener("load", function() {
-      const app = new Vue({
-        el: "#tweet-form",
-        data() {
-          return {
-            tweet: ""
-          };
-        },
-        methods: {
-          processForm(e) {
-            e.preventDefault();
-            axios
-              .post("/tweet", {
-                tweet: this.tweet
-              })
-              .then(function(response) {
-                response.data.tweet = this.tweet;
-              });
-          }
-        }
-      });
-    });
-  </script>
-</head>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -82,17 +53,6 @@
   <!-- /.container-fluid -->
 </nav>
 
-<form method="POST" id="tweet-form" @submit.prevent="processForm">
-  <!-- <label>Tweet:</label>
-    <input type='text' id='tweet' v-on:change="handleMakeTweet()" v-model='content' />
-    <button v-on:click="makeTweet()">Tweet</button> -->
-  <div class="field">
 
-    <input type="text" class="input" name="tweet" v-model="tweet" placeholder="What's happening?" />
-  </div>
-  <div class="field has-text-right">
-    <button type="submit" class="button is-danger">Submit</button>
-  </div>
-</form>
 
 <p>Welcome to NanoTwitter</p>

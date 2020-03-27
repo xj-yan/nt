@@ -1,33 +1,55 @@
 # database.yml, where we declare various DB
 # settings and parameters
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
-  # db private ip address
-  # https://cloud.digitalocean.com/databases
-  host: <%= ENV['DB_HOST'] %>
-  # db port
-  # https://cloud.digitalocean.com/databases
-  port: 25060
-  # db username
-  # https://cloud.digitalocean.com/databases
-  username: doadmin
-  # db password
-  # https://cloud.digitalocean.com/databases
-  password: <%= ENV['DB_PASSWORD'] %>
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 2
-
-
-development:
-  <<: *default
-  database: nanoTwitter_dev
+  database: demo_dev
+  pool: 5
 
 test:
-  <<: *default
-  database: nanoTwitter_test
+  adapter: postgresql
+  encoding: unicode
+  database: demo_test
+  pool: 5
 
 production:
-  <<: *default
-  database: nanoTwitter_prod
+  adapter: postgresql
+  encoding: unicode
+  database: demo_prod
+  pool: 5
+
+
+
+# # database.yml, where we declare various DB
+# # settings and parameters
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # db private ip address
+#   # https://cloud.digitalocean.com/databases
+#   host: <%= ENV['DB_HOST'] %>
+#   # db port
+#   # https://cloud.digitalocean.com/databases
+#   port: 25060
+#   # db username
+#   # https://cloud.digitalocean.com/databases
+#   username: doadmin
+#   # db password
+#   # https://cloud.digitalocean.com/databases
+#   password: <%= ENV['DB_PASSWORD'] %>
+#   # For details on connection pooling, see rails configuration guide
+#   # http://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: 2
+
+
+# development:
+#   <<: *default
+#   database: nanoTwitter_dev
+
+# test:
+#   <<: *default
+#   database: nanoTwitter_test
+
+# production:
+#   <<: *default
+#   database: nanoTwitter_prod

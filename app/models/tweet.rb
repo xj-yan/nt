@@ -9,11 +9,9 @@ class Tweet < ActiveRecord::Base
 	:through => :mentions, 
 	:source => :user
 
-	belongs_to :user
+	belongs_to :user, class_name: "User"
 
 	has_many :has_tags
 	has_many :tags, through: :has_tags
 
-
-	
 end

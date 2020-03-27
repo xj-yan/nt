@@ -2,6 +2,7 @@ require 'json'
 
 class App < Sinatra::Base
     post '/tweet' do
+        authenticate!
         if session[:user_id] && User.find(session[:user_id])
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)

@@ -1,18 +1,17 @@
-module Sinatra
-  module SessionAuth
-
-    module Helpers
-
-      def authenticated?
-        true
-      end
-
+require 'sinatra/base'
+module Authentication
+  def authenticate!
+    unless session[:user]
+      session[:original_request] = request.path_info
+      redirect '/login'
     end
-
-    def self.registered(app)
-      app.helpers SessionAuth::Helpers
-    end
-
   end
 
+  def redirect_to_original_request
+    user = session[:user]
+    flash[:notice] = "Welcome back #{user.name}."
+    original_request = session[:original_request]
+    session[:original_request] = nil
+    redirect original_request
+  end
 end

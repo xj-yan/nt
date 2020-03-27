@@ -83,3 +83,21 @@
     <button type="submit" class="button is-danger">Submit</button>
   </div>
 </form>
+
+<div class='timeline'>
+<% if @timeline.size > 0 %>
+<table border="0" align="center">
+    <tr>
+        <th>Tweet</th>
+        <th>Created at</th>
+    </tr>
+  
+    <% @timeline.each do |t| %>
+    <tr>
+        <td><%= t['tweet']%></td>
+        <td><%= t['created_at']%></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+</div>

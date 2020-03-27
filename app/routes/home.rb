@@ -1,5 +1,7 @@
 # endpoint related to home
 require 'sinatra/flash'
+require 'bcrypt'
+require 'sinatra/base'
 
 class App < Sinatra::Base
 
@@ -10,6 +12,14 @@ class App < Sinatra::Base
   register Sinatra::Flash
 
   helpers do
+    def hash_password(password)
+      BCrypt::Password.create(password).to_s
+    end
+
+    def test_password(password, hash)
+      BCrypt::Password.new(hash) == password
+    end
+
     def logged_in?
       !!session[:user_id]
     end
@@ -20,7 +30,7 @@ class App < Sinatra::Base
 		erb :index,locals: { title: 'NanoTwitter' }
 	end
 	
-	 # routes for login and logout
+	# routes for login and logout
   get "/login" do
     # erb :index, locals: { title: 'Log In' }
     erb :login
@@ -90,13 +100,13 @@ class App < Sinatra::Base
       redirect "/login"
     # show homepage
     else
+      erb :home, locals: { title: 'Home Page' }
       # uri = URI.join("http://#{settings.api}:#{settings.api_port}",
       #             "/users/", "tweet")
       # response = Net::HTTP.post_form(
       #   uri, 'user_id' => params[:x], 
       #   'tweet_count' => params[:y])
-      # get home timeline
-      erb :home, locals: { title: 'Home Page' }
+      # erb :home, locals: { title: 'Home Page' }
     end
   end
 end

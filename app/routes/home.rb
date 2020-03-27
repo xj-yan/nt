@@ -10,6 +10,7 @@ class App < Sinatra::Base
 
 	enable :sessions
   register Sinatra::Flash
+  helpers Timeline
 
   helpers do
     def hash_password(password)
@@ -107,13 +108,8 @@ class App < Sinatra::Base
       redirect "/login"
     # show homepage
     else
+      @timeline = get_timeline(session[:user_id])
       erb :home, locals: { title: 'Home Page' }
-      # uri = URI.join("http://#{settings.api}:#{settings.api_port}",
-      #             "/users/", "tweet")
-      # response = Net::HTTP.post_form(
-      #   uri, 'user_id' => params[:x], 
-      #   'tweet_count' => params[:y])
-      # erb :home, locals: { title: 'Home Page' }
     end
   end
 end

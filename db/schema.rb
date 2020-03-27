@@ -22,11 +22,8 @@ ActiveRecord::Schema.define(version: 2020_03_27_011845) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followee_id"
-    t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id"
-    t.index ["follower_id"], name: "index_follows_on_follower_id"
-    t.index ["followee_id"], name: "index_follows_on_followee_id"
+    t.integer "fan_id"
+    t.integer "idol_id"
   end
 
   create_table "has_tags", force: :cascade do |t|

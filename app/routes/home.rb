@@ -21,10 +21,6 @@ class App < Sinatra::Base
     def test_password(password, hash)
       BCrypt::Password.new(hash) == password
     end
-
-    def logged_in?
-      !!session[:user_id]
-    end
   end
   
   # TODO 
@@ -96,9 +92,7 @@ class App < Sinatra::Base
 
   # home is a protected route 
   get '/home' do
-    # redirect if not loggin 
-    if !logged_in?
-      redirect "/login"
+    authenticate!
     # show homepage
     else
       @timeline = get_timeline(session[:user_id])

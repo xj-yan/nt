@@ -1,17 +1,21 @@
 # endpoint related to home
+require 'sinatra/flash'
 
 class App < Sinatra::Base
 
-	configure do
-    enable :sessions
-  end
+  # TODO helpers for authentication
+  # helpers SessionAuth
+
+	enable :sessions
+  register Sinatra::Flash
 
   helpers do
     def logged_in?
       !!session[:user_id]
     end
   end
-   
+  
+  # TODO 
 	get "/" do
 		erb :index,locals: { title: 'NanoTwitter' }
 	end
@@ -22,24 +26,18 @@ class App < Sinatra::Base
     erb :login
   end
 
-  post '/login' do
-    uri = URI.join("http://#{settings.api}:#{settings.api_port}",
-                  "/user/", "validate")
-    response = Net::HTTP.post_form(
-      uri, 'email' => params[:email], 
-      'password' => params[:password])
-    h = response.code == "200" || response.code == "401" ? 
-        JSON.parse(response.body) : {}
-    if h["status"] == "success"
-      # Save the user id inside the browser cookie. 
-      # This is how we keep the user 
-      # logged in when they navigate around our website.
-      session[:user_id] = h["user_id"]
-      puts session[:user_id]
+  post "/login" do
+    user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      session[:user] = @user
       redirect '/home'
+      # redirect "/user/#{@user.id}"
+    elsif !user
+      flash[:notice] = "User not exists. Please sign up!"
+      redirect '/register'
     else
-    # If user's login doesn't work, send them back to the login form.
-      flash[:notice] = "Login failed due to #{h["status"]}"
+      flash[:notice] = "Incorrect password"
       redirect '/login'
     end
   end
@@ -55,21 +53,28 @@ class App < Sinatra::Base
   end
 
   post "/register" do
-    uri = URI.join("http://#{settings.api}:#{settings.api_port}",
-                  "/user/", "register")
-    response = Net::HTTP.post_form(
-      uri, 'name' => params[:name],
-      'email' => params[:email], 
-      'password' => params[:password])
-    # register success
-    if response.code == "200"
-      h = JSON.parse(response.body)
-      session[:user_id] = h["user_id"]
-      redirect '/home'
-    else
-      flash[:notice] = "Registration failed. The email \
-      may have already been registered"
+    user = User.find_by(email: params[:email])
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect '/register'
+    elsif user
+      flash[:notice] = "User exists. Please log in!"
+      redirect '/login'
+    else
+      begin
+        @user = User.create!(
+          id: User.maximum(:id).next,
+          name: params[:username], 
+          email: params[:email], 
+          password: params[:password])
+        session[:user_id] = @user.id
+        @user.save
+      rescue StandardError => msg  
+        flash[:notice] = "Registration Failed! #{msg}"
+        redirect '/register'
+      end
+      redirect '/home'
+      # redirect "/user/#{@user.id}"
+
     end
   end
 
@@ -80,14 +85,17 @@ class App < Sinatra::Base
 
   # home is a protected route 
   get '/home' do
+    # redirect if not loggin 
     if !logged_in?
       redirect "/login"
+    # show homepage
     else
-      uri = URI.join("http://#{settings.api}:#{settings.api_port}",
-                  "/users/", "tweet")
-      response = Net::HTTP.post_form(
-        uri, 'user_id' => params[:x], 
-        'tweet_count' => params[:y])
+      # uri = URI.join("http://#{settings.api}:#{settings.api_port}",
+      #             "/users/", "tweet")
+      # response = Net::HTTP.post_form(
+      #   uri, 'user_id' => params[:x], 
+      #   'tweet_count' => params[:y])
+      # get home timeline
       erb :home, locals: { title: 'Home Page' }
     end
   end

@@ -37,13 +37,12 @@ class App < Sinatra::Base
   end
 
   post "/login" do
-    user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
+    @user = User.find_by(email: params[:email])
+    if @user && test_password(params[:password], @user.password_digest)
       session[:user_id] = @user.id
-      session[:user] = @user
       redirect '/home'
       # redirect "/user/#{@user.id}"
-    elsif !user
+    elsif !@user
       flash[:notice] = "User not exists. Please sign up!"
       redirect '/register'
     else
@@ -71,13 +70,10 @@ class App < Sinatra::Base
       redirect '/login'
     else
       begin
-        @user = User.create!(
-          id: User.maximum(:id).next,
-          name: params[:username], 
-          email: params[:email], 
-          password: params[:password])
-        session[:user_id] = @user.id
-        @user.save
+        @user = User.create(username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
+        if @user.valid?
+          session[:user_id] = @user.id
+        end
       rescue StandardError => msg  
         flash[:notice] = "Registration Failed! #{msg}"
         redirect '/register'

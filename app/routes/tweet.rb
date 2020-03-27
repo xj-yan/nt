@@ -5,7 +5,6 @@ class App < Sinatra::Base
         if session[:user_id] && User.find(session[:user_id])
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)
-            puts response["tweet"]
             tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)
             # @user.tweets << (Tweet.create(tweet: response["tweet"]))
         else

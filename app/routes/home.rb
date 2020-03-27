@@ -69,16 +69,27 @@ class App < Sinatra::Base
       flash[:notice] = "User exists. Please log in!"
       redirect '/login'
     else
+      # @user = User.create(username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
+      # if @user.valid?
+      #   session[:user_id] = @user.id
+      #   redirect '/home'
+      # else
+      #   flash[:notice] = "Registration failed. The email \
+      #   may have already been registered"
+      #   redirect '/register'
+      # end    
+
       begin
-        @user = User.create(username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
+        @user = User.create!(id: User.maximum(:id).next, username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
         if @user.valid?
           session[:user_id] = @user.id
+          redirect '/home'
         end
       rescue StandardError => msg  
         flash[:notice] = "Registration Failed! #{msg}"
         redirect '/register'
       end
-      redirect '/home'
+
       # redirect "/user/#{@user.id}"
 
     end

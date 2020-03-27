@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2020_03_27_011845) do
   create_table "follows", force: :cascade do |t|
     t.integer "fan_id"
     t.integer "idol_id"
+    t.index ["fan_id", "idol_id"], name: "index_follows_on_fan_id_and_idol_id"
+    t.index ["fan_id"], name: "index_follows_on_fan_id"
+    t.index ["idol_id"], name: "index_follows_on_idol_id"
   end
 
   create_table "has_tags", force: :cascade do |t|
@@ -57,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_011845) do
     t.string "email"
     t.text "bio"
     t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

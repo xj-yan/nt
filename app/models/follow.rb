@@ -1,8 +1,8 @@
 class Follow < ActiveRecord::Base
-	belongs_to :fan, 
+	belongs_to :follower, 
 	:class_name => 'User', 
-	:foreign_key => 'fan_id'
-	belongs_to :idol, 
+	:foreign_key => 'follower_id'
+	belongs_to :followew, 
 	:class_name => 'User', 
-	:foreign_key => 'idol_id'
+	:foreign_key => 'followee_id'
 end

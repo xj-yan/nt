@@ -2,34 +2,48 @@ require 'csv'
 require 'faker'
 
 # Create users from users.csv
+count_1 = 0
 File.open("./lib/seeds/users.csv") do |users| 
 	users.read.each_line do |user|
 		id, username = user.chomp.split(",")
 		User.create(
-			name: username, 
+			username: username, 
 			email: Faker::Internet.email, 
 			bio: Faker::Job.title, 
 			password: Faker::Internet.password(min_length: 10, max_length: 20)
 		)
+		count_1 = count_1 + 1
+	end
 end
 
-puts "#{users.count} users now created"
+puts "#{count_1} users now created"
+#1000
 
 # Create tweets from tweets.csv
+count_2 = 0
+tweet_list = []
+tweet_column = [:tweet, :user_id, :created_at, :updated_at]
 File.open("./lib/seeds/tweets.csv") do |tweets| 
 	tweets.read.each_line do |tweet|
-		user_id, tweet, created_at = tweet.chomp.split(",")
-		Tweet.create(
-			tweet: tweet, 
-			user_id: user_id,
-			created_at: DateTime.parse(time),
-			updated_at: DateTime.parse(time)
-		)
+		delimiters = [',"', '",']
+		user_id, tweet, time = tweet.split(Regexp.union(delimiters))
+		tweet_list << {tweet: tweet, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time)}
+		# Tweet.create(
+		# 	tweet: tweet, 
+		# 	user_id: user_id,
+		# 	created_at: DateTime.parse(time),
+		# 	updated_at: DateTime.parse(time)
+		# )
+		count_2 = count_2 + 1
+	end
+	Tweet.import(tweet_column, tweet_list)
 end
 
-puts "#{tweets.count} tweets now created"
+puts "#{count_2} tweets now created"
+# 100175
 
 # Create follows from follows.csv
+count_3 = 0
 File.open("./lib/seeds/follows.csv") do |follows| 
 	follows.read.each_line do |follow|
 		follower_id, followee_id = follow.chomp.split(",")
@@ -37,6 +51,9 @@ File.open("./lib/seeds/follows.csv") do |follows|
 			follower_id: follower_id, 
 			followee_id: followee_id
 		)
+		count_3 = count_3 + 1
+	end
 end
 
-puts "#{follows.count} tweets now created"
+puts "#{count_3} following relationships now created"
+# 4923

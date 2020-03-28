@@ -19,15 +19,25 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
-
 development:
   <<: *default
-  database: nanoTwitter_dev
+  database: nt_dev
 
 test:
   <<: *default
-  database: nanoTwitter_test
+  database: nt_test
 
 production:
   <<: *default
-  database: nanoTwitter_prod
+  database: nt_prod
+# development:
+#   <<: *default
+#   database: nanoTwitter_dev
+
+# test:
+#   <<: *default
+#   database: nanoTwitter_test
+
+# production:
+#   <<: *default
+#   database: nanoTwitter_prod

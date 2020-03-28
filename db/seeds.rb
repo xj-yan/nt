@@ -21,8 +21,9 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		user_id, tweet, time = tweet.chomp.split(",")
 		Tweet.create(
 			tweet: tweet, 
-			user_id: user_id
-			time: time
+			user_id: user_id,
+			created_at: DateTime.parse(time),
+			updated_at: DateTime.parse(time)
 		)
 end
 

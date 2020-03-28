@@ -18,7 +18,7 @@ puts "#{users.count} users now created"
 # Create tweets from tweets.csv
 File.open("./lib/seeds/tweets.csv") do |tweets| 
 	tweets.read.each_line do |tweet|
-		user_id, tweet, time = tweet.chomp.split(",")
+		user_id, tweet, created_at = tweet.chomp.split(",")
 		Tweet.create(
 			tweet: tweet, 
 			user_id: user_id,
@@ -34,8 +34,8 @@ File.open("./lib/seeds/follows.csv") do |follows|
 	follows.read.each_line do |follow|
 		follower_id, followee_id = follow.chomp.split(",")
 		Follow.create(
-			fan_id: followee_id, 
-			idol_id: follower_id
+			follower_id: follower_id, 
+			followee_id: followee_id
 		)
 end
 

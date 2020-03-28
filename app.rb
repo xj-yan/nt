@@ -10,6 +10,7 @@ require_relative "./app/routes/tweet"
 require_relative "./app/models/user"
 
 require_relative "./app/helpers/timeline"
+require_relative "./app/helpers/authentication"
 
 class App < Sinatra::Base
 

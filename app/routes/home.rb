@@ -11,6 +11,7 @@ class App < Sinatra::Base
 	enable :sessions
   register Sinatra::Flash
   helpers Timeline
+  helpers Authentication
 
   helpers do
     def hash_password(password)
@@ -19,10 +20,6 @@ class App < Sinatra::Base
 
     def test_password(password, hash)
       BCrypt::Password.new(hash) == password
-    end
-
-    def logged_in?
-      !!session[:user_id]
     end
   end
   
@@ -54,6 +51,7 @@ class App < Sinatra::Base
 
   get "/logout" do
     session[:user_id] = nil
+    flash[:notice] = 'You have been logged out.'
     redirect '/'
   end
 
@@ -70,16 +68,6 @@ class App < Sinatra::Base
       flash[:notice] = "User exists. Please log in!"
       redirect '/login'
     else
-      # @user = User.create(username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
-      # if @user.valid?
-      #   session[:user_id] = @user.id
-      #   redirect '/home'
-      # else
-      #   flash[:notice] = "Registration failed. The email \
-      #   may have already been registered"
-      #   redirect '/register'
-      # end    
-
       begin
         @user = User.create!(id: User.maximum(:id).next, username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
         if @user.valid?
@@ -98,18 +86,14 @@ class App < Sinatra::Base
 
   # routes for logged in user
   get "/user/profile" do
+    authenticate!
     erb :profile_page, locals: {user: params}
   end
 
   # home is a protected route 
   get '/home' do
-    # redirect if not loggin 
-    if !logged_in?
-      redirect "/login"
-    # show homepage
-    else
-      @timeline = get_timeline(session[:user_id])
-      erb :home, locals: { title: 'Home Page' }
-    end
+    authenticate!
+    @timeline = get_timeline(session[:user_id])
+    erb :home, locals: { title: 'Home Page' }
   end
 end

@@ -18,5 +18,5 @@ class App < Sinatra::Base
   set :public_folder,           Proc.new { File.join(root, "public")}
   set :partial_template_engine, :erb
 
-  run!
+  # run!
 end

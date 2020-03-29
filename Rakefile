@@ -6,4 +6,4 @@ require_relative './config/environment'
 require 'sinatra/activerecord/rake'
 require 'boot'
 
-# task :default => [:test]
+task :default => [:test]

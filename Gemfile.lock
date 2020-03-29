@@ -126,7 +126,7 @@ DEPENDENCIES
   puma (>= 4.3.3)
   rack-test
   rack-timeout
-  rake
+  rake (> 12.0)
   require_all
   sinatra
   sinatra-activerecord

@@ -13,7 +13,7 @@ require_relative "./app/helpers/timeline"
 require_relative "./app/helpers/authentication"
 
 class App < Sinatra::Base
-
+  set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join("./", "app/views") }
   set :public_folder,           Proc.new { File.join("./", "public")}
 

@@ -1,7 +1,9 @@
-$:.unshift '.'
 ENV["RACK_ENV"] ||= "development"
 
-# require_relative './config/environment'
-require 'sinatra/activerecord/rake'
+$:.unshift File.expand_path(File.dirname(__FILE__))
 
-task :default => [:test]
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
+require 'boot'
+
+# task :default => [:test]

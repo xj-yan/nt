@@ -18,8 +18,6 @@ class App < Sinatra::Base
   set :public_folder,           Proc.new { File.join(root, "public")}
   set :partial_template_engine, :erb
 
-  enable :logging, :sessions
-
   configure :staging, :production do
     set :raise_errors, true
     # set :show_exceptions, false

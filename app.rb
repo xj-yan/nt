@@ -14,8 +14,8 @@ require_relative "./app/helpers/authentication"
 
 class App < Sinatra::Base
   set :root,                    File.dirname(__FILE__)
-  set :views,                   Proc.new { File.join(root, "./app/views") }
-  set :public_folder,           Proc.new { File.join("./", "public")}
+  set :views,                   Proc.new { File.join(root, "/app/views") }
+  set :public_folder,           Proc.new { File.join(root, "/public")}
 
   run!
 end

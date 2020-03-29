@@ -28,12 +28,6 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		delimiters = [',"', '",']
 		user_id, tweet, time = tweet.split(Regexp.union(delimiters))
 		tweet_list << {tweet: tweet, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time)}
-		# Tweet.create(
-		# 	tweet: tweet, 
-		# 	user_id: user_id,
-		# 	created_at: DateTime.parse(time),
-		# 	updated_at: DateTime.parse(time)
-		# )
 		count_2 = count_2 + 1
 	end
 	Tweet.import(tweet_column, tweet_list)

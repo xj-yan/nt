@@ -22,8 +22,8 @@ class App < Sinatra::Base
 
   configure :staging, :production do
     set :raise_errors, true
-    set :show_exceptions, false
-    set :dump_errors, false
+    # set :show_exceptions, false
+    # set :dump_errors, false
 
     # file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
     # file.sync = true

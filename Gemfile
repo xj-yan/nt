@@ -8,7 +8,7 @@ gem 'puma', ">= 4.3.3"
 gem 'faker'
 gem 'rack-test'
 gem 'bcrypt'
-gem 'rake'
+gem 'rake', '> 12.0'
 gem 'require_all'
 gem 'json'
 gem 'bootstrap', '4.3.1'

@@ -1,0 +1,33 @@
+name: Deploy to cloud
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: (MainService) Copy file via scp
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.SERVICE_HOST }}
+        USERNAME: root
+        PORT: 22
+        KEY: ${{ secrets.SERVICE_SSHKEY }}
+      with:
+        source: "."
+        target: "/home/rails/nt"
+
+    - name: (MainService) Bundle and restart app server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVICE_HOST }}
+        USERNAME: root
+        PORT: 22
+        KEY: ${{ secrets.SERVICE_SSHKEY }}
+        script: |
+          su - rails -c "cd /home/rails/nt && bundle"
+          sudo systemctl restart rails.service

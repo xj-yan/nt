@@ -7,7 +7,7 @@ class App < Sinatra::Base
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)
             tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)
-            # @user.tweets << (Tweet.create(tweet: response["tweet"]))
+            tweet.to_json
         else
             flash[:notice] = "The user doesn't exit."
         end

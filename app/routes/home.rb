@@ -5,14 +5,6 @@ require 'sinatra/base'
 
 class App < Sinatra::Base
 
-  # TODO helpers for authentication
-  # helpers SessionAuth
-
-	enable :sessions
-  register Sinatra::Flash
-  helpers Timeline
-  helpers Authentication
-
   helpers do
     def hash_password(password)
       BCrypt::Password.create(password).to_s
@@ -82,12 +74,6 @@ class App < Sinatra::Base
       # redirect "/user/#{@user.id}"
 
     end
-  end
-
-  # routes for logged in user
-  get "/user/profile" do
-    authenticate!
-    erb :profile_page, locals: {user: params}
   end
 
   # home is a protected route 

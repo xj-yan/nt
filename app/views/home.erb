@@ -1,103 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <script>
-    window.addEventListener("load", function() {
-      const app = new Vue({
-        el: "#tweet-form",
-        data() {
-          return {
-            tweet: ""
-          };
-        },
-        methods: {
-          processForm(e) {
-            e.preventDefault();
-            axios
-              .post("/tweet", {
-                tweet: this.tweet
-            })
-            this.tweet = ""
-          }
-        }
-      });
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nanoTwitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script type="text/javascript" src="/js/home.js"></script>
+    <link rel="stylesheet" href="/css/home.css">
+    <script>
+        window.addEventListener("load", function() {
+            const app = new Vue({
+                el: "#tweet-form",
+                data() {
+                    return {
+                        tweet: ""
+                    };
+                },
+                methods: {
+                    processForm(e) {
+                        e.preventDefault();
+                        axios
+                            .post("/tweet", {
+                                tweet: this.tweet
+                            })
+                        this.tweet = ""
+                    }
+                }
+            });
+        });
+    </script>
 </head>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="jumbotron">
-      <h1>Hello, world!</h1>
-    </div>
-  </div>
-</div>
+<body>
 
-<div class="row">
-  <div class="col-xs-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p>profile</p>
-      </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="jumbotron">
+                <h1>Hello, world!</h1>
+            </div>
+        </div>
     </div>
-  </div>  
-  <div class="col-xs-6">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p>timeline</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p>who to follow</p>
-      </div>
-    </div>
-  </div> 
-</div>
 
-<div class="row">
-  <div class="col-xs-3 col-xs-offset-9">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p>trends</p>
-      </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>profile</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>timeline</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>who to follow</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<a class="btn btn-secondary" href="/logout" role="button">Log out</a>
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>trends</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<form method="POST" id="tweet-form" @submit.prevent="processForm">
-  <!-- <label>Tweet:</label>
+    <a class="btn btn-secondary" href="/logout" role="button">Log out</a>
+
+    <form method="POST" id="tweet-form" @submit.prevent="processForm">
+        <!-- <label>Tweet:</label>
     <input type='text' id='tweet' v-on:change="handleMakeTweet()" v-model='content' />
     <button v-on:click="makeTweet()">Tweet</button> -->
-  <div class="field">
+        <div class="field">
 
-    <input type="text" class="input" name="tweet" v-model.trim="tweet" placeholder="What's happening?" />
-  </div>
-  <div class="field has-text-right">
-    <button type="submit" class="button is-danger">Submit</button>
-  </div>
-</form>
+            <input type="text" class="input" name="tweet" v-model.trim="tweet" placeholder="What's happening?" />
+        </div>
+        <div class="field has-text-right">
+            <button type="submit" class="button is-danger">Submit</button>
+        </div>
+    </form>
 
-<div class='timeline'>
-<% if @timeline.size > 0 %>
-<table border="0" align="center">
-    <tr>
-        <th>Tweet</th>
-        <th>Created at</th>
-    </tr>
-  
-    <% @timeline.each do |t| %>
-    <tr>
-        <td><%= t['tweet']%></td>
-        <td><%= t['created_at']%></td>
-    </tr>
-    <% end %>
-  </table>
-<% end %>
-</div>
+    <div class="content">
+        <div class="center">
+            <textarea class="comment"></textarea>
+            <input type="button" value="tweet" class="send" disabled>
+        </div>
+        <div class="messageList"></div>
+    </div>
+    <div class="page">
+        <a href="javascript:;" class="cur">1</a>
+        <a href="javascript:;">2</a>
+        <a href="javascript:;">3</a>
+    </div>
+
+</body>
+
+</html>

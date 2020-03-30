@@ -14,12 +14,26 @@ module Timeline
 	def get_followees(id)
 		followees = Follow.where(follower_id: id)
 	end
-	
-	# Return first 10 tweet where id is in the given
-	# id array in descending order
-	# Action: increase number of tweet display using pagination
+
 	def get_tweet(ids)
 		tweets = Tweet.where(user_id: ids).order(created_at: :desc)
 	end
 
+	def get_tweet_list(ids, page_num)
+		tweets = get_tweet(ids)
+		tweets[(page_num.to_i - 1) * 10, page_num.to_i * 10]
+	end
+
+	def get_page_count(ids)
+		size = get_tweet(ids).size
+		count = size / 10
+		if size % 10 != 0
+			count += 1
+		end
+		count
+	end
+
+	def valid_request?(request)
+		request.xhr?
+	end
 end

@@ -29,6 +29,7 @@ GEM
       zeitwerk (~> 2.2)
     autoprefixer-rails (9.7.4)
       execjs
+    backports (3.17.0)
     bcrypt (3.1.13)
     bootstrap (4.3.1)
       autoprefixer-rails (>= 9.1.0)
@@ -51,6 +52,7 @@ GEM
     method_source (1.0.0)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    multi_json (1.14.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.2)
@@ -96,6 +98,13 @@ GEM
     sinatra-activerecord (2.0.14)
       activerecord (>= 3.2)
       sinatra (>= 1.0)
+    sinatra-contrib (2.0.8.1)
+      backports (>= 2.8.2)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.0.8.1)
+      sinatra (= 2.0.8.1)
+      tilt (~> 2.0)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     sprockets (4.0.0)
@@ -130,6 +139,7 @@ DEPENDENCIES
   require_all
   sinatra
   sinatra-activerecord
+  sinatra-contrib
   sinatra-flash
 
 BUNDLED WITH

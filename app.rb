@@ -18,5 +18,9 @@ class App < Sinatra::Base
   set :public_folder,           Proc.new { File.join(root, "public")}
   set :partial_template_engine, :erb
 
+  enable :sessions
+  register Sinatra::Flash
+  helpers Timeline
+  helpers Authentication
   # run!
 end

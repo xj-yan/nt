@@ -15,15 +15,13 @@ class App < Sinatra::Base
     end
   end
   
-  # TODO 
-	get "/" do
-		erb :index,locals: { title: 'NanoTwitter' }
+  get "/" do
+    redirect "/login"
 	end
 	
 	# routes for login and logout
   get "/login" do
-    # erb :index, locals: { title: 'Log In' }
-    erb :login
+    erb :index
   end
 
   post "/login" do
@@ -49,15 +47,13 @@ class App < Sinatra::Base
 
   # routes for registering account 
   get "/register" do
-    erb :register, locals: { title: 'Register' }
+    erb :register
   end
 
   post "/register" do
     user = User.find_by(email: params[:email])
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      redirect '/register'
-    elsif user
-      flash[:notice] = "User exists. Please log in!"
+    if user
+      flash[:notice] = "You have an account already. Please log in!"
       redirect '/login'
     else
       begin

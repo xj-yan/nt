@@ -13,14 +13,19 @@ require_relative "./app/helpers/timeline"
 require_relative "./app/helpers/authentication"
 
 class App < Sinatra::Base
+
+  helpers  Sinatra::JSON
+  register Sinatra::Partial
+  register Sinatra::Flash
+  helpers Timeline
+  helpers Authentication
+
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }
   set :public_folder,           Proc.new { File.join(root, "public")}
   set :partial_template_engine, :erb
 
-  enable :sessions
-  register Sinatra::Flash
-  helpers Timeline
-  helpers Authentication
+  enable :sessions, :partial_underscores
+  
   # run!
 end

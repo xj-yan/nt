@@ -1,7 +1,7 @@
 $(function() {
     // disable when no input
     // listen to input
-    $("body").delegate(".comment", "propertychange input", function() { //委托给入口函数执行之前就加载的 比如body
+    $("body").delegate(".comment", "propertychange input", function() {
         // check input
         if ($(this).val().length > 0) {
             // enable button

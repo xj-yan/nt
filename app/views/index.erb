@@ -1,58 +1,97 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button
-        type="button"
-        class="navbar-toggle collapsed"
-        data-toggle="collapse"
-        data-target="#bs-example-navbar-collapse-1"
-        aria-expanded="false"
-      >
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">nanotwitter</a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/3b24e81b01.js" crossorigin="anonymous"></script>
+
+    <title>NanoTwitter Login</title>
+</head>
+
+<body>
+    <div class="layout">
+        <!-- layout -->
+        <div class="header">
+            <!--header-->
+        </div>
+        <div class="content">
+            <!--content-->
+            <div class="panel login">
+                <div class="brand">
+                    <!-- icon -->
+                    <div class="brand_icon">
+                        <span class="brand_icon__ico"><i class="fab fa-twitter fa-2x"></i></span>
+                        <span class="brand_icon__font">NanoTwitter</span>
+                    </div>
+                </div>
+                <div class="login_title">
+                    <!-- login -->
+                    <span>Login</span>
+                </div>
+                <form id="user_login" action="/login" method="post">
+                    <ul>
+                        <li>
+                            <div class="login_input">
+                                <!-- <label>Email</label> -->
+                                <span class="login__symble_1"><i class="fa fa-user fa-2x"></i></span>
+                                <input id="user_email" name="email" type="text" placeholder="Email" required />
+                                <span id="input_popovers__1" class="login_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="login_input">
+                                <!-- <label>Password</label> -->
+                                <span class="login__symble_1"><i class="fa fa-lock fa-2x"></i></span>
+                                <input id="user_password" name="password" type="password" placeholder=Password required/>
+                                <span id="input_popovers__2" class="login_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="login-error" id="login-error">
+                        <span class="login-error__icon"><i class="fa fa-exclamation-circle"></i></span>
+                        <span class="login-error__font"></span>
+                    </div>
+                    <% if flash[:notice] %>
+                    <div class="alert alert-danger" role="alert">
+                    <span class="login-error__icon"><i class="fa fa-exclamation-circle"></i></span>
+                        <span class="login-error__font"><%= flash[:notice] %></span>
+                    </div>
+                    <% end %>
+                    <div class="login_button" id="login_button">
+                        <!-- login button, id="login_button" -->
+                        <button id="submit_button" class="btn">Log&nbsp;&nbsp;in</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel signup">
+                <div class="signup_title"><span>Do not have an account yet?</span></div>
+                <div class="signup_button">
+                    <!-- register, id="signup_button" -->
+                    <button id="signup_button" class="btn" onclick="window.location.href='/register'">Register</button>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Explore</a></li>
-      </ul>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/esm/popper-utils.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
 
-      <ul class="nav navbar-nav navbar-right">
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" />
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <li class="dropdown">
-          <a
-            href="#"
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            >Navigation<span class="caret"></span
-          ></a>
-          <ul class="dropdown-menu">
-            <li><a href="/register">Register</a></li>
-            <li><a href="/logout">Log out</a></li>
-            <li><a href="/login">Log In</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
-
-
-
-<p>Welcome to NanoTwitter</p>
+</html>

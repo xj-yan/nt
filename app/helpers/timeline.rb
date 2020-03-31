@@ -17,6 +17,11 @@ module Timeline
 
 	def get_tweet(ids)
 		tweets = Tweet.where(user_id: ids).order(created_at: :desc)
+		if tweets.size > 200
+			tweets.first(200)
+		else
+			tweets
+		end
 	end
 
 	def get_tweet_list(ids, page_num)

@@ -10,7 +10,9 @@ class App < Sinatra::Base
 
 	get "/user/:id" do
 			authenticate!
-			@user = User.find(params[:id])
+			id = params[:id]
+			@user = User.find(id)
+			@timeline = get_tweet(id).to_json
 			if @user.nil?
 				return 404
 			else
@@ -37,12 +39,11 @@ class App < Sinatra::Base
 			return 200
 	end
 
-	get '/name' do
+	get '/api' do
 		authenticate!
-		puts "print"
 		act = params[:act]
 		if act == 'get_home_user'
-			name = get_name(session[:user_id])
+			{name: get_name(session[:user_id])}.to_json
 		end
 	end
 end

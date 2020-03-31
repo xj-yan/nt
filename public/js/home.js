@@ -158,14 +158,17 @@ $(function() {
 
     // get user
     function getUser() {
-        // name?act=get_home_user	get username
+        // api/?act=get_home_user	get username
         $.ajax({
             type: "get",
-            url: "/name",
+            url: "/api",
             data: "act=get_home_user",
             success: function(msg) {
                 // console.log(msg);
-                var obj = eval("(" + msg + ")");
+                // var obj = eval("(" + msg + ")");
+                // console.log(obj);
+                var obj = JSON.parse(msg)
+                console.log(obj.name);
                 return obj;
             },
             error: function(xhr) {

@@ -7,9 +7,9 @@
 <body>
     <div class='container'>
         <%= "Welcome to #{@user.username}'s Home Page" %><br/>
-        <!-- <%= "This user has #{@user.follower_number } followers." %><br/>
+            <!-- <%= "This user has #{@user.follower_number } followers." %><br/>
         <%= "This user follows #{@user.followee_number} people."%><br/> -->
-        <!-- <form action="/follow" method="POST">
+            <!-- <form action="/follow" method="POST">
             <input type="hidden" name="follow_id" value=<%= @user.id.to_s %>/>
             <input type="submit" value="Follow" />
         </form>
@@ -19,30 +19,30 @@
             <input type="submit" value="Unfollow" />
         </form> -->
 
-        <div id="follow_element">
-            <%= "This user has {{ follower_number }} followers." %><br/>
-            <button v-if="!isHidden" v-on:click="followUser(); follower_number += 1; isHidden = true">Follow</button>
-            <button v-else v-on:click="unfollowUser(); follower_number -= 1; isHidden = false">Unfollow</button>
-        </div>
+            <div id="follow_element">
+                <%= "This user has {{ follower_number }} followers." %><br/>
+                    <button v-if="!isHidden" v-on:click="followUser(); follower_number += 1; isHidden = true">Follow</button>
+                    <button v-else v-on:click="unfollowUser(); follower_number -= 1; isHidden = false">Unfollow</button>
+            </div>
 
-        
+            <div>
+                <%= @timeline %>
+            </div>
     </div>
 
     <script>
-
-
-        window.addEventListener('load', function(){
+        window.addEventListener('load', function() {
             const app = new Vue({
                 el: "#follow_element",
                 data: {
                     follower_number: <%= @user.follower_number %>,
                     isHidden: false
                 },
-                methods:{
-                    followUser(e){
+                methods: {
+                    followUser(e) {
                         axios.post("/follow/<%= @user.id %>")
                     },
-                    unfollowUser(e){
+                    unfollowUser(e) {
                         axios.post("/unfollow/<%= @user.id %>")
                     }
                 }

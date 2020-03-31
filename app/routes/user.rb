@@ -8,10 +8,14 @@ class App < Sinatra::Base
 			erb :profile_page, locals: {user: params}
 	end
 
-	get "/userpage/:username" do
+	get "/user/:id" do
 			authenticate!
-			@user = User.find_by(username: params[:username].capitalize())
-			erb :user_main_page
+			@user = User.find(params[:id])
+			if @user.nil?
+				return 404
+			else
+				erb :user_main_page
+			end
 	end
 
 	post '/follow/:id' do
@@ -22,12 +26,6 @@ class App < Sinatra::Base
 			)
 			User.increment_counter(:followee_number, session[:user_id])
 			User.increment_counter(:follower_number, params[:id])
-			# Follow.create(
-			# 	follower_id: session[:user_id], 
-			# 	followee_id: params[:follow_id]
-			# )
-			# User.increment_counter(:followee_number, session[:user_id])
-			# User.increment_counter(:follower_number, params[:follow_id])
 			return 200
 	end
 
@@ -36,9 +34,6 @@ class App < Sinatra::Base
 			Follow.find_by(follower_id: session[:user_id], followee_id: params[:id]).delete
 			User.decrement_counter(:followee_number, session[:user_id])
 			User.decrement_counter(:follower_number, params[:id])
-			# Follow.find_by(follower_id: session[:user_id], followee_id: params[:unfollow_id]).delete
-			# User.decrement_counter(:followee_number, session[:user_id])
-			# User.decrement_counter(:follower_number, params[:unfollow_id])
 			return 200
 	end
 

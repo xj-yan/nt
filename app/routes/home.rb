@@ -15,6 +15,10 @@ class App < Sinatra::Base
     end
   end
   
+  get 'loaderio-0470e477a26613ba3324452466632e93' do
+    'loaderio-0470e477a26613ba3324452466632e93'
+  end
+
   get "/" do
     redirect "/login"
 	end

@@ -10,9 +10,15 @@ module Timeline
 		end
 	end
 
-	# Get a list of followee id
-	def get_followees(id)
+	# Get a list of ids
+	def get_timeline_ids(id)
 		followees = Follow.where(follower_id: id)
+		ids = []
+		ids << id
+		followees.each do |f|
+			ids << f["followee_id"]
+		end
+		ids.uniq
 	end
 
 	def get_tweet(ids)
@@ -40,5 +46,9 @@ module Timeline
 
 	def valid_request?(request)
 		request.xhr?
+	end
+
+	def get_name(id)
+		name = User.find_by(id: id).username
 	end
 end

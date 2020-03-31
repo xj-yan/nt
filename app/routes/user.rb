@@ -8,7 +8,7 @@ class App < Sinatra::Base
 			erb :profile_page, locals: {user: params}
 	end
 
-	get "/:username" do
+	get "/userpage/:username" do
 			authenticate!
 			@user = User.find_by(username: params[:username].capitalize())
 			erb :user_main_page
@@ -43,6 +43,8 @@ class App < Sinatra::Base
 	end
 
 	get '/name' do
+		authenticate!
+		puts "print"
 		act = params[:act]
 		if act == 'get_home_user'
 			name = get_name(session[:user_id])

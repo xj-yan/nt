@@ -21,17 +21,22 @@
 
         <div id="follow_element">
             <%= "This user has {{ follower_number }} followers." %><br/>
-            <button v-on:click="followUser(); follower_number += 1">Follow</button>
-            <button v-on:click="unfollowUser(); follower_number -= 1">Unfollow</button>
+            <button v-if="!isHidden" v-on:click="followUser(); follower_number += 1; isHidden = true">Follow</button>
+            <button v-else v-on:click="unfollowUser(); follower_number -= 1; isHidden = false">Unfollow</button>
         </div>
+
+        
     </div>
 
     <script>
+
+
         window.addEventListener('load', function(){
             const app = new Vue({
                 el: "#follow_element",
                 data: {
-                    follower_number: <%= @user.follower_number %>
+                    follower_number: <%= @user.follower_number %>,
+                    isHidden: false
                 },
                 methods:{
                     followUser(e){

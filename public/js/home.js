@@ -158,21 +158,23 @@ $(function() {
 
     // get user
     function getUser() {
-        // api/?act=get_home_user	get username
+        var text = ""
+            // api/?act=get_home_user	get username
         $.ajax({
             type: "get",
-            url: "/api/name",
+            url: "/api/user",
             data: "act=get_home_user",
-            dataType: html,
+            async: false,
+            dataType: "json",
             success: function(msg) {
-                // console.log(msg);
                 // var obj = eval("(" + msg + ")");
-                return msg;
+                text = msg;
+                console.log(text);
             },
             error: function(xhr) {
                 alert(xhr.status);
             }
         });
+        return text;
     }
-
 });

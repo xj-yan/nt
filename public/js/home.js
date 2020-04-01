@@ -145,9 +145,9 @@ $(function() {
     function formartDate() {
         var date = new Date();
         // 2020-3-20 21:30:23
-        var arr = [date.getMonth() + 1 + "-",
+        var arr = [date.getFullYear() + "-",
+            date.getMonth() + 1 + "-",
             date.getDate() + " ",
-            date.getFullYear() + "-",
             date.getHours() + ":",
             date.getMinutes() + ":",
             date.getSeconds()
@@ -161,15 +161,13 @@ $(function() {
         // api/?act=get_home_user	get username
         $.ajax({
             type: "get",
-            url: "/api",
+            url: "/api/name",
             data: "act=get_home_user",
+            dataType: html,
             success: function(msg) {
                 // console.log(msg);
                 // var obj = eval("(" + msg + ")");
-                // console.log(obj);
-                var obj = JSON.parse(msg)
-                console.log(obj.name);
-                return obj;
+                return msg;
             },
             error: function(xhr) {
                 alert(xhr.status);

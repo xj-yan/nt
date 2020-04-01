@@ -39,7 +39,7 @@ class App < Sinatra::Base
 			return 200
 	end
 
-	get '/api' do
+	get '/api/name' do
 		authenticate!
 		act = params[:act]
 		if act == 'get_home_user'

@@ -1,54 +1,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <div class='container'>
+    <div id="follow_action" class='container'>
         <%= "Welcome to #{@user.username}'s Home Page" %><br/>
-            <!-- <%= "This user has #{@user.follower_number } followers." %><br/>
-        <%= "This user follows #{@user.followee_number} people."%><br/> -->
-            <!-- <form action="/follow" method="POST">
-            <input type="hidden" name="follow_id" value=<%= @user.id.to_s %>/>
-            <input type="submit" value="Follow" />
-        </form>
+        <div id="follow_element">
+            <%= "This user has {{follower_number}} followers." %><br/>
+            <button v-if="is_not_follow" v-on:click="followUser(); follower_number += 1; is_not_follow = !is_not_follow">Follow</button>
+            <button v-else v-on:click="unfollowUser(); follower_number -= 1; is_not_follow = !is_not_follow">Unfollow</button>
+        </div>
 
-        <form action="/unfollow" method="POST">
-            <input type="hidden" name="unfollow_id" value=<%= @user.id.to_s %>/>
-            <input type="submit" value="Unfollow" />
-        </form> -->
-
-            <div id="follow_element">
-                <%= "This user has {{ follower_number }} followers." %><br/>
-                    <button v-if="!isHidden" v-on:click="followUser(); follower_number += 1; isHidden = true">Follow</button>
-                    <button v-else v-on:click="unfollowUser(); follower_number -= 1; isHidden = false">Unfollow</button>
-            </div>
-
-            <div>
-                <%= @timeline %>
-            </div>
+        <div>
+            <%= @timeline %>
+        </div>
     </div>
 
     <script>
-        window.addEventListener('load', function() {
-            const app = new Vue({
-                el: "#follow_element",
-                data: {
-                    follower_number: <%= @user.follower_number %>,
-                    isHidden: false
+        const app = new Vue({
+            el: "#follow_element",
+            data: {
+                follower_number: <%= @user.follower_number %>,
+                is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>
+            },
+            methods: {
+                followUser(e) {
+                    axios.post("/follow/<%= @user.id %>")
                 },
-                methods: {
-                    followUser(e) {
-                        axios.post("/follow/<%= @user.id %>")
-                    },
-                    unfollowUser(e) {
-                        axios.post("/unfollow/<%= @user.id %>")
-                    }
+                unfollowUser(e) {
+                    axios.post("/unfollow/<%= @user.id %>")
                 }
-            })
+            }
         })
+    
+
     </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </body>

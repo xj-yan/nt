@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
+gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord'
 gem 'activerecord'
 gem 'pg'
@@ -15,5 +15,5 @@ gem 'bootstrap', '4.3.1'
 gem 'sinatra-flash'
 gem 'rack-timeout'
 gem 'activerecord-import'
-gem 'sinatra-contrib'
+gem 'sinatra-contrib', require: false
 gem 'sinatra-partial'

@@ -4,7 +4,7 @@ gem 'sinatra'
 # gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord'
 gem 'activerecord'
-gem 'pg'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', ">= 4.3.3"
 gem 'faker'
 gem 'rack-test'

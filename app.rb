@@ -17,7 +17,7 @@ class App < Sinatra::Base
   helpers  Sinatra::JSON
   register Sinatra::Partial
   register Sinatra::Flash
-  register Sinatra::Contrib
+  # register Sinatra::Contrib
   helpers Timeline
   helpers Authentication
 

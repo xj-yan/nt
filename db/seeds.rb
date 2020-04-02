@@ -10,7 +10,7 @@ File.open("./lib/seeds/users.csv") do |users|
 			username: username, 
 			email: Faker::Internet.email, 
 			bio: Faker::Job.title, 
-			password: Faker::Internet.password(min_length: 10, max_length: 20)
+			password: "123"
 		)
 		count_1 = count_1 + 1
 	end

@@ -30,14 +30,4 @@ test:
 production:
   <<: *default
   database: nt_prod
-# development:
-#   <<: *default
-#   database: nanoTwitter_dev
 
-# test:
-#   <<: *default
-#   database: nanoTwitter_test
-
-# production:
-#   <<: *default
-#   database: nanoTwitter_prod

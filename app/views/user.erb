@@ -84,14 +84,14 @@
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
                     <div class="lmlblog-member-follow-info">
                         <% if @user.id != session[:user_id] %>
-                            <span class="follow no opacity"><i class="lmlblog-icon"></i>
+                          
                                 <button v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow; follower_number += 1" class="follow no opacity">
                                     <i class="lmlblog-icon"></i>+ Follow
                                 </button>
                                 <button v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow; follower_number -= 1" class="follow no opacity">
                                     <i class="lmlblog-icon"></i>+ Unfollow
                                 </button>
-                            </span>
+                      
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
                             <% end %>
                     </div>

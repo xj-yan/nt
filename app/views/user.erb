@@ -83,10 +83,14 @@
                         <span class="lmlblog-mark lmlblog-vip">VIP 6</span> -->
                     </div>
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
-                    <div class="lmlblog-member-follow-info">
+                    <div id="follow_element" class="lmlblog-member-follow-info">
                         <% if @user.id != session[:user_id] %>
-                            <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i
-                                    class="lmlblog-icon"></i>+ Follow</span></a>
+                                <button v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow" class="follow no opacity">
+                                    + Follow
+                                </button>
+                                <button v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow" class="follow no opacity">
+                                    + Unfollow
+                                </button>
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
                         <% end %>
                     </div>
@@ -211,8 +215,26 @@
     <a href="javascript:returnTop();" class="cd-top"></a>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="/js/home.js"></script>
     <script type="text/javascript">
+
+        const app = new Vue({
+            el: "#follow_element",
+            data: {
+                is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>
+            },
+            methods: {
+                followUser(e) {
+                    axios.post("/follow/<%= @user.id %>")
+                },
+                unfollowUser(e) {
+                    axios.post("/unfollow/<%= @user.id %>")
+                }
+            }
+        })
+
         var sdelay = 0;
 
         function returnTop() {

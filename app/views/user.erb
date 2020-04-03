@@ -87,7 +87,7 @@
                         <% if @user.id != session[:user_id] %>
                             <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i class="lmlblog-icon"></i>+ Follow</span></a>
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
-                            <% end %>
+                        <% end %>
                     </div>
                     <div class="lmlblog-member-menu clear">
                         <li class="on">Tweets</li>
@@ -132,48 +132,48 @@
                             <div class="lmlblog-post-list">
                                 
                                 <% if @user.id == session[:user_id] %>
-                                <!-- send -->
-                                <div class="lmlblog-posts-list words">
-                                    <div class="content">
-                                        <div class="center">
-                                            <textarea class="comment"></textarea>
-                                            <br>
-                                            <input type="button" value="tweet" class="send" disabled>
+                                    <!-- send -->
+                                    <div class="lmlblog-posts-list words">
+                                        <div class="content">
+                                            <div class="center">
+                                                <textarea class="comment"></textarea>
+                                                <br>
+                                                <input type="button" value="tweet" class="send" disabled>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </div>
+                                    </div>
                                 <% end %>
-
-
-                                <% for @timeline.each do |t|%>
-                                <!-- posts_list -->
-                            <div class="lmlblog-posts-list words">
-
-                                <!-- 动态内容部分，包括列表 -->
-                                <div class="lmlblog-post-user-info">
-                                    <div class="lmlblog-post-user-info-avatar" user-data="1">
-                                        <a href="" style="display: inline-block;">
-                                            <img src="images/tx2.jpg" class="avatar">
-                                        </a>
-                                    </div>
-
-                                    <div class="lmlblog-post-user-info-name">
-                                        <a href="">
-                                            <font style="color:#333;font-weight:600"><%=@user.username%></font>
-                                        </a>
-                                    </div>
-                                    <div class="lmlblog-post-user-info-time" title="time"><%=t["created_at"]%></div>
-                                </div>
-
-                                <div class="lmlblog-post-content ">
-                                    <a class="post_list_link" href="">
-                                        <p>　　<%=t["tweet"]%></p>
-                                    </a>
-                                </div>
 
                             </div>
-                                <% end %>
+                            <% @timeline.each do |t|%>
+                                <!-- posts_list -->
+                                <div class="lmlblog-posts-list words">
+
+                                    <!-- 动态内容部分，包括列表 -->
+                                    <div class="lmlblog-post-user-info">
+                                        <div class="lmlblog-post-user-info-avatar" user-data="1">
+                                            <a href="" style="display: inline-block;">
+                                                <img src="images/tx2.jpg" class="avatar">
+                                            </a>
+                                        </div>
+
+                                        <div class="lmlblog-post-user-info-name">
+                                            <a href="">
+                                                <font style="color:#333;font-weight:600"><%=@user.username%></font>
+                                            </a>
+                                        </div>
+                                        <div class="lmlblog-post-user-info-time" title="time"><%=t["created_at"]%></div>
+                                    </div>
+
+                                    <div class="lmlblog-post-content ">
+                                        <a class="post_list_link" href="">
+                                            <p>　　<%=t["tweet"]%></p>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            <% end %>
 
                                 <!-- posts_list -->
                                 <div class="lmlblog-pager"><a class="lmlblog-pager-left" href="">Last</a>

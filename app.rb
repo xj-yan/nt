@@ -21,6 +21,7 @@ class App < Sinatra::Base
   helpers Timeline
   helpers Authentication
 
+  set :bind,                    '0.0.0.0'
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }
   set :public_folder,           Proc.new { File.join(root, "public")}

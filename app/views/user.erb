@@ -69,7 +69,7 @@
     <div style="clear: both;"></div>
     <div class="lmlblog-member-main" data="1">
         <div class="lmlblog-member-bg">
-            <div class="lmlblog-member-content">
+            <div id="follow_element" class="lmlblog-member-content">
                 <div class="lmlblog-member-header">
                     <div class="lmlblog-member-avatar other">
                         <!-- <img src="../../../../crop.0.0.888.888.180/006Dh9Zbly8ft1i9uqjjkj30oo0oo0ue.jpg" class="avatar"> -->
@@ -82,13 +82,13 @@
                         </h1>
                     </div>
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
-                    <div id="follow_element" class="lmlblog-member-follow-info">
+                    <div class="lmlblog-member-follow-info">
                         <% if @user.id != session[:user_id] %>
                             <span class="follow no opacity"><i class="lmlblog-icon"></i>
-                                <button v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow" class="follow no opacity">
+                                <button v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow; follower_number += 1" class="follow no opacity">
                                     <i class="lmlblog-icon"></i>+ Follow
                                 </button>
-                                <button v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow" class="follow no opacity">
+                                <button v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow; follower_number -= 1" class="follow no opacity">
                                     <i class="lmlblog-icon"></i>+ Unfollow
                                 </button>
                             </span>
@@ -112,7 +112,7 @@
                                 <span>Follow</span>
                             </li>
                             <li>
-                                <strong><%= @user.follower_number%></strong>
+                                <strong><%= "{{follower_number}}" %></strong>
                                 <span>Follower</span>
                             </li>
                             <li>
@@ -221,7 +221,9 @@
         const app = new Vue({
             el: "#follow_element",
             data: {
-                is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>
+                is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>,
+                follower_number: <%= @user.follower_number %>,
+
             },
             methods: {
                 followUser(e) {

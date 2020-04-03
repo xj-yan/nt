@@ -25,6 +25,7 @@ class App < Sinatra::Base
   set :views,                   Proc.new { File.join(root, "app/views") }
   set :public_folder,           Proc.new { File.join(root, "public")}
   set :partial_template_engine, :erb
+  set :bind,                    '0.0.0.0'
 
   enable :sessions, :partial_underscores
 

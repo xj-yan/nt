@@ -79,7 +79,8 @@ class App < Sinatra::Base
   # home is a protected route 
   get '/home' do
     authenticate!
+    @user = User.find_by(id: session[:user_id])
     @timeline = get_timeline(session[:user_id])
-    erb :home, locals: { title: 'Home Page' }
+    erb :new
   end
 end

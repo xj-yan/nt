@@ -17,7 +17,8 @@ class App < Sinatra::Base
 		if @user.nil?
 			return 404
 		else
-			erb :user_main_page
+			# erb :user_main_page
+			erb :user
 		end
 	end
 
@@ -40,11 +41,11 @@ class App < Sinatra::Base
 		return 200
 	end
 
-	get '/api' do
+	get '/api/user' do
 		authenticate!
 		act = params[:act]
 		if act == 'get_home_user'
-			{name: get_name(session[:user_id])}.to_json
+			get_name(session[:user_id]).to_json
 		end
 	end
 end

@@ -16,7 +16,7 @@ $(function() {
     getMsgPage();
 
     function getMsgPage() {
-        $(".page").html("");
+        $("#page").html("");
         // tweet?act=get_page_count	get total page number
         $.ajax({
             type: "get",
@@ -32,7 +32,7 @@ $(function() {
                     if (i === (number - 1)) {
                         $a.addClass("cur");
                     }
-                    $(".page").append($a);
+                    $("#page").append($a);
                 }
             },
             error: function(xhr) {
@@ -106,7 +106,7 @@ $(function() {
         });
     });
     // listen to click on next page
-    $("body").delegate(".page>a", "click", function() {
+    $("body").delegate("#page>a", "click", function() {
         $(this).addClass("cur");
         $(this).siblings().removeClass("cur");
         // console.log($(this).html());
@@ -119,12 +119,23 @@ $(function() {
     function createEle(text) {
         // console.log(text)
         var $tweet = $("<div class=\"info\">\n" +
-            "            <p class=\"infoText\">" + getUser() + "</p>\n" +
-            "            <p class=\"infoText\">" + text + "</p>\n" +
+            "            <p class=\"infoName\">" + getUser() + "</p>\n" +
             "            <p class=\"infoOperation\">\n" +
             "                <span class=\"infoTime\">" + formartDate() + "</span>\n" +
             "            </p>\n" +
+            "            <p class=\"infoText\">" + text + "</p>\n" +
             "        </div>");
+        // var $tweet = $("<div class=\"info\">\n" +
+        //     "            <div class=\"lmlblog-post-user-info\">\n" +
+        //     "            <div class=\"lmlblog-post-user-info-name\">\n" +
+        //     "            <a href=\"\"> <font style=\"color: #333;font-weight:600\">" + getUser() + "</font></a>\n" +
+        //     "            </div>\n" +
+        //     "            <div class=\"lmlblog-post-user-info-time\" title=\"time\">\n" + formartDate() + "</div>\n" +
+        //     "            </div>\n" +
+        //     "            <div class=\"lmlblog-post-content\">\n" +
+        //     "            <a class=\"post_list_link\" href=\"\"> <p>     " + text + " </p></a>\n" +
+        //     "            </div>\n" +
+        //     "        </div>");
         return $tweet;
     }
 
@@ -132,12 +143,24 @@ $(function() {
     function createEleRec(text) {
         // console.log(text)
         var $tweet = $("<div class=\"info\">\n" +
-            "            <p class=\"infoText\">" + text[0] + "</p>\n" +
-            "            <p class=\"infoText\">" + text[1] + "</p>\n" +
+            "            <p class=\"infoName\">" + text[0] + "</p>\n" +
             "            <p class=\"infoOperation\">\n" +
             "                <span class=\"infoTime\">" + text[2] + "</span>\n" +
             "            </p>\n" +
+            "            <p class=\"infoText\">" + text[1] + "</p>\n" +
             "        </div>");
+        // var $tweet = $("<div class=\"lmlblog-posts-list words\">\n" +
+        //     "            <div class=\"lmlblog-post-user-info\">\n" +
+        //     "            <div class=\"lmlblog-post-user-info-name\">\n" +
+        //     "            <a href=\"\"> <font style=\"color: #333;font-weight:600\">" + text[0] + "</font></a>\n" +
+        //     "            </div>\n" +
+        //     "            <div class=\"lmlblog-post-user-info-time\" title=\"time\">\n" + text[2] + "</div>\n" +
+        //     "            </div>\n" +
+        //     "            </div>\n" +
+        //     "            <div class=\"lmlblog-post-setting\">\n" +
+        //     "            <a class=\"post_list_link\" href=\"\"><p>" + text[1] + "</p></a>\n" +
+        //     "            </div>\n" +
+        //     "        </div>");
         return $tweet;
     }
 

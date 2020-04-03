@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="images/tx.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>NanoTwitter</title>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='style-css' href='css/style.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='lmlblog-css' href='css/lmlblog.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='all-css' href='css/all.css' type='text/css' media='all'>
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/ueditor.all.min.js'></script>
+</head>
+
+<body>
+    <!-- Menu -->
+    <div class="menu-bar">
+        <div class="head_content">
+            <h1 class="m-logo">
+                <a href="/home"></a>
+            </h1>
+            <div id="nav" class="menu-menu-1-container">
+                <ul id="menu-menu-1" class="menu">
+                    <li class="menu-item menu-item-type-custom"><a href=""><i class="fa fa-home"></i> Home</a></li>
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+                        <a href=""><i class="fa fa-comments-o"></i> Message</a></li>
+                    <li class="menu-item"><a href="">Explore</a></li>
+                    <!-- <li id="menu-item" class="gengxin menu-item"><a href="">Home</a></li> -->
+                    <li class="menu-item menu-item-has-children"><a href="">More</a>
+                        <ul class="sub-menu">
+                            <li id="menu-item" onclick="#1">Logout</li>
+                            <li class="menu-item"><a href="">Register</a></li>
+                        </ul>
+                    </li>
+                    <li id="head_search"><i class="fa fa-search"></i></li>
+                </ul>
+            </div>
+            <!-- <div class="head_user_info">
+                <ul>
+                    <li id="head_search"><i class="fa fa-search"></i></li>
+                    <li id="head_login" onclick="#1">Logout</li>
+                    <span class="head_login_middle">or</span>
+                    <li id="head_reg" onclick="#1"></li>
+                </ul>
+            </div> -->
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <!-- menu-bar -->
+    <div style="clear: both;"></div>
+    <div class="lmlblog-member-main" data="1">
+        <div class="lmlblog-member-bg">
+            <div class="lmlblog-member-content">
+                <div class="lmlblog-member-header">
+                    <div class="lmlblog-member-avatar other">
+                        <!-- <img src="../../../../crop.0.0.888.888.180/006Dh9Zbly8ft1i9uqjjkj30oo0oo0ue.jpg" class="avatar"> -->
+                        <img src="picture/qi.gif" class="avatar">
+                        <!-- <i class="lmlblog-verify lmlblog-verify-a" title="Username"></i> -->
+                    </div>
+                    <div class="lmlblog-member-username">
+                        <h1>
+                            <%= @user.username %>
+                        </h1>
+                        <!-- <span class="lmlblog-mark lmlblog-girl"><i class="fa fa-mars"></i></span> -->
+                        <!-- <span class="lmlblog-mark lmlblog-lv" title="经验：3815">Lv.6</span>
+                        <span class="lmlblog-mark lmlblog-vip">VIP 6</span> -->
+                    </div>
+                    <div class="lmlblog-member-desc">Welcom to my page! </div>
+                    <div class="lmlblog-member-follow-info">
+                        <% if @user.id != session[:user_id] %>
+                            <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i class="lmlblog-icon"></i>+ Follow</span></a>
+                            <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
+                            <% end %>
+                    </div>
+                    <div class="lmlblog-member-menu clear">
+                        <li class="on">Tweets</li>
+                        <li>Comments</li>
+                        <!-- <li><a href="javascript:;" target="_blank">Music</a></li>
+                    <li>文章</li>
+                    <li><a href="javascript:;" target="_blank">Video</a></li>
+                    <li><a href="javascript:;" target="_blank">Profile</a></li> -->
+                    </div>
+                    <div class="lmlblog-member-content-list clear">
+                        <div class="lmlblog-member-left">
+                            <div class="lmlblog-member-left-follow clear">
+                                <li>
+                                    <strong>1</strong>
+                                    <span>Follow</span>
+                                </li>
+                                <li>
+                                    <strong>10</strong>
+                                    <span>Follower</span>
+                                </li>
+                                <li>
+                                    <strong>20</strong>
+                                    <span>Tweet</span>
+                                </li>
+                                <li>
+                                    <strong>100</strong>
+                                    <span>Like</span>
+                                </li>
+                            </div>
+                            <div class="lmlblog-member-left-profile">
+                                <h3>Bio</h3>
+                                <li><i class="fa fa-address-book-o"></i> Username：
+                                    <span><%= @user.username%><span></span></span>
+                                </li>
+                                <li><i class="fa fa-map-marker"></i> Location：<span>Waltham<span></span></span>
+                                </li>
+                                <li><i class="fa fa-transgender"></i> Joined：<span>1/1/2020<span></span></span>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="lmlblog-member-right">
+                            <div class="lmlblog-post-list">
+                                
+                                <% if @user.id == session[:user_id] %>
+                                <!-- send -->
+                                <div class="lmlblog-posts-list words">
+                                    <div class="content">
+                                        <div class="center">
+                                            <textarea class="comment"></textarea>
+                                            <br>
+                                            <input type="button" value="tweet" class="send" disabled>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <% end %>
+
+
+                                <div class="messageList"></div>
+
+                                <!-- posts_list -->
+                                <div class="lmlblog-pager"><a class="lmlblog-pager-left" href="">Last</a>
+                                    <div class="lmlblog-pager-center layui-form">
+                                        <select>
+                                           <option value="#=1">Page 1
+                                           <option value="#=2">Page 2
+                                           <option selected="selected" value="#3">Page 3
+                                       </select>Page 1</div>
+                                    <a class="lmlblog-pager-right" href="">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <!-- 返回顶部 -->
+    <a href="javascript:returnTop();" class="cd-top"></a>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/home.js"></script>
+    <script type="text/javascript">
+        var sdelay = 0;
+
+        function returnTop() {
+            window.scrollBy(0, -100); //Only for y vertical-axis
+            if (document.body.scrollTop > 0) {
+                sdelay = setTimeout('returnTop()', 50);
+            }
+        }
+        $('.menu-item-has-children').on('click', function(e) {
+            e.preventDefault();
+            var submenu = $(this).children('.sub-menu');
+            if ($(submenu).is(':hidden')) {
+                $(submenu).slideDown(200);
+            } else {
+                $(submenu).slideUp(200);
+            }
+        })
+
+        $(".sub-menu li").click(function() {
+            /*read a tag*/
+            var obj = $(this).children("a");
+            /*redirect*/
+            console.log(obj);
+            window.location.href = $(obj).attr("href");
+        });
+    </script>
+</body>
+
+</html>

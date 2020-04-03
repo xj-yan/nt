@@ -16,7 +16,7 @@ $(function() {
     getMsgPage();
 
     function getMsgPage() {
-        $("#page").html("");
+        $(".page").html("");
         // tweet?act=get_page_count	get total page number
         $.ajax({
             type: "get",
@@ -32,7 +32,7 @@ $(function() {
                     if (i === (number - 1)) {
                         $a.addClass("cur");
                     }
-                    $("#page").append($a);
+                    $(".page").append($a);
                 }
             },
             error: function(xhr) {
@@ -106,7 +106,7 @@ $(function() {
         });
     });
     // listen to click on next page
-    $("body").delegate("#page>a", "click", function() {
+    $("body").delegate(".page>a", "click", function() {
         $(this).addClass("cur");
         $(this).siblings().removeClass("cur");
         // console.log($(this).html());

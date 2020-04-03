@@ -22,9 +22,9 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='style-css' href='css/style.css' type='text/css' media='all'>
-    <link rel='stylesheet' id='lmlblog-css' href='css/lmlblog.css' type='text/css' media='all'>
-    <link rel='stylesheet' id='all-css' href='css/all.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='style-css' href='/css/style.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='lmlblog-css' href='/css/lmlblog.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='all-css' href='/css/all.css' type='text/css' media='all'>
     <script type='text/javascript' src='js/jquery.min.js'></script>
     <script type='text/javascript' src='js/ueditor.all.min.js'></script>
 </head>
@@ -130,40 +130,48 @@
                         </div>
                         <div class="lmlblog-member-right">
                             <div class="lmlblog-post-list">
-                                
+
                                 <% if @user.id == session[:user_id] %>
-                                <!-- send -->
-                                <div class="lmlblog-posts-list words">
-                                    <div class="content">
-                                        <div class="center">
-                                            <textarea class="comment"></textarea>
-                                            <br>
-                                            <input type="button" value="tweet" class="send" disabled>
+                                    <!-- send -->
+                                    <div class="lmlblog-posts-list words">
+                                        <div class="content">
+                                            <div class="center">
+                                                <textarea class="comment"></textarea>
+                                                <br>
+                                                <input type="button" value="tweet" class="send" disabled>
+                                            </div>
                                         </div>
+
                                     </div>
-
-                                </div>
-                                <% end %>
+                                    <% end %>
 
 
-                                <div class="messageList"></div>
+                                        <div class="messageList"></div>
 
-                                <!-- posts_list -->
-                                <div class="lmlblog-pager"><a class="lmlblog-pager-left" href="">Last</a>
-                                    <div class="lmlblog-pager-center layui-form">
-                                        <select>
+                                        <!-- page_list -->
+                                        <!-- <div class="lmlblog-pager">
+                                            <a class="lmlblog-pager-left" href="">Last</a>
+                                            <div class="lmlblog-pager-center layui-form">
+                                                <select>
                                            <option value="#=1">Page 1
                                            <option value="#=2">Page 2
                                            <option selected="selected" value="#3">Page 3
                                        </select>Page 1</div>
-                                    <a class="lmlblog-pager-right" href="">Next</a>
-                                </div>
+                                            <a class="lmlblog-pager-right" href="">Next</a>
+                                        </div> -->
+
+                                        <div class="page">
+                                            <a href="javascript:;" class="cur">1</a>
+                                            <a href="javascript:;">2</a>
+                                            <a href="javascript:;">3</a>
+                                        </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- 底部 -->
     <!-- 返回顶部 -->

@@ -22,11 +22,11 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='style-css' href='css/style.css' type='text/css' media='all'>
-    <link rel='stylesheet' id='lmlblog-css' href='css/lmlblog.css' type='text/css' media='all'>
-    <link rel='stylesheet' id='all-css' href='css/all.css' type='text/css' media='all'>
-    <script type='text/javascript' src='js/jquery.min.js'></script>
-    <script type='text/javascript' src='js/ueditor.all.min.js'></script>
+    <link rel='stylesheet' id='style-css' href='/css/style.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='lmlblog-css' href='/css/lmlblog.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='all-css' href='/css/all.css' type='text/css' media='all'>
+    <script type='text/javascript' src='/js/jquery.min.js'></script>
+    <script type='text/javascript' src='/js/ueditor.all.min.js'></script>
 </head>
 
 <body>
@@ -85,7 +85,8 @@
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
                     <div class="lmlblog-member-follow-info">
                         <% if @user.id != session[:user_id] %>
-                            <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i class="lmlblog-icon"></i>+ Follow</span></a>
+                            <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i
+                                    class="lmlblog-icon"></i>+ Follow</span></a>
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
                         <% end %>
                     </div>
@@ -130,7 +131,7 @@
                         </div>
                         <div class="lmlblog-member-right">
                             <div class="lmlblog-post-list">
-                                
+
                                 <% if @user.id == session[:user_id] %>
                                     <!-- send -->
                                     <div class="lmlblog-posts-list words">
@@ -143,54 +144,67 @@
                                         </div>
 
                                     </div>
-                                <% end %>
+                                    <% end %>
 
-                            </div>
-                            <% @timeline.each do |t|%>
-                                <!-- posts_list -->
-                                <div class="lmlblog-posts-list words">
 
-                                    <!-- 动态内容部分，包括列表 -->
-                                    <div class="lmlblog-post-user-info">
-                                        <div class="lmlblog-post-user-info-avatar" user-data="1">
-                                            <a href="" style="display: inline-block;">
-                                                <img src="images/tx2.jpg" class="avatar">
-                                            </a>
-                                        </div>
+                                        <% @timeline.each do |t|%>
+                                            <!-- posts_list -->
+                                            <div class="lmlblog-posts-list words">
 
-                                        <div class="lmlblog-post-user-info-name">
-                                            <a href="">
-                                                <font style="color:#333;font-weight:600"><%=@user.username%></font>
-                                            </a>
-                                        </div>
-                                        <div class="lmlblog-post-user-info-time" title="time"><%=t["created_at"]%></div>
-                                    </div>
+                                                <!-- 动态内容部分，包括列表 -->
+                                                <div class="lmlblog-post-user-info">
+                                                    <div class="lmlblog-post-user-info-avatar" user-data="1">
+                                                        <a href="" style="display: inline-block;">
+                                                            <img src="images/tx2.jpg" class="avatar">
+                                                        </a>
+                                                    </div>
 
-                                    <div class="lmlblog-post-content ">
-                                        <a class="post_list_link" href="">
-                                            <p>　　<%=t["tweet"]%></p>
-                                        </a>
-                                    </div>
+                                                    <div class="lmlblog-post-user-info-name">
+                                                        <a href="">
+                                                            <font style="color:#333;font-weight:600">
+                                                                <%=@user.username%>
+                                                            </font>
+                                                        </a>
+                                                    </div>
+                                                    <div class="lmlblog-post-user-info-time" title="time">
+                                                        <%=t["created_at"]%>
+                                                    </div>
+                                                </div>
 
-                                </div>
-                            <% end %>
+                                                <div class="lmlblog-post-content ">
+                                                    <a class="post_list_link" href="">
+                                                        <p>
+                                                            <%=t["tweet"]%>
+                                                        </p>
+                                                    </a>
+                                                </div>
 
-                                <!-- posts_list -->
-                                <div class="lmlblog-pager"><a class="lmlblog-pager-left" href="">Last</a>
-                                    <div class="lmlblog-pager-center layui-form">
-                                        <select>
+                                            </div>
+                                            <% end %>
+                                                <!-- page_list -->
+                                                <!-- <div class="lmlblog-pager">
+                                            <a class="lmlblog-pager-left" href="">Last</a>
+                                            <div class="lmlblog-pager-center layui-form">
+                                                <select>
                                            <option value="#=1">Page 1
                                            <option value="#=2">Page 2
                                            <option selected="selected" value="#3">Page 3
                                        </select>Page 1</div>
-                                    <a class="lmlblog-pager-right" href="">Next</a>
-                                </div>
+                                            <a class="lmlblog-pager-right" href="">Next</a>
+                                        </div> -->
+
+                                                <div class="page">
+                                                    <a href="javascript:;" class="cur">1</a>
+                                                    <a href="javascript:;">2</a>
+                                                    <a href="javascript:;">3</a>
+                                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- 底部 -->
     <!-- 返回顶部 -->

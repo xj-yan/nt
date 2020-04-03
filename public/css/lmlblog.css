@@ -2788,3 +2788,15 @@ img.wp-smiley {
     color: #808080;
     cursor: pointer;
 }
+
+.page {
+    background: #fff;
+    height: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 15px;
+    border-top: none;
+    position: relative;
+    border-radius: 2px;
+    text-align: center;
+}

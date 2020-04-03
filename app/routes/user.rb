@@ -12,7 +12,7 @@ class App < Sinatra::Base
 		authenticate!
 		id = params[:id]
 		@user = User.find(id)
-		@timeline = get_tweet(id).to_json
+		@timeline = get_tweet(id)
 		# @is_follow = Follow.find_by(followee_id: id, follower_id: session[:user_id]).nil?
 		if @user.nil?
 			return 404

@@ -80,6 +80,7 @@ class App < Sinatra::Base
   get '/home' do
     authenticate!
     @user = User.find_by(id: session[:user_id])
+    @tweet = get_tweet(session[:user_id])
     @timeline = get_timeline(session[:user_id])
     erb :new
   end

@@ -9,10 +9,13 @@ class App < Sinatra::Base
 	end
 
 	get "/user/:id" do
+		# get page count
+		# count = params[:n].to_i || 1
 		authenticate!
 		id = params[:id]
 		@user = User.find(id)
 		@timeline = get_tweet(id)
+		# @timeline = get_tweet_list(id, count)
 		# @is_follow = Follow.find_by(followee_id: id, follower_id: session[:user_id]).nil?
 		if @user.nil?
 			return 404

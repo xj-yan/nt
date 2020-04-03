@@ -101,15 +101,15 @@
                         <div class="lmlblog-member-left">
                             <div class="lmlblog-member-left-follow clear">
                                 <li>
-                                    <strong>1</strong>
+                                    <strong><%= @user.followee_number%></strong>
                                     <span>Follow</span>
                                 </li>
                                 <li>
-                                    <strong>10</strong>
+                                    <strong><%= @user.follower_number%></strong>
                                     <span>Follower</span>
                                 </li>
                                 <li>
-                                    <strong>20</strong>
+                                    <strong><%= @tweet.size%></strong>
                                     <span>Tweet</span>
                                 </li>
                                 <li>

@@ -8,6 +8,8 @@ class App < Sinatra::Base
 		ids = get_timeline_ids(session[:user_id])
 		if act == 'get_page_count'
 			@count = get_page_count(ids).to_json
+		elsif act == 'get_user_page_count'
+			@count = get_page_count(params[:id]).to_json
 		elsif act == 'get_follow_tweet_list'
 			page_num = params[:page]
 			res = []

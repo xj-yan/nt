@@ -70,7 +70,7 @@
 
 .lmlblog-member-main {
     padding-top: 50px;
-    background: #0c0a1a url(../../../../../large/9c774d91gy1ft2c2d2gz8j21e00qktt3.jpg) bottom center fixed;
+    background: #191c21 url(../../../../../large/9c774d91gy1ft2c2d2gz8j21e00qktt3.jpg) bottom center fixed;
 }
 
 .lmlblog-member-bg {
@@ -2695,9 +2695,6 @@ img.wp-smiley {
     position: relative;
     color: #555;
 }
-
-
-/*layui相关*/
 
 .layui-form-checkbox span m {
     color: #2eb254;

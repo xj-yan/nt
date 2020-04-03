@@ -7,7 +7,9 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>NanoTwitter</title>
+    <title>NanoTwitter
+        <%@user.username%>
+    </title>
     <style type="text/css">
         img.wp-smiley,
         img.emoji {
@@ -71,16 +73,13 @@
                 <div class="lmlblog-member-header">
                     <div class="lmlblog-member-avatar other">
                         <!-- <img src="../../../../crop.0.0.888.888.180/006Dh9Zbly8ft1i9uqjjkj30oo0oo0ue.jpg" class="avatar"> -->
-                        <img src="picture/qi.gif" class="avatar">
+                        <img src="picture/1.gif" class="avatar">
                         <!-- <i class="lmlblog-verify lmlblog-verify-a" title="Username"></i> -->
                     </div>
                     <div class="lmlblog-member-username">
                         <h1>
                             <%= @user.username %>
                         </h1>
-                        <!-- <span class="lmlblog-mark lmlblog-girl"><i class="fa fa-mars"></i></span> -->
-                        <!-- <span class="lmlblog-mark lmlblog-lv" title="经验：3815">Lv.6</span>
-                        <span class="lmlblog-mark lmlblog-vip">VIP 6</span> -->
                     </div>
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
                     <div class="lmlblog-member-follow-info">
@@ -88,101 +87,97 @@
                             <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i
                                     class="lmlblog-icon"></i>+ Follow</span></a>
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
-                        <% end %>
+                            <% end %>
                     </div>
-                    <div class="lmlblog-member-menu clear">
-                        <li class="on">Tweets</li>
-                        <li>Comments</li>
-                        <!-- <li><a href="javascript:;" target="_blank">Music</a></li>
+                </div>
+                <div class="lmlblog-member-menu clear">
+                    <li class="on">Tweets</li>
+                    <li>Comments</li>
+                    <!-- <li><a href="javascript:;" target="_blank">Music</a></li>
                     <li>文章</li>
                     <li><a href="javascript:;" target="_blank">Video</a></li>
                     <li><a href="javascript:;" target="_blank">Profile</a></li> -->
-                    </div>
-                    <div class="lmlblog-member-content-list clear">
-                        <div class="lmlblog-member-left">
-                            <div class="lmlblog-member-left-follow clear">
-                                <li>
-                                    <strong>1</strong>
-                                    <span>Follow</span>
-                                </li>
-                                <li>
-                                    <strong>10</strong>
-                                    <span>Follower</span>
-                                </li>
-                                <li>
-                                    <strong>20</strong>
-                                    <span>Tweet</span>
-                                </li>
-                                <li>
-                                    <strong>100</strong>
-                                    <span>Like</span>
-                                </li>
-                            </div>
-                            <div class="lmlblog-member-left-profile">
-                                <h3>Bio</h3>
-                                <li><i class="fa fa-address-book-o"></i> Username：
-                                    <span><%= @user.username%><span></span></span>
-                                </li>
-                                <li><i class="fa fa-map-marker"></i> Location：<span>Waltham<span></span></span>
-                                </li>
-                                <li><i class="fa fa-transgender"></i> Joined：<span>1/1/2020<span></span></span>
-                                </li>
-                            </div>
+                </div>
+                <div class="lmlblog-member-content-list clear">
+                    <div class="lmlblog-member-left">
+                        <div class="lmlblog-member-left-follow clear">
+                            <li>
+                                <strong><%= @user.followee_number%></strong>
+                                <span>Follow</span>
+                            </li>
+                            <li>
+                                <strong><%= @user.follower_number%></strong>
+                                <span>Follower</span>
+                            </li>
+                            <li>
+                                <strong><%= @timeline.size%></strong>
+                                <span>Tweet</span>
+                            </li>
+                            <li>
+                                <strong>100</strong>
+                                <span>Like</span>
+                            </li>
                         </div>
-                        <div class="lmlblog-member-right">
-                            <div class="lmlblog-post-list">
+                        <div class="lmlblog-member-left-profile">
+                            <h3>Bio</h3>
+                            <li><i class="fa fa-address-book-o"></i> Username：
+                                <span><%= @user.username%><span></span></span>
+                            </li>
+                            <li><i class="fa fa-map-marker"></i> Location：<span>Waltham<span></span></span>
+                            </li>
+                            <li><i class="fa fa-transgender"></i> Joined：<span>3/31/2020<span></span></span>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="lmlblog-member-right">
+                        <div class="lmlblog-post-list">
 
-                                <% if @user.id == session[:user_id] %>
-                                    <!-- send -->
-                                    <div class="lmlblog-posts-list words">
-                                        <div class="content">
-                                            <div class="center">
-                                                <textarea class="comment"></textarea>
-                                                <br>
-                                                <input type="button" value="tweet" class="send" disabled>
-                                            </div>
+                            <% if @user.id == session[:user_id] %>
+                                <!-- send -->
+                                <div class="lmlblog-posts-list words">
+                                    <div class="content">
+                                        <div class="center">
+                                            <textarea class="comment"></textarea>
+                                            <br>
+                                            <input type="button" value="tweet" class="send" disabled>
                                         </div>
-
                                     </div>
-                                    <% end %>
+
+                                </div>
+                                <% end %>
 
 
-                                        <% @timeline.each do |t|%>
-                                            <!-- posts_list -->
-                                            <div class="lmlblog-posts-list words">
+                                    <% @timeline.each do |t|%>
+                                        <!-- posts_list -->
+                                        <div class="lmlblog-posts-list words">
 
-                                                <!-- 动态内容部分，包括列表 -->
-                                                <div class="lmlblog-post-user-info">
-                                                    <div class="lmlblog-post-user-info-avatar" user-data="1">
-                                                        <a href="" style="display: inline-block;">
-                                                            <img src="images/tx2.jpg" class="avatar">
-                                                        </a>
-                                                    </div>
+                                            <!-- 动态内容部分，包括列表 -->
+                                            <div class="lmlblog-post-user-info">
 
-                                                    <div class="lmlblog-post-user-info-name">
-                                                        <a href="">
-                                                            <font style="color:#333;font-weight:600">
-                                                                <%=@user.username%>
-                                                            </font>
-                                                        </a>
-                                                    </div>
-                                                    <div class="lmlblog-post-user-info-time" title="time">
-                                                        <%=t["created_at"]%>
-                                                    </div>
-                                                </div>
-
-                                                <div class="lmlblog-post-content ">
-                                                    <a class="post_list_link" href="">
-                                                        <p>
-                                                            <%=t["tweet"]%>
-                                                        </p>
+                                                <div class="lmlblog-post-user-info-name">
+                                                    <a href="">
+                                                        <font style="color:#333;font-weight:600">
+                                                            <%=@user.username%>
+                                                        </font>
                                                     </a>
                                                 </div>
-
+                                                <div class="lmlblog-post-user-info-time" title="time">
+                                                    <%=t["created_at"]%>
+                                                </div>
                                             </div>
-                                            <% end %>
-                                                <!-- page_list -->
-                                                <!-- <div class="lmlblog-pager">
+
+                                            <div class="lmlblog-post-content ">
+                                                <a class="post_list_link" href="">
+                                                    <p>
+                                                        <%=t["tweet"]%>
+                                                    </p>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <% end %>
+                                            <!-- page_list -->
+                                            <!-- <div class="lmlblog-pager">
                                             <a class="lmlblog-pager-left" href="">Last</a>
                                             <div class="lmlblog-pager-center layui-form">
                                                 <select>
@@ -193,12 +188,11 @@
                                             <a class="lmlblog-pager-right" href="">Next</a>
                                         </div> -->
 
-                                                <div class="page">
-                                                    <a href="javascript:;" class="cur">1</a>
-                                                    <a href="javascript:;">2</a>
-                                                    <a href="javascript:;">3</a>
-                                                </div>
-                            </div>
+                                            <div class="page">
+                                                <a href="javascript:;" class="cur">1</a>
+                                                <a href="javascript:;">2</a>
+                                                <a href="javascript:;">3</a>
+                                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,12 +200,13 @@
         </div>
     </div>
     </div>
+    </div>
     <!-- 底部 -->
     <!-- 返回顶部 -->
     <a href="javascript:returnTop();" class="cd-top"></a>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/home.js"></script>
+    <script type="text/javascript" src="/js/user.js"></script>
     <script type="text/javascript">
         var sdelay = 0;
 

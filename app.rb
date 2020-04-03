@@ -3,11 +3,9 @@ require "json"
 
 require_relative 'config/environment'
 require_relative "./app/routes/home"
+require_relative "./app/routes/testinterface"
 require_relative "./app/routes/user"
 require_relative "./app/routes/tweet"
-
-require_relative "./app/routes/testinterface"
-
 
 require_relative "./app/models/user"
 
@@ -29,6 +27,10 @@ class App < Sinatra::Base
   set :partial_template_engine, :erb
 
   enable :sessions, :partial_underscores
+
+  configure :production do
+    enable :logging
+  end
   
   # run!
 end

@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2020_03_27_011845) do
     t.string "email"
     t.text "bio"
     t.string "password_digest"
+    t.integer "follower_number"
+    t.integer "followee_number"
   end
 
 end

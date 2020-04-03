@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.text :bio
       t.string :password_digest
+      t.integer :follower_number
+      t.integer :followee_number
     end
   end
 end

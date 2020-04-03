@@ -3,15 +3,17 @@ require 'faker'
 
 # Create users from users.csv
 count_1 = 0
+# user_column = [:id, :username, :email, :password_digest, :follower_number, :followee_number]
+# user_list = []
 File.open("./lib/seeds/users.csv") do |users| 
 	users.read.each_line do |user|
 		id, username = user.chomp.split(",")
 		User.create(
 			username: username, 
 			email: Faker::Internet.email, 
-			bio: Faker::Job.title, 
-			password: "123"
-		)
+			password: "123",
+			follower_number: 0,
+			followee_number: 0)
 		count_1 = count_1 + 1
 	end
 end
@@ -38,15 +40,17 @@ puts "#{count_2} tweets now created"
 
 # Create follows from follows.csv
 count_3 = 0
+follow_list = []
+follow_column = [:follower_id, :followee_id]
 File.open("./lib/seeds/follows.csv") do |follows| 
 	follows.read.each_line do |follow|
 		follower_id, followee_id = follow.chomp.split(",")
-		Follow.create(
-			follower_id: follower_id, 
-			followee_id: followee_id
-		)
+		follow_list << {follower_id: follower_id, followee_id: followee_id}
+		User.increment_counter(:followee_number, follower_id)
+		User.increment_counter(:follower_number, followee_id)
 		count_3 = count_3 + 1
 	end
+	Follow.import(follow_column, follow_list)
 end
 
 puts "#{count_3} following relationships now created"

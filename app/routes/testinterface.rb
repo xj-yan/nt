@@ -152,9 +152,9 @@ class App < Sinatra::Base
 		# check tweet content
 		while idx < tweets.size
 			if tweets[idx].tweet != data[idx].tweet
-				idx += 1
 				return status 400
 			end
+			idx += 1
 		end
 		# validate timeline
 		# check user_id for first tweet in fan's timeline

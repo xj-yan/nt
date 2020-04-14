@@ -152,6 +152,7 @@ class App < Sinatra::Base
 		# check tweet content
 		while idx < tweets.size
 			if tweets[idx].tweet != data[idx].tweet
+				idx += 1
 				return status 400
 			end
 		end
@@ -160,6 +161,7 @@ class App < Sinatra::Base
 		fan_timeline = get_tweet(fan)
 		if fan_timeline.nil? || fan_timeline[0].user_id != star
 			return status 400
+		end
 		return status 200
 	end
 end

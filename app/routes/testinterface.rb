@@ -119,7 +119,7 @@ class App < Sinatra::Base
 	# get '/test/validate?n=n' do
 	# end
 
-	get '/test/validate?n=n&star=u1&fan=u2'
+	get '/test/validate?n=n&star=u1&fan=u2' do
 		n = params[:n].to_i
 		star = params[:star].to_i
 		fan = params[:fan].to_i

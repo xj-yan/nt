@@ -117,4 +117,19 @@ class App < Sinatra::Base
 	# Test: check validation
 	# get '/test/validate?n=n' do
 	# end
+
+	get '/test/validate?n=n&star=u1&fan=u2'
+		n = params[:n]
+		star = params[:u1]
+		fan = params[:u2]
+		# check follow status
+
+		# post n tweets
+		tweets = []
+
+		# validate id and tweet content
+		
+		# validate timeline
+
+	end
 end

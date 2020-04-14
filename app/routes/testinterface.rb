@@ -1,5 +1,6 @@
 # endpoint related to test interface
 require 'set'
+require 'faker'
 
 class App < Sinatra::Base
 
@@ -119,13 +120,25 @@ class App < Sinatra::Base
 	# end
 
 	get '/test/validate?n=n&star=u1&fan=u2'
-		n = params[:n]
-		star = params[:u1]
-		fan = params[:u2]
+		n = params[:n].to_i
+		star = params[:star].to_i
+		fan = params[:fan].to_i
+		
 		# check follow status
+		if Follow.find_by(followee_id: star, follower_id: fan).nil?
+			Follow.create(followee_id: star, follower_id: fan)
+			User.increment_counter(:followee_number, fan)
+			User.increment_counter(:follower_number, star)
+		end
 
 		# post n tweets
 		tweets = []
+		n.times do |i|
+			tweet = Tweet.create(tweet: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+								 user_id: star
+								)
+			tweets << tweet
+		end
 
 		# validate id and tweet content
 		

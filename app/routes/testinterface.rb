@@ -119,7 +119,7 @@ class App < Sinatra::Base
 	# get '/test/validate?n=n' do
 	# end
 
-	get '/test/validate?n=n&star=u1&fan=u2'
+	get '/test/validate?n=n&star=u1&fan=u2' do
 		n = params[:n].to_i
 		star = params[:star].to_i
 		fan = params[:fan].to_i
@@ -133,16 +133,33 @@ class App < Sinatra::Base
 
 		# post n tweets
 		tweets = []
+		tweet_ids = []
 		n.times do |i|
 			tweet = Tweet.create(tweet: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
 								 user_id: star
 								)
 			tweets << tweet
+			tweet_ids << tweet.id
 		end
 
 		# validate id and tweet content
-		
+		# check size of returned tweets
+		data = Tweet.where(id: tweet_ids)
+		if data.size != tweet_ids.size
+			return status 400
+		end
+		idx = 0
+		# check tweet content
+		while idx < tweets.size
+			if tweets[idx].tweet != data[idx].tweet
+				return status 400
+			end
+		end
 		# validate timeline
-
+		# check user_id for first tweet in fan's timeline
+		fan_timeline = get_tweet(fan)
+		if fan_timeline.nil? || fan_timeline[0].user_id != star
+			return status 400
+		return status 200
 	end
 end

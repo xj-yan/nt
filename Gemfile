@@ -21,3 +21,4 @@ gem 'activerecord-import'
 gem 'sinatra-contrib', require: false
 
 gem 'sinatra-partial'
+gem 'newrelic_rpm'

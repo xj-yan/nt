@@ -144,7 +144,7 @@ class App < Sinatra::Base
 
 		# validate id and tweet content
 		# check size of returned tweets
-		data = Tweet.where(id: tweet_ids)
+		data = get_test_tweet(tweet_ids)
 		if data.size != tweet_ids.size
 			return 400
 		end
@@ -156,12 +156,15 @@ class App < Sinatra::Base
 			end
 			idx += 1
 		end
+
+		puts "tweets of star: #{star} are validated!"
+
 		# validate timeline
-		# check user_id for first tweet in fan's timeline
-		fan_timeline = get_tweet(fan)
+		fan_timeline = get_test_timeline(star, fan)
 		if fan_timeline.nil? || fan_timeline[0].user_id != star
 			return 400
 		end
+		puts "timeline of fan: #{star} is validated!"
 		return 200
 	end
 end

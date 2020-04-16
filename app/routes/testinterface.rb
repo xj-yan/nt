@@ -146,13 +146,13 @@ class App < Sinatra::Base
 		# check size of returned tweets
 		data = get_test_tweet(tweet_ids)
 		if data.size != tweet_ids.size
-			return 400
+			return 400, "tweet id validation failed!"
 		end
 		idx = 0
 		# check tweet content
 		while idx < tweets.size
 			if tweets[idx].tweet != data[idx].tweet
-				return 400
+				return 400, "tweet content validation failed!"
 			end
 			idx += 1
 		end
@@ -161,10 +161,12 @@ class App < Sinatra::Base
 
 		# validate timeline
 		fan_timeline = get_test_timeline(star, fan)
-		if fan_timeline.nil? || fan_timeline[0].user_id != star
-			return 400
+		if fan_timeline.nil? || !tweet_ids.include?(fan_timeline[0].id)
+			return 400, "timeline validation failed!"
 		end
 		puts "timeline of fan: #{star} is validated!"
-		return 200
+
+		return 200, "validation for tweet no #{n} star #{star}, fan #{fan} is validated!"
+		
 	end
 end

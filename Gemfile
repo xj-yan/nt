@@ -16,10 +16,10 @@ gem 'bootstrap', '4.3.1'
 gem 'sinatra-flash'
 gem 'rack-timeout'
 gem 'activerecord-import'
-gem 'newrelic_rpm'
 
 # gem 'sinatra-contrib'
 gem 'sinatra-contrib', require: false
 
 gem 'sinatra-partial'
+
 gem 'newrelic_rpm'

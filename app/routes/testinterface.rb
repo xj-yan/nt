@@ -125,19 +125,15 @@ class App < Sinatra::Base
 		fan = params[:fan].to_i
 		
 		# check follow status
-		if Follow.find_by(followee_id: star, follower_id: fan).nil?
-			Follow.create(followee_id: star, follower_id: fan)
-			User.increment_counter(:followee_number, fan)
-			User.increment_counter(:follower_number, star)
+		if !check_follow(star, fan)
+			follow_user(star, fan)
 		end
 
 		# post n tweets
 		tweets = []
 		tweet_ids = []
 		n.times do |i|
-			tweet = Tweet.create(tweet: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
-								 user_id: star
-								)
+			tweet = make_tweet(Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false), star)
 			tweets << tweet
 			tweet_ids << tweet.id
 		end

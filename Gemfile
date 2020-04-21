@@ -22,4 +22,4 @@ gem 'sinatra-contrib', require: false
 
 gem 'sinatra-partial'
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'

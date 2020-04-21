@@ -1,5 +1,4 @@
 require "sinatra/base"
-require "newrelic_rpm"
 require "json"
 
 require_relative 'config/environment'

@@ -1,0 +1,208 @@
+# Logfile created on 2020-04-20 11:41:41 -0400 by logger.rb/66358
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Environment: development
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : No known dispatcher detected.
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Application: My Application (Development)
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Installing Net instrumentation
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:41:41 -0400 Xiaojings-MacBook-Pro.local (79739)] INFO : Finished instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Environment: development
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : No known dispatcher detected.
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Application: My Application (Development)
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Installing Net instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:45:18 -0400 Xiaojings-MacBook-Pro.local (79888)] INFO : Finished instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Environment: development
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : No known dispatcher detected.
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Application: My Application (Development)
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Installing Net instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:45:39 -0400 Xiaojings-MacBook-Pro.local (79955)] INFO : Finished instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Environment: development
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : No known dispatcher detected.
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Application: My Application (Development)
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Installing Net instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Finished instrumentation
+[2020-04-20 11:48:37 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-20 11:48:39 -0400 Xiaojings-MacBook-Pro.local (80078)] ERROR : Error occurred detecting: gcp
+[2020-04-20 11:48:39 -0400 Xiaojings-MacBook-Pro.local (80078)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-20 11:48:40 -0400 Xiaojings-MacBook-Pro.local (80078)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Environment: development
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : No known dispatcher detected.
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Application: My Application (Development)
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Installing Net instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Finished instrumentation
+[2020-04-20 11:52:46 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-20 11:52:47 -0400 Xiaojings-MacBook-Pro.local (80206)] ERROR : Error occurred detecting: gcp
+[2020-04-20 11:52:47 -0400 Xiaojings-MacBook-Pro.local (80206)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-20 11:52:48 -0400 Xiaojings-MacBook-Pro.local (80206)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Environment: development
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : No known dispatcher detected.
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Application: My Application (Development)
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Installing Sinatra instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Installing Net instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Finished instrumentation
+[2020-04-20 11:54:18 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-20 11:54:19 -0400 Xiaojings-MacBook-Pro.local (80312)] ERROR : Error occurred detecting: gcp
+[2020-04-20 11:54:19 -0400 Xiaojings-MacBook-Pro.local (80312)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-20 11:54:21 -0400 Xiaojings-MacBook-Pro.local (80312)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Environment: development
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : No known dispatcher detected.
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Application: My Application (Development)
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Installing Sinatra instrumentation
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Installing Net instrumentation
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 12:09:40 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Finished instrumentation
+[2020-04-20 12:09:41 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-20 12:09:42 -0400 Xiaojings-MacBook-Pro.local (80579)] ERROR : Error occurred detecting: gcp
+[2020-04-20 12:09:42 -0400 Xiaojings-MacBook-Pro.local (80579)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-20 12:09:43 -0400 Xiaojings-MacBook-Pro.local (80579)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Environment: development
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : No known dispatcher detected.
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Application: My Application (Development)
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Installing Sinatra instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Installing Net instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Finished instrumentation
+[2020-04-20 12:12:10 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-20 12:12:11 -0400 Xiaojings-MacBook-Pro.local (80665)] ERROR : Error occurred detecting: gcp
+[2020-04-20 12:12:11 -0400 Xiaojings-MacBook-Pro.local (80665)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-20 12:12:12 -0400 Xiaojings-MacBook-Pro.local (80665)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-20 12:12:13 -0400 Xiaojings-MacBook-Pro.local (80665)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Environment: development
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : No known dispatcher detected.
+[2020-04-21 17:37:12 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Application: My Application (Development)
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Installing Sinatra instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Installing Net instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Finished instrumentation
+[2020-04-21 17:37:13 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-21 17:37:14 -0400 Xiaojings-MacBook-Pro.local (5772)] ERROR : Error occurred detecting: gcp
+[2020-04-21 17:37:14 -0400 Xiaojings-MacBook-Pro.local (5772)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-21 17:37:15 -0400 Xiaojings-MacBook-Pro.local (5772)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-21 17:37:16 -0400 Xiaojings-MacBook-Pro.local (5772)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Environment: development
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : No known dispatcher detected.
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Application: My Application (Development)
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Installing Sinatra instrumentation
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Installing Net instrumentation
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 17:58:18 -0400 Xiaojings-MacBook-Pro.local (6930)] INFO : Finished instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Environment: development
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : No known dispatcher detected.
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Application: My Application (Development)
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Installing Sinatra instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Installing Net instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 17:59:21 -0400 Xiaojings-MacBook-Pro.local (7002)] INFO : Finished instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Environment: development
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : No known dispatcher detected.
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Application: My Application (Development)
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Installing Sinatra instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Installing Net instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Finished instrumentation
+[2020-04-21 18:00:24 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-21 18:00:25 -0400 Xiaojings-MacBook-Pro.local (7082)] ERROR : Error occurred detecting: gcp
+[2020-04-21 18:00:25 -0400 Xiaojings-MacBook-Pro.local (7082)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-21 18:00:26 -0400 Xiaojings-MacBook-Pro.local (7082)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Environment: development
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : No known dispatcher detected.
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Application: My Application (Development)
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Installing Sinatra instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Installing Net instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Finished instrumentation
+[2020-04-21 18:02:08 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-21 18:02:09 -0400 Xiaojings-MacBook-Pro.local (7225)] ERROR : Error occurred detecting: gcp
+[2020-04-21 18:02:09 -0400 Xiaojings-MacBook-Pro.local (7225)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-21 18:02:11 -0400 Xiaojings-MacBook-Pro.local (7225)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Starting the New Relic agent version 6.10.0.364 in "development" environment.
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Reading configuration from config/newrelic.yml (/Users/xyan/Documents/CS105b/NanoTwitter)
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Environment: development
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : No known dispatcher detected.
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Application: My Application (Development)
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Installing Sinatra instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Installing notifications based Active Record instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Installing Net instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Installing deferred Rack::Builder instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Installing Rack::Builder middleware instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Finished instrumentation
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Doing deferred dependency-detection before Rack startup
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] ERROR : Error occurred detecting: gcp
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] ERROR : JSON::ParserError: 783: unexpected token at '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="refresh" content="0;url=https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us"/><script type="text/javascript">url="https://searchassist.verizon.com/main?ParticipantID=euekiz39ksg8nwp7iqj2fp5wzfwi5q76&FailedURI=http%3A%2F%2Fmetadata.google.internal%2FcomputeMetadata%2Fv1%2Finstance%2F%3Frecursive%3Dtrue&FailureMode=1&Implementation=&AddInType=4&Version=pywr1.0&ClientLocation=us";if(top.location!=location){var w=window,d=document,e=d.documentElement,b=d.body,x=w.innerWidth||e.clientWidth||b.clientWidth,y=w.innerHeight||e.clientHeight||b.clientHeight;url+="&w="+x+"&h="+y;}window.location.replace(url);</script></head><body></body></html>'
+[2020-04-21 18:03:07 -0400 Xiaojings-MacBook-Pro.local (7328)] INFO : Reporting to: https://rpm.newrelic.com/accounts/2689817/applications/509318995
+[2020-04-21 18:03:50 -0400 Xiaojings-MacBook-Pro.local (7328)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.

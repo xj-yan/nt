@@ -15,5 +15,23 @@ module Test
 	# get test tweet with given tweet ids
 	def get_test_tweet(tweet_ids)
 		data = Tweet.where(id: tweet_ids)
-	end	
+	end
+	
+	# tweet
+	def make_tweet(content, id)
+        tweet = Tweet.create(tweet: content, user_id: id)
+        return tweet
+    end
+
+	# check follow relation
+    def check_follow(star, fan)
+        return !Follow.find_by(followee_id: star, follower_id: fan).nil?
+    end
+
+	# create follow relation
+    def follow_user(star, fan)
+        Follow.create(followee_id: star, follower_id: fan)
+        User.increment_counter(:followee_number, fan)
+        User.increment_counter(:follower_number, star)
+    end
 end

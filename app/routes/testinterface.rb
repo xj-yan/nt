@@ -102,23 +102,19 @@ class App < Sinatra::Base
 	# end
 
 	# # Test: get y random tweets of test user id x
-	# get '/test/tweet?user_id=x&tweet_count=y' do
-	# 	x = params[:x]
-	# 	y = params[:y]
-	# 	user = User.find_by_id(x)
-	# 	tweets = Tweet.all.select{ |t|
-	# 			t["user_id"] == user["id"]
-	# 		}
-	# 	end
-	# 	@user = user.to_json
-	# 	@tweets = tweets.sample(y).to_json
-	# 	status 200
-	# end
+	# '/test/tweet?user_id=x&tweet_count=y
+	get '/test/tweet' do
+		x = params[:user_id].to_i
+		y = params[:tweet_count].to_i
+		user = User.find_by_id(x)
+		if user.nil?
+			return 400, "invalid user id!"
+		end
+		tweets = Tweet.where(user_id: x).sample(y)
+		return 200, tweets.to_json
+	end
 
-	# Test: check validation
-	# get '/test/validate?n=n' do
-	# end
-
+	# check validation
 	get '/test/validate' do
 		n = params[:n].to_i
 		star = params[:star].to_i
@@ -165,4 +161,5 @@ class App < Sinatra::Base
 		return 200, "validation for tweet no #{n} star #{star}, fan #{fan} is validated!"
 		
 	end
+
 end

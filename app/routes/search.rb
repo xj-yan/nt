@@ -3,7 +3,7 @@
 class App < Sinatra::Base
 
 	get '/search' do
-		'TBD'
+		'Success!'
 	end
 
 end

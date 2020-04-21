@@ -20,7 +20,13 @@ class App < Sinatra::Base
   end
 
   get "/" do
-    redirect "/login"
+    user_id = params[:user_id].to_i
+    if user_id != 0
+      user = User.find_by(id: user_id)
+      user.to_json
+    else
+      redirect "/login"
+    end
 	end
 	
 	# routes for login and logout

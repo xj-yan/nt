@@ -10,11 +10,68 @@ class App < Sinatra::Base
 	# 	erb :test
 	# end
 
+	get '/test/reset' do
+		# User.delete_all
+		# Follow.delete_all
+		# Tweet.delete_all
+		n = params[:count].to_i
+
+		follow_list = []
+		follow_column = [:follower_id, :followee_id]
+		set = Set.new
+		File.open("./lib/seeds/follows.csv") do |follows| 
+			follows.read.each_line do |follow|
+				follower_str, followee_str = follow.chomp.split(",")
+				follower_id = follower_str.to_i + 1200
+				followee_id = followee_str.to_i + 1200
+				if follower_id - 1200 > n && followee_id - 1200 > n
+					break;
+				end
+				set << follower_id
+				set << followee_id
+				follow_list << {follower_id: follower_id, followee_id: followee_id}
+			end
+			Follow.import(follow_column, follow_list)
+		end
+
+		user_column = [:id, :username, :email, :password_digest]
+		user_list = []
+		File.open("./lib/seeds/users.csv") do |users| 
+			users.read.each_line do |user|
+				id, username = user.chomp.split(",")
+				# user_list << {id: id + 1000, username: username, 
+				# 			  email: Faker::Internet.email, 
+				# 			  password_digest: hash_password("123")}
+				id = id.to_i + 1200
+				if set.include? id
+					user_list << {id: id, 
+							  username: username, 
+							  email: Faker::Internet.email, 
+							  password_digest: hash_password("123")}
+				end
+			end
+			User.import(user_column, user_list)
+		end
+
+		tweet_list = []
+		tweet_column = [:tweet, :user_id, :created_at, :updated_at]
+		File.open("./lib/seeds/tweets.csv") do |tweets| 
+			tweets.read.each_line do |tweet|
+				delimiters = [',"', '",']
+				user_id, tweet, time = tweet.split(Regexp.union(delimiters))
+				if user_id.to_i > n + 1200
+					break;
+				end
+				tweet_list << {tweet: tweet, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time)}
+			end
+			Tweet.import(tweet_column, tweet_list)
+		end
+		return 200, "#{n} users have been reset."
+	end
+
 	# get '/test/reset' do
 	# 	puts "test"
-	# 	User.delete_all
-	# 	Follow.delete_all
-	# 	Tweet.delete_all
+
 
 	# 	follow_list = []
 	# 	follow_column = [:follower_id, :followee_id]

@@ -13,7 +13,6 @@ require_relative "./app/models/user"
 
 require_relative "./app/helpers/timeline"
 require_relative "./app/helpers/authentication"
-require_relative "./app/helpers/basic"
 
 class App < Sinatra::Base
 
@@ -24,7 +23,6 @@ class App < Sinatra::Base
   helpers Timeline
   helpers Authentication
   helpers Test
-  helpers Basic
 
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }

@@ -19,6 +19,10 @@ class App < Sinatra::Base
     'loaderio-0470e477a26613ba3324452466632e93'
   end
 
+  get 'loaderio-5ccd21667c25724b020a88783ea5421b' do
+    'loaderio-5ccd21667c25724b020a88783ea5421b'
+  end
+
   get "/" do
     user_id = params[:user_id].to_i
     if user_id != 0

@@ -19,8 +19,8 @@ class App < Sinatra::Base
     'loaderio-0470e477a26613ba3324452466632e93'
   end
 
-  get 'loaderio-5ccd21667c25724b020a88783ea5421b' do
-    'loaderio-5ccd21667c25724b020a88783ea5421b'
+  get 'loaderio-b178fcdefb95ac035ed731504927195d' do
+    'loaderio-b178fcdefb95ac035ed731504927195d'
   end
 
   get "/" do

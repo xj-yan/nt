@@ -26,28 +26,16 @@ ActiveRecord::Schema.define(version: 2020_04_03_131752) do
     t.integer "followee_id"
   end
 
-  create_table "has_tags", force: :cascade do |t|
-    t.integer "tweet_id"
-    t.integer "tag_id"
-  end
-
-  create_table "mentions", force: :cascade do |t|
-    t.integer "tweet_id"
-    t.integer "user_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tweet_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "tag"
-  end
-
   create_table "tweets", force: :cascade do |t|
     t.string "tweet"
     t.integer "user_id"
+    t.string "tag_str"
+    t.string "mention_str"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

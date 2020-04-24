@@ -1,21 +1,35 @@
 require 'csv'
 require 'faker'
 
+# require_relative '../app/helpers/authentication'
+
 # Create users from users.csv
 count_1 = 0
-# user_column = [:id, :username, :email, :password_digest, :follower_number, :followee_number]
-# user_list = []
+user_column = [:id, :username, :email, :password_digest, :follower_number, :followee_number]
+user_list = []
 File.open("./lib/seeds/users.csv") do |users| 
 	users.read.each_line do |user|
 		id, username = user.chomp.split(",")
-		User.create(
+
+		user_list << {id: id, 
 			username: username, 
 			email: Faker::Internet.email, 
-			password: "123",
+			password_digest: hash_password("123"),
 			follower_number: 0,
-			followee_number: 0)
-		count_1 = count_1 + 1
+			followee_number: 0
+		}
+		count_1 += 1
+		# User.create(
+		# 	username: username, 
+		# 	email: Faker::Internet.email, 
+		# 	password: "123",
+		# 	follower_number: 0,
+		# 	followee_number: 0)
+		# count_1 = count_1 + 1
+
+
 	end
+	User.import(user_column, user_list)
 end
 
 puts "#{count_1} users now created"

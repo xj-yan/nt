@@ -20,29 +20,34 @@ module Test
 	# tweet
 	def make_tweet(content, id)
 		tweet = Tweet.create(tweet: content, user_id: id)
-		# if content.include? '@'
-		# 	mention_array = content.scan(/@\w+/)..map{|str| str[1..-1]}
-		# 	mention_array.each do |mention|
-		# 		if User.find_by(username: mention).exist?
-		# 			user = User.find_by(username: mention)
-		# 			Mention.create(tweet_id: tweet.id, user_id: user.id)
-		# 		end
-		# 	end
-		# end
+		puts "tweet created"
+		if content.include? '@'
+			mention_array = content.scan(/@\w+/).map{|str| str[1..-1]}
+			mention_array.each do |mention|
+				if User.find_by(username: mention).exist?
+					user = User.find_by(username: mention)
+					Mention.create(tweet_id: tweet.id, user_id: user.id)
+					puts "mention created"
+				end
+			end
+		end
 
-		# if content.include? '#'
-		# 	tag_array = content.scan(/@\w+/)..map{|str| str[1..-1]}
-		# 	tag_array.each do |tag|
-		# 		if Tag.find_by(tag: tag).exist?
-		# 			tag = Tag.find_by(tag: tag)
-		# 			Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
-		# 		else
-		# 			tag = Tag.create(tag: tag)
-		# 			Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
-		# 		end
-		# 	end
-		# end
+		if content.include? '#'
+			puts "include tag"
+			tag_array = content.scan(/#\w+/).map{|str| str[1..-1]}
+			puts tag_array
+			tag_array.each do |tag|
+				if Tag.find_by(tag: tag).nil?
+					tag = Tag.find_by(tag: tag)
+					Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
+				else
+					tag = Tag.create(tag: tag)
+					Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
+				end
+				puts "tag created"
 
+			end
+		end
         return tweet
     end
 

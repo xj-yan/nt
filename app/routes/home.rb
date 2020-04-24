@@ -1,20 +1,10 @@
 # endpoint related to home
 require 'sinatra/flash'
-require 'bcrypt'
 require 'sinatra/base'
 
-class App < Sinatra::Base
 
-  helpers do
-    def hash_password(password)
-      BCrypt::Password.create(password).to_s
-    end
 
-    def test_password(password, hash)
-      BCrypt::Password.new(hash) == password
-    end
-  end
-  
+class App < Sinatra::Base  
   get 'loaderio-0470e477a26613ba3324452466632e93' do
     'loaderio-0470e477a26613ba3324452466632e93'
   end

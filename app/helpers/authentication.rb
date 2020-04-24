@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require 'bcrypt'
+
 module Authentication
   def authenticate!
     unless session[:user_id]
@@ -14,4 +16,13 @@ module Authentication
     session[:original_request] = nil
     redirect original_request
   end
+
+  def hash_password(password)
+    BCrypt::Password.create(password).to_s
+  end
+
+  def test_password(password, hash)
+    BCrypt::Password.new(hash) == password
+  end
+
 end

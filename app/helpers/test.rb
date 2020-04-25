@@ -19,35 +19,17 @@ module Test
 	
 	# tweet
 	def make_tweet(content, id)
-		tweet = Tweet.create(tweet: content, user_id: id)
-		puts "tweet created"
+		tag_str, mention_str = "", ""
 		if content.include? '@'
-			mention_array = content.scan(/@\w+/).map{|str| str[1..-1]}
-			mention_array.each do |mention|
-				if User.find_by(username: mention).exist?
-					user = User.find_by(username: mention)
-					Mention.create(tweet_id: tweet.id, user_id: user.id)
-					puts "mention created"
-				end
-			end
+			mention_str = content.scan(/@\w+/).map{|str| str[1..-1]}.join(";")
+			puts "mention created"
 		end
 
 		if content.include? '#'
-			puts "include tag"
-			tag_array = content.scan(/#\w+/).map{|str| str[1..-1]}
-			puts tag_array
-			tag_array.each do |tag|
-				if Tag.find_by(tag: tag).nil?
-					tag = Tag.find_by(tag: tag)
-					Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
-				else
-					tag = Tag.create(tag: tag)
-					Has_tag.create(tag_id: tag.id, tweet_id: tweet.id)
-				end
-				puts "tag created"
-
-			end
+			tag_str = content.scan(/#\w+/).map{|str| str[1..-1]}.join(";")
 		end
+
+		tweet = Tweet.create(tweet: content, user_id: id, tag_str: tag_str, mention_str: mention_str)
         return tweet
     end
 

@@ -17,7 +17,8 @@ gem 'sinatra-flash'
 gem 'rack-timeout'
 gem 'activerecord-import'
 gem 'redis'
-gem 'elasticsearch'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 # gem 'sinatra-contrib'
 gem 'sinatra-contrib', require: false
 

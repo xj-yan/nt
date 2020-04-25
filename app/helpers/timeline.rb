@@ -23,8 +23,8 @@ module Timeline
 
 	def get_tweet(ids)
 		tweets = Tweet.where(user_id: ids).order(created_at: :desc)
-		if tweets.size > 200
-			tweets.first(200)
+		if tweets.size > 100
+			tweets.first(100)
 		else
 			tweets
 		end

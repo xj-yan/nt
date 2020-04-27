@@ -38,7 +38,6 @@ class Tweet < ActiveRecord::Base
 		}
 		)
 	end
-
 end
 
 # create elasticsearch index
@@ -46,4 +45,5 @@ unless Tweet.__elasticsearch__.index_exists?
 	Tweet.__elasticsearch__.create_index!
 end
 Tweet.__elasticsearch__.refresh_index!
+Tweet.import
 # Tweet.__elasticsearch__.delete_index!

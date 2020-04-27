@@ -9,7 +9,8 @@ Bundler.require(:default, ENV['RACK_ENV'])
 ActiveRecord::Base.establish_connection(ENV['RACK_ENV'].to_sym)
 
 Elasticsearch::Model.client = Elasticsearch::Client.new(
-    log: true
+	url: 'http://167.99.1.171:9200',
+	log: true
 )
 
 # SearchClient = Elasticsearch::Client.new(

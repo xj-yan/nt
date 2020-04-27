@@ -8,11 +8,11 @@ Bundler.require(:default, ENV['RACK_ENV'])
 
 ActiveRecord::Base.establish_connection(ENV['RACK_ENV'].to_sym)
 
-# Elasticsearch::Model.client = Elasticsearch::Client.new(
-#     log: true
-# )
+Elasticsearch::Model.client = Elasticsearch::Client.new(
+    log: true
+)
 
-# SearchClient = Elasticsearch::Client.new(
+SearchClient = Elasticsearch::Client.new(
 #   url: ApplicationConfig["ELASTICSEARCH_URL"],
 #   retry_on_failure: 5,
 #   request_timeout: 30,

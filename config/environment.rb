@@ -12,7 +12,7 @@ ActiveRecord::Base.establish_connection(ENV['RACK_ENV'].to_sym)
 #     log: true
 # )
 
-SearchClient = Elasticsearch::Client.new(
+# SearchClient = Elasticsearch::Client.new(
 #   url: ApplicationConfig["ELASTICSEARCH_URL"],
 #   retry_on_failure: 5,
 #   request_timeout: 30,

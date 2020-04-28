@@ -30,7 +30,7 @@ class App < Sinatra::Base
 					query: {
 						multi_match: {
 						query: query,
-						fields: ['tweet^5', 'tag_str', 'mention_str', 'username'],
+						fields: ['tweet^5', 'tag_str', 'mention_str', 'user'],
 						fuzziness: "AUTO"
 					}
 				}

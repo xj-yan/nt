@@ -31,7 +31,7 @@ class App < Sinatra::Base
 		# system("psql -U doadmin -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060")
 		
 		# system("'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' ")
-		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/user_dump_file.pgsql")
+		system ("PGPASSWORD=iyajy1kgp2nczrpi psql -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/user_dump_file.pgsql")
 		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 follow_dump_file.pgsql")
 		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 tweet_dump_file.pgsql")
 		

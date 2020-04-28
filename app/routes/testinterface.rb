@@ -12,16 +12,17 @@ class App < Sinatra::Base
 	# end
 
 	get '/test' do
-		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t users nt_dev > user_dump_file.pgsql")
+		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t follows nt_dev > follow_dump_file.pgsql")
 		puts "dumped"
-		User.delete_all
-		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 user_dump_file.pgsql")
+		Follow.delete_all
+		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 follow_dump_file.pgsql")
 		puts "restored"
 		return 200
 	end
 
 
 	get '/test/reset' do
+
 		# User.delete_all
 		# Follow.delete_all
 		# Tweet.delete_all

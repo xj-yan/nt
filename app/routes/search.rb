@@ -30,13 +30,13 @@ class App < Sinatra::Base
 					query: {
 						multi_match: {
 						query: query,
-						fields: ['tweet^5', 'tag_str', 'mention_str'],
+						fields: ['tweet^5', 'tag_str', 'mention_str', 'username'],
 						fuzziness: "AUTO"
 					}
 				}
 				).results
 			end
-			response.to_json
+			return 200, response.to_json
 		end
 	end
 

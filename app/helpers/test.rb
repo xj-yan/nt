@@ -1,7 +1,18 @@
 require 'sinatra/base'
 
 module Test
-	
+
+	# Get a list of ids
+	def get_followee_ids(id)
+		followees = Follow.where(follower_id: id)
+		ids = []
+		ids << id
+		followees.each do |f|
+			ids << f["followee_id"]
+		end
+		ids.uniq
+	end
+
 	# get timeline of fan who follows star
 	def get_test_timeline(star, fan)
 		timeline = []

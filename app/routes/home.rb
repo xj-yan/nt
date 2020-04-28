@@ -16,8 +16,9 @@ class App < Sinatra::Base
   get "/" do
     user_id = params[:user_id].to_i
     if user_id != 0
-      user = User.find_by(id: user_id)
-      user.to_json
+      ids = get_followee_ids(user_id)
+      tweets = get_test_timeline(ids, user_id)
+      tweets.to_json
     else
       redirect "/login"
     end

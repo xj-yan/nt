@@ -12,7 +12,7 @@ class App < Sinatra::Base
 	# end
 
 	get '/test' do
-		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump --clean -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc  10/main -t users nt_dev > ./lib/backup/user_dump_file.pgsql")
+		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 10/main -U doadmin -Fc -t users nt_dev   > ./lib/backup/user_dump_file.pgsql")
 		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump --clean -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t follows nt_dev > ./lib/backup/follow_dump_file.pgsql")
 		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump --clean -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t tweets nt_dev > ./lib/backup/tweet_dump_file.pgsql")
 		# puts "dumped"

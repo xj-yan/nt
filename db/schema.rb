@@ -10,32 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_131752) do
+ActiveRecord::Schema.define(version: 2020_04_28_044412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "tweet_id"
-    t.string "comment"
-  end
 
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followee_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "tweet_id"
-  end
-
   create_table "tweets", force: :cascade do |t|
     t.string "tweet"
     t.integer "user_id"
-    t.string "tag_str"
-    t.string "mention_str"
+    t.string "tag_str", default: ""
+    t.string "mention_str", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_04_03_131752) do
     t.string "email"
     t.text "bio"
     t.string "password_digest"
-    t.integer "follower_number", default: 0
-    t.integer "followee_number", default: 0
+    t.integer "follower_number"
+    t.integer "followee_number"
   end
 
 end

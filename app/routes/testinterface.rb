@@ -12,12 +12,28 @@ class App < Sinatra::Base
 	# end
 
 	get '/test' do
-		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t follows nt_dev > follow_dump_file.pgsql")
+		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t users nt_dev > user_dump_file.pgsql")
+		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t follows nt_dev > follow_dump_file.pgsql")
+		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin -Fc -t tweets nt_dev > tweet_dump_file.pgsql")
 		puts "dumped"
-		Follow.delete_all
-		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 follow_dump_file.pgsql")
+		user_size = User.all.size
+		follow_size = Follow.all.size
+		tweet_size = Tweet.all.size
+
+		# User.delete_all
+		# Follow.delete_all
+		# Tweet.delete_all
+		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 user_dump_file.pgsql")
+		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 follow_dump_file.pgsql")
+		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 tweet_dump_file.pgsql")
+		
 		puts "restored"
-		return 200
+
+		if user_size == User.all.size && follow_size == Follow.all.size && tweet_size == Tweet.all.size
+			return 200
+		else
+			return 400
+		end
 	end
 
 
@@ -88,6 +104,7 @@ class App < Sinatra::Base
 			return 200, "#{n} users have been reset."
 		end
 	end
+
 
 	# get '/test/reset' do
 	# 	puts "test"
@@ -187,8 +204,27 @@ class App < Sinatra::Base
 		if user.nil?
 			return 400, "invalid user id!"
 		end
-		tweets = Tweet.where(user_id: x).sample(y)
+
+		# tweets = Tweet.where(user_id: x).sample(y)
+		tweets = Array.new
+		y.times do |i|
+			tweet = Tweet.create(tweeet: Faker::Lorem.sentence(word_count: 6), user_id: user.id)
+			tweets << tweet
+		end
 		return 200, tweets.to_json
+	end
+
+	get '/test/status' do
+		report = Hash.new
+		report["user"] = "There is #{User.all.size} users."
+		report["follow"] = "There is #{Follow.all.size} follows."
+		report["tweet"] = "There is #{Tweet.all.size} tweets."
+		user = User.find_by(username: "testuser")
+		if user.nil?
+			return 400
+		end
+		report["testUser"] = "The id of test user is #{user.id}."
+		return 200, report.to_json
 	end
 
 	# check validation

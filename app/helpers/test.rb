@@ -19,7 +19,7 @@ module Test
 		if Follow.find_by(followee_id: star, follower_id: fan).nil?
 			timeline
 		else
-			timeline = Tweet.where(user_id: star).order(created_at: :desc).first(50)  
+			timeline = Tweet.where(user_id: star).order(created_at: :desc).first(30)  
 		end
 	end
 

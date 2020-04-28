@@ -17,9 +17,7 @@ class App < Sinatra::Base
     user_id = params[:user_id].to_i
     if user_id != 0
       ids = get_followee_ids(user_id)
-      tweets = Tweet.where(user_id: ids).order(created_at: :desc).limit(50)  
-      # tweets = get_test_timeline(ids, user_id)
-
+      tweets = get_test_timeline(ids, user_id)
       tweets.to_json
     else
       redirect "/login"

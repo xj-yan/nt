@@ -207,8 +207,8 @@ class App < Sinatra::Base
 
 		# tweets = Tweet.where(user_id: x).sample(y)
 		tweets = Array.new
-		y.times do |i|
-			tweet = Tweet.create(tweeet: Faker::Lorem.sentence(word_count: 6), user_id: user.id)
+		y.times do
+			tweet = Tweet.create(tweet: Faker::Lorem.sentence(word_count: 6), user_id: x)
 			tweets << tweet
 		end
 		return 200, tweets.to_json

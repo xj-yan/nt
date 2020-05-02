@@ -22,7 +22,7 @@ Elasticsearch::Model.client = Elasticsearch::Client.new(
 # )
 
 $redis = Redis.new(
-	url: 'http://167.99.1.171'
+	host: 'http://167.99.1.171:6397'
 )
 
 # $redis = Redis.new(

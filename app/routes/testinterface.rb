@@ -219,6 +219,13 @@ class App < Sinatra::Base
 			tweet = Tweet.create(tweet: Faker::Lorem.sentence(word_count: 6), user_id: x)
 			tweets << tweet
 		end
+
+		# update the home timeline of the followees
+		update_cached_home_timeline(x)
+
+		# update the timeline of the user x
+		update_cached_user_timeline(x)
+
 		return 200, tweets.to_json
 	end
 

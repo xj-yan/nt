@@ -44,10 +44,6 @@ module Timeline
 		count
 	end
 
-	def valid_request?(request)
-		request.xhr?
-	end
-
 	def get_name(id)
 		name = User.find_by(id: id).username
 	end

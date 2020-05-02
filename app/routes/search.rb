@@ -36,7 +36,9 @@ class App < Sinatra::Base
 				}
 				).results
 			end
-			return 200, response.to_json
+			@response = response
+			erb :search
+			# return 200, response.to_json
 		end
 	end
 

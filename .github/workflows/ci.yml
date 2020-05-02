@@ -31,3 +31,4 @@ jobs:
         script: |
           su - rails -c "cd /home/rails/nt && bundle"
           sudo systemctl restart rails.service
+          sudo systemctl restart redis.service

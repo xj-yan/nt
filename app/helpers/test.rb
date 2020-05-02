@@ -76,20 +76,43 @@ module Test
 		User.increment_counter(:follower_number, star)
 	end
 
-	def update_cached_home_timeline(follower_id)
-		if !$redis.get("home_timeline/#{follower_id}").nil?
-			followee_ids = get_followee_ids(follower_id)
-			home_timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(10)
-			$redis.set("user_timeline/#{follower_id}", timeline.to_json)
+	# Get a list of folloer ids
+	def get_follower_ids(id)
+		ids = $redis.get("follower_ids/#{id}")
+		if ids.nil?
+			followees = Follow.where(followee_id: id)
+			ids = []
+			ids << id
+			followees.each do |f|
+				ids << f["follower_id"]
+			end
+			$redis.set("follower_ids/#{id}", ids.uniq)
 			# Expire the cache, every 1 hours
-			$redis.expire("user_timeline/#{follower_id}",1.hour.to_i)
+			$redis.expire("follower_ids/#{id}",1.hour.to_i)
+		else
+			ids = JSON.parse(ids)
+		end
+		ids
+	end
+
+	def update_cached_home_timeline(user_id)
+		# get list of follower ids for the given user
+		follower_ids = get_followee_ids(user_id)
+		follower_ids.each do |follower_id|
+			if !$redis.get("home_timeline/#{follower_id}").nil?
+				ids = get_followee_ids(follower_id)
+				home_timeline = Tweet.where(user_id: ids).order(created_at: :desc).first(10)
+				$redis.set("home_timeline/#{follower_id}", home_timeline.to_json)
+				# Expire the cache, every 1 hours
+				$redis.expire("home_timeline/#{follower_id}",1.hour.to_i)
+			end
 		end
 	end
 
 	def update_cached_user_timeline(user_id)
 		if !$redis.get("user_timeline/#{user_id}").nil?
 			user_timeline = Tweet.where(user_id: user_id).order(created_at: :desc).first(10)
-			$redis.set("user_timeline/#{user_id}", timeline.to_json)
+			$redis.set("user_timeline/#{user_id}", user_timeline.to_json)
 			# Expire the cache, every 1 hours
 			$redis.expire("user_timeline/#{user_id}",1.hour.to_i)
 		end

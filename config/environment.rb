@@ -21,13 +21,13 @@ Elasticsearch::Model.client = Elasticsearch::Client.new(
 #   log: Rails.env.development?,
 # )
 
-# $redis = Redis.new(
-# 	url: 'http://167.99.1.171'
-# )
-
 $redis = Redis.new(
-	host: 'localhost'
+	url: 'http://167.99.1.171'
 )
+
+# $redis = Redis.new(
+# 	host: 'localhost'
+# )
 
 require_all 'app'
 

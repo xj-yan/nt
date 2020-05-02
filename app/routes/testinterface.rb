@@ -12,9 +12,9 @@ class App < Sinatra::Base
 	# end
 
 	get '/test' do
-		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -t users nt_dev  > ./lib/backup/user_dump_file.pgsql")
-		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -t follows nt_dev > ./lib/backup/follow_dump_file.pgsql")
-		system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -t tweets nt_dev > ./lib/backup/tweet_dump_file.pgsql")
+		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc -t users nt_dev  > ./lib/backup/user_dump_file.pgsql")
+		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc -t follows nt_dev > ./lib/backup/follow_dump_file.pgsql")
+		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc -t tweets nt_dev > ./lib/backup/tweet_dump_file.pgsql")
 		# puts "dumped"
 		user_size = User.all.size
 		follow_size = Follow.all.size
@@ -31,7 +31,7 @@ class App < Sinatra::Base
 		# system("psql -U doadmin -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060")
 		
 		# system("'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' ")
-		system ("PGPASSWORD=iyajy1kgp2nczrpi psql -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/user_dump_file.pgsql")
+		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_resotre -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/user_dump_file.pgsql")
 		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 follow_dump_file.pgsql")
 		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 tweet_dump_file.pgsql")
 		
@@ -53,11 +53,6 @@ class App < Sinatra::Base
 		n = params[:count].to_i
 
 		if n == 1000
-			system("pg_dump nt_dev > dev_backup.sql")
-			system("pg_dump nt_test > test_backup.sql")
-			# User.delete_all
-			# Follow.delete_all
-			# Tweet.delete_all
 		else
 			follow_list = []
 			follow_column = [:follower_id, :followee_id]

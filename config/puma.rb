@@ -22,24 +22,18 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-# preload_app!
+preload_app!
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
 on_worker_boot do
-	# Valid on Rails up to 4.1 the initializer method of setting `pool` size
-	ActiveSupport.on_load(:active_record) do
-		config = ActiveRecord::Base.configurations[Rails.env] ||
-								Rails.application.config.database_configuration[Rails.env]
-		config['pool'] = ENV['RAILS_MAX_THREADS'] || 5
-		ActiveRecord::Base.establish_connection(config)
-	end
+	ActiveRecord::Base.establish_connection
 end

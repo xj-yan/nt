@@ -21,12 +21,14 @@ class App < Sinatra::Base
       @user = nil
       if user_id != 0
         @user = User.find_by(id: user_id)
+        ids = get_followee_ids(user_id)
+        @tweet = get_test_timeline(ids, user_id)
+        puts @tweet
       else
         @user = User.find_by(id: session[:user_id])
+        @tweet = get_tweet(@user.id)
+        @timeline = get_timeline(@user.id)
       end
-      puts "id class is #{@user.id.class}"
-      @tweet = get_tweet(@user.id)
-      @timeline = get_timeline(@user.id)
       erb :new
     else
       redirect "/login"

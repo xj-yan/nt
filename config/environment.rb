@@ -33,7 +33,7 @@ require_all 'app'
 
 unless ENV['RACK_ENV'] == 'development'
 	require 'rack-timeout'
-	use Rack::Timeout, service_timeout: 9
+	use Rack::Timeout, service_timeout: 20
 end
 
 # configure :development do

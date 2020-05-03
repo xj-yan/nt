@@ -15,10 +15,19 @@ class App < Sinatra::Base
 
   get "/" do
     user_id = params[:user_id].to_i
-    if user_id != 0 
-      ids = get_followee_ids(user_id)
-      tweets = get_test_timeline(ids, user_id)
-      tweets.to_json
+    puts "#{user_id}"
+    # puts "authenticate #{!(authenticate!)}"
+    if user_id != 0 || authenticate! 
+      @user = nil
+      if user_id != 0
+        @user = User.find_by(id: user_id)
+      else
+        @user = User.find_by(id: session[:user_id])
+      end
+      puts "id class is #{@user.id.class}"
+      @tweet = get_tweet(@user.id)
+      @timeline = get_timeline(@user.id)
+      erb :new
     else
       redirect "/login"
     end

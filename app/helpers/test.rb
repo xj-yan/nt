@@ -101,11 +101,11 @@ module Test
 		follower_ids.each do |follower_id|
 			if !$redis.get("home_timeline/#{follower_id}").nil?
 				ids = get_followee_ids(follower_id)
-				$redis.del("home_timeline/#{follower_id}")
-				# home_timeline = Tweet.where(user_id: ids).order(created_at: :desc).first(10)
-				# $redis.set("home_timeline/#{follower_id}", home_timeline.to_json)
-				# # Expire the cache, every 1 hours
-				# $redis.expire("home_timeline/#{follower_id}",1.hour.to_i)
+				# $redis.del("home_timeline/#{follower_id}")
+				home_timeline = Tweet.where(user_id: ids).order(created_at: :desc).first(10)
+				$redis.set("home_timeline/#{follower_id}", home_timeline.to_json)
+				# Expire the cache, every 1 hours
+				$redis.expire("home_timeline/#{follower_id}",1.hour.to_i)
 			end
 		end
 	end

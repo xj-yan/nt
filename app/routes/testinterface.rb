@@ -219,7 +219,7 @@ class App < Sinatra::Base
 		update_cached_home_timeline(x)
 
 		# update the timeline of the user x
-		# update_cached_user_timeline(x)
+		update_cached_user_timeline(x)
 
 		return 200, tweets.to_json
 	end

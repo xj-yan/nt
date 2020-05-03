@@ -15,7 +15,7 @@ class App < Sinatra::Base
 
   get "/" do
     user_id = params[:user_id].to_i
-    if user_id != 0
+    if user_id != 0 
       ids = get_followee_ids(user_id)
       tweets = get_test_timeline(ids, user_id)
       tweets.to_json

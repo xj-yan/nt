@@ -1,33 +1,27 @@
 require 'csv'
 require 'faker'
-
-# require_relative '../app/helpers/authentication'
+require 'bcrypt'
 
 # Create users from users.csv
-# count_1 = 0
-# # user_column = [:id, :username, :email, :password_digest, :follower_number, :followee_number]
-# # user_list = []
-# File.open("./lib/seeds/users.csv") do |users| 
-# 	users.read.each_line do |user|
-# 		id, username = user.chomp.split(",")
 
-# 		# user_list << {id: id, 
-# 		# 	username: username, 
-# 		# 	email: Faker::Internet.email, 
-# 		# 	password_digest: hash_password("123"),
-# 		# 	follower_number: 0,
-# 		# 	followee_number: 0
-# 		# }
-# 		# count_1 += 1
-# 		User.create(
-# 			username: username, 
-# 			email: Faker::Internet.email, 
-# 			password: "123",
-# 			follower_number: 0,
-# 			followee_number: 0)
-# 		count_1 = count_1 + 1
-# 	end
-# end
+count_1 = 0
+user_column = [:id, :username, :email, :password_digest, :follower_number, :followee_number]
+user_list = []
+File.open("./lib/seeds/users.csv") do |users| 
+	users.read.each_line do |user|
+		id, username = user.chomp.split(",")
+
+		user_list << {
+			id: id.to_i,
+			username: username, 
+			email: Faker::Internet.email, 
+			password_digest: BCrypt::Password.create("123"),
+			follower_number: 0,
+			followee_number: 0
+		}
+	end
+	User.import(user_column, user_list)
+end
 
 # puts "#{count_1} users now created"
 #1000
@@ -76,16 +70,16 @@ follow_column = [:follower_id, :followee_id]
 # 	end
 # end
 
-File.open("./lib/seeds/follows.csv") do |follows| 
-	follows.read.each_line do |follow|
-		follower_id, followee_id = follow.chomp.split(",")
-		follow_list << {follower_id: follower_id, followee_id: followee_id}
-		User.increment_counter(:followee_number, follower_id)
-		User.increment_counter(:follower_number, followee_id)
-		count_3 = count_3 + 1
-	end
-	Follow.import(follow_column, follow_list)
-end
+# File.open("./lib/seeds/follows.csv") do |follows| 
+# 	follows.read.each_line do |follow|
+# 		follower_id, followee_id = follow.chomp.split(",")
+# 		follow_list << {follower_id: follower_id, followee_id: followee_id}
+# 		User.increment_counter(:followee_number, follower_id)
+# 		User.increment_counter(:follower_number, followee_id)
+# 		count_3 = count_3 + 1
+# 	end
+# 	Follow.import(follow_column, follow_list)
+# end
 
-puts "#{count_3} following relationships now created"
+# puts "#{count_3} following relationships now created"
 # 4923

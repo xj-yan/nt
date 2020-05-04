@@ -76,7 +76,7 @@
                     </div>
                     <div class="lmlblog-member-username">
                         <h1>
-                            <%= @user.username %>
+                            <%= @user["username"] %>
                         </h1>
                         <!-- <span class="lmlblog-mark lmlblog-girl"><i class="fa fa-mars"></i></span> -->
                         <!-- <span class="lmlblog-mark lmlblog-lv" title="经验：3815">Lv.6</span>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="lmlblog-member-desc">Welcom to my page! </div>
                     <div class="lmlblog-member-follow-info">
-                        <% if @user.id != session[:user_id] %>
+                        <% if @user["id"] != session[:user_id] %>
                             <a href="javascript:;" target="_blank" rel="nofollow"><span class="follow no opacity"><i class="lmlblog-icon"></i>+ Follow</span></a>
                             <span class="opacity"><i class="lmlblog-icon">&#xe612;</i> Chat</span>
                             <% end %>
@@ -101,11 +101,11 @@
                         <div class="lmlblog-member-left">
                             <div class="lmlblog-member-left-follow clear">
                                 <li>
-                                    <strong><%= @user.followee_number%></strong>
+                                    <strong><%= @user["followee_number"]%></strong>
                                     <span>Follow</span>
                                 </li>
                                 <li>
-                                    <strong><%= @user.follower_number%></strong>
+                                    <strong><%= @user["follower_number"]%></strong>
                                     <span>Follower</span>
                                 </li>
                                 <li>
@@ -120,7 +120,7 @@
                             <div class="lmlblog-member-left-profile">
                                 <h3>Bio</h3>
                                 <li><i class="fa fa-address-book-o"></i> Username：
-                                    <span><%= @user.username%><span></span></span>
+                                    <span><%= @user["username"]%><span></span></span>
                                 </li>
                                 <li><i class="fa fa-map-marker"></i> Location：<span>Waltham<span></span></span>
                                 </li>
@@ -131,7 +131,7 @@
                         <div class="lmlblog-member-right">
                             <div class="lmlblog-post-list">
 
-                                <% if @user.id == session[:user_id] %>
+                                <% if @user["id"] == session[:user_id] %>
                                     <!-- send -->
                                     <div class="lmlblog-posts-list words">
                                         <div class="content">

@@ -43,7 +43,7 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
 		count_2 += 1
 		
-		if count_2 == 90000
+		if count_2 == 80000
 			break
 		end
 	end

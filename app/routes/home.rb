@@ -17,23 +17,23 @@ class App < Sinatra::Base
     user_id = params[:user_id].to_i
     puts "#{user_id}"
     # puts "authenticate #{!(authenticate!)}"
-    if user_id != 0 || authenticate!
+      # if user_id != 0 || authenticate!
       # if user_id != 0
       #   @user = User.find_by(id: user_id)
       # else
       #   @user = User.find_by(id: session[:user_id])
       # end
+    if user_id != 0
       session[:user_id] = user_id
-      # puts "id class is #{@user.id.class}"
-      # @tweet = get_tweet(@user.id)
-      # @timeline = get_timeline(@user.id)
-      @user = User.find_by(id: session[:user_id])
-      @tweet = get_tweet(session[:user_id])
-      @timeline = get_timeline(session[:user_id])
-      erb :new
-    else
-      redirect "/login"
     end
+    authenticate!
+    @user = User.find_by(id: session[:user_id])
+    @tweet = get_user_timeline(session[:user_id])
+    @timeline = get_timeline(session[:user_id])
+    erb :new
+    # puts "id class is #{@user.id.class}"
+    # @tweet = get_tweet(@user.id)
+    # @timeline = get_timeline(@user.id)
 	end
 	
 	# routes for login and logout
@@ -45,7 +45,7 @@ class App < Sinatra::Base
     @user = User.find_by(email: params[:email])
     if @user && test_password(params[:password], @user.password_digest)
       session[:user_id] = @user.id
-      redirect '/home'
+      redirect '/'
       # redirect "/user/#{@user.id}"
     elsif !@user
       flash[:notice] = "User not exists. Please sign up!"
@@ -77,7 +77,7 @@ class App < Sinatra::Base
         @user = User.create!(id: User.maximum(:id).next, username: params[:username], email: params[:email], password_digest: hash_password(params[:password]))
         if @user.valid?
           session[:user_id] = @user.id
-          redirect '/home'
+          redirect '/'
         end
       rescue StandardError => msg  
         flash[:notice] = "Registration Failed! #{msg}"
@@ -90,11 +90,11 @@ class App < Sinatra::Base
   end
 
   # home is a protected route 
-  get '/home' do
-    authenticate!
-    @user = User.find_by(id: session[:user_id])
-    @tweet = get_tweet(session[:user_id])
-    @timeline = get_timeline(session[:user_id])
-    erb :new
-  end
+  # get '/home' do
+  #   authenticate!
+  #   @user = User.find_by(id: session[:user_id])
+  #   @tweet = get_tweet(session[:user_id])
+  #   @timeline = get_timeline(session[:user_id])
+  #   erb :new
+  # end
 end

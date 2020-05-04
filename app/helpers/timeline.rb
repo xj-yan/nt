@@ -4,9 +4,13 @@ module Timeline
 			
 	def get_timeline(id)
 		if id == session[:user_id]
-			get_tweet(id)
+		# 	get_tweet(id)
+		# else
+		# 	get_tweet(get_followees(id))
+		# end
+			get_home_timeline(id)
 		else
-			get_tweet(get_followees(id))
+			get_user_timeline(id)
 		end
 	end
 
@@ -21,22 +25,58 @@ module Timeline
 		ids.uniq
 	end
 
-	def get_tweet(ids)
-		tweets = Tweet.where(user_id: ids).order(created_at: :desc)
-		if tweets.size > 100
-			tweets.first(100)
+	def get_home_timeline(id)
+		timeline = $redis.get("home_timeline/#{id}")
+		if timeline.nil?
+			followee_ids = get_followee_ids(id)
+			timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(50)
+			$redis.set("home_timeline/#{id}", timeline.to_json)
+			# Expire the cache, every 1 hours
+			$redis.expire("home_timeline/#{id}", 1.hour.to_i)
 		else
-			tweets
+			timeline = JSON.parse(timeline)
 		end
+		timeline
+	end
+
+	def get_user_timeline(id)
+		timeline = $redis.get("user_timeline/#{id}")
+		if timeline.nil?
+			timeline = Tweet.where(user_id: id).order(created_at: :desc).first(50)
+			$redis.set("user_timeline/#{id}", timeline.to_json)
+			# Expire the cache, every 1 hours
+			$redis.expire("user_timeline/#{id}", 1.hour.to_i)
+		else
+			timeline = JSON.parse(timeline)
+		end
+		timeline
+	end
+
+	def get_followee_ids(id)
+		ids = $redis.get("followee_ids/#{id}")
+		if ids.nil?
+			followees = Follow.where(follower_id: id)
+			ids = []
+			ids << id
+			followees.each do |f|
+				ids << f["followee_id"]
+			end
+			$redis.set("followee_ids/#{id}", ids.uniq)
+			# Expire the cache, every 1 hours
+			$redis.expire("followee_ids/#{id}",1.hour.to_i)
+		else
+			ids = JSON.parse(ids)
+		end
+		ids
 	end
 
 	def get_tweet_list(ids, page_num)
-		tweets = get_tweet(ids)
+		tweets = get_timeline(ids)
 		tweets[(page_num.to_i - 1) * 10, page_num.to_i * 10]
 	end
 
 	def get_page_count(ids)
-		size = get_tweet(ids).size
+		size = get_timeline(ids).size
 		count = size / 10
 		if size % 10 != 0
 			count += 1

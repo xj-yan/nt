@@ -3,24 +3,24 @@ require 'json'
 
 module Test
 
-	# Get a list of ids
-	def get_followee_ids(id)
-		ids = $redis.get("followee_ids/#{id}")
-		if ids.nil?
-			followees = Follow.where(follower_id: id)
-			ids = []
-			ids << id
-			followees.each do |f|
-				ids << f["followee_id"]
-			end
-			$redis.set("followee_ids/#{id}", ids.uniq)
-			# Expire the cache, every 1 hours
-			$redis.expire("followee_ids/#{id}",1.hour.to_i)
-		else
-			ids = JSON.parse(ids)
-		end
-		ids
-	end
+	# # Get a list of ids
+	# def get_followee_ids(id)
+	# 	ids = $redis.get("followee_ids/#{id}")
+	# 	if ids.nil?
+	# 		followees = Follow.where(follower_id: id)
+	# 		ids = []
+	# 		ids << id
+	# 		followees.each do |f|
+	# 			ids << f["followee_id"]
+	# 		end
+	# 		$redis.set("followee_ids/#{id}", ids.uniq)
+	# 		# Expire the cache, every 1 hours
+	# 		$redis.expire("followee_ids/#{id}",1.hour.to_i)
+	# 	else
+	# 		ids = JSON.parse(ids)
+	# 	end
+	# 	ids
+	# end
 
 	# get timeline of fan who follows star
 	def get_test_timeline(star, fan)

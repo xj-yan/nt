@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_044412) do
+ActiveRecord::Schema.define(version: 2020_05_04_043429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 2020_04_28_044412) do
     t.string "email"
     t.text "bio"
     t.string "password_digest"
-    t.integer "follower_number"
-    t.integer "followee_number"
+    t.integer "follower_number", default: 0
+    t.integer "followee_number", default: 0
+    t.integer "tweet_number", default: 0
   end
 
 end

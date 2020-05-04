@@ -1,6 +1,7 @@
 require 'elasticsearch/model'
 
 class Tweet < ActiveRecord::Base
+	# extend ActiveSupport::Concern
 
 	has_many :comments
 	has_many :commenters, 
@@ -38,6 +39,15 @@ class Tweet < ActiveRecord::Base
 		}
 		)
 	end
+
+	# def self.search query
+	# 	__elasticsearch__.search query
+	# end
+
+	# def self.import
+	# 	__elasticsearch__.import
+	# end
+
 end
 
 # create elasticsearch index
@@ -46,4 +56,5 @@ unless Tweet.__elasticsearch__.index_exists?
 end
 Tweet.__elasticsearch__.refresh_index!
 # Tweet.import
+# Tweet.__elasticsearch__.import
 # Tweet.__elasticsearch__.delete_index!

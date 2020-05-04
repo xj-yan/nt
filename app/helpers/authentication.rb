@@ -21,4 +21,8 @@ module Authentication
     BCrypt::Password.new(hash) == password
   end
 
+  def hash_password(password)
+    BCrypt::Password.create(password).to_s
+  end
+
 end

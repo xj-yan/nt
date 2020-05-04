@@ -21,7 +21,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # the concurrency of the application would be max `threads` * `workers`.
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
-#
+
 workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
@@ -34,6 +34,24 @@ preload_app!
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
+# on_worker_boot do
+# 	ActiveRecord::Base.establish_connection
+# end
+
+# before_fork do
+# 	ActiveRecord::Base.connection_pool.disconnect!
+# end
+
 on_worker_boot do
-	ActiveRecord::Base.establish_connection
+	ActiveRecord::Base.connection_pool.disconnect! if defined?(Activerecord)
+
+	# worker specific setup
+	ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+	# ActiveSupport.on_load(:active_record) do
+	#   ActiveRecord::Base.establish_connection
+	# end
 end
+  
+
+
+  

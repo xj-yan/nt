@@ -11,12 +11,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
-    <link href="/css/register.css" rel="stylesheet" type="text/css" />
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/3b24e81b01.js" crossorigin="anonymous"></script>
 
-    <title>NanoTwitter Signup</title>
+    <title>NanoTwitter Login</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
         </div>
         <div class="content">
             <!--content-->
-            <div class="panel signup">
+            <div class="panel login">
                 <div class="brand">
                     <!-- icon -->
                     <div class="brand_icon">
@@ -35,48 +35,53 @@
                         <span class="brand_icon__font">NanoTwitter</span>
                     </div>
                 </div>
-                <div class="signup_title">
-                    <!-- signup -->
-                    <span>Create Account</span>
+                <div class="login_title">
+                    <!-- login -->
+                    <span>Login</span>
                 </div>
-                <form id="user_signup" action="/register" method="post">
+                <form id="user_login" action="/login" method="post">
                     <ul>
                         <li>
-                            <div class="signup_input">
-                                <!-- <label>Usename</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-user fa-2x"></i></span>
-                                <input id="username" name="username" type="text" placeholder="Username" required />
-                                <span id="input_popovers__1" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="signup_input">
+                            <div class="login_input">
                                 <!-- <label>Email</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-envelope fa-2x"></i></span>
+                                <span class="login__symble_1"><i class="fa fa-envelope fa-2x"></i></span>
                                 <input id="user_email" name="email" type="text" placeholder="Email" required />
-                                <span id="input_popovers__1" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
+                                <span id="input_popovers__1" class="login_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
                             </div>
                         </li>
                         <li>
-                            <div class="signup_input">
+                            <div class="login_input">
                                 <!-- <label>Password</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-lock fa-2x"></i></span>
+                                <span class="login__symble_1"><i class="fa fa-lock fa-2x"></i></span>
                                 <input id="user_password" name="password" type="password" placeholder=Password required/>
-                                <span id="input_popovers__2" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
+                                <span id="input_popovers__2" class="login_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
                             </div>
                         </li>
                     </ul>
+                    <div class="login-error" id="login-error">
+                        <span class="login-error__icon"><i class="fa fa-exclamation-circle"></i></span>
+                        <span class="login-error__font"></span>
+                    </div>
                     <% if flash[:notice] %>
                     <div class="alert alert-danger" role="alert">
-                    <span class="signup-error__icon"><i class="fa fa-exclamation-circle"></i></span>
-                        <span class="signup-error__font"><%= flash[:notice] %></span>
+                    <span class="login-error__icon"><i class="fa fa-exclamation-circle"></i></span>
+                        <span class="login-error__font"><%= flash[:notice] %></span>
                     </div>
                     <% end %>
-                    <div class="signup_button" id="signup_button">
-                        <!-- signup button, id="signup_button" -->
-                        <button id="submit_button" class="btn">Sign&nbsp;Me&nbsp;Up</button>
+                    <div class="login_button" id="login_button">
+                        <!-- login button, id="login_button" -->
+                        <button id="submit_button" class="btn">Log&nbsp;&nbsp;in</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="panel signup">
+                <div class="signup_title"><span>Do not have an account yet?</span></div>
+                <div class="signup_button">
+                    <!-- register, id="signup_button" -->
+                    <button id="signup_button" class="btn" onclick="window.location.href='/register'">Register</button>
+                </div>
+
             </div>
 
         </div>

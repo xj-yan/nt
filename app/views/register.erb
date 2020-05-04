@@ -1,92 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-    <!-- Custom CSS -->
-    <link href="/css/register.css" rel="stylesheet" type="text/css" />
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/3b24e81b01.js" crossorigin="anonymous"></script>
-
     <title>NanoTwitter Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/welcome.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="layout">
-        <!-- layout -->
-        <div class="header">
-            <!--header-->
-        </div>
-        <div class="content">
-            <!--content-->
-            <div class="panel signup">
-                <div class="brand">
-                    <!-- icon -->
-                    <div class="brand_icon">
-                        <span class="brand_icon__ico"><i class="fab fa-twitter fa-2x"></i></span>
-                        <span class="brand_icon__font">NanoTwitter</span>
-                    </div>
-                </div>
-                <div class="signup_title">
-                    <!-- signup -->
-                    <span>Create Account</span>
-                </div>
-                <form id="user_signup" action="/register" method="post">
-                    <ul>
-                        <li>
-                            <div class="signup_input">
-                                <!-- <label>Usename</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-user fa-2x"></i></span>
-                                <input id="username" name="username" type="text" placeholder="Username" required />
-                                <span id="input_popovers__1" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="signup_input">
-                                <!-- <label>Email</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-envelope fa-2x"></i></span>
-                                <input id="user_email" name="email" type="text" placeholder="Email" required />
-                                <span id="input_popovers__1" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="signup_input">
-                                <!-- <label>Password</label> -->
-                                <span class="signup__symble_1"><i class="fa fa-lock fa-2x"></i></span>
-                                <input id="user_password" name="password" type="password" placeholder=Password required/>
-                                <span id="input_popovers__2" class="signup_in__symble_2"><i class="fa fa-info-circle fa-2x"></i></span>
-                            </div>
-                        </li>
-                    </ul>
+    <!--Login Part-->
+    <div id="container">
+        <div class="show-case">
+            <i id="twitter-logo" class="fab fa-twitter"></i>
+            <p>Twitter. It's what's happening.</p>
+            <form id="user_signup" action="/register" method="post">
+                <!-- <label>Usename</label> -->
+                <p>
+                    <span class="signup__symble_1"><i class="fa fa-user fa-1x"></i></span>
+                    <input id="username" name="username" type="text" placeholder="Username" required />
+                </P>
+                <!-- <label>Email</label> -->
+                <p>
+                    <span class="login__symble_1"><i class="fa fa-envelope fa-1x"></i></span>
+                    <input id="user_email" name="email" type="text" placeholder="Email" required />
+                </p>
+                <!-- <label>Password</label> -->
+                <p>
+                    <span class="login__symble_1"><i class="fa fa-lock fa-1x"></i></span>
+                    <input id="user_password" name="password" type="password" placeholder=Password required />
+                </p>
                     <% if flash[:notice] %>
-                    <div class="alert alert-danger" role="alert">
-                    <span class="signup-error__icon"><i class="fa fa-exclamation-circle"></i></span>
+                    <p class="alert alert-danger" role="alert">
+                        <span class="signup-error__icon"><i class="fa fa-exclamation-circle"></i></span>
                         <span class="signup-error__font"><%= flash[:notice] %></span>
-                    </div>
+                    </p>
                     <% end %>
-                    <div class="signup_button" id="signup_button">
-                        <!-- signup button, id="signup_button" -->
-                        <button id="submit_button" class="btn">Sign&nbsp;Me&nbsp;Up</button>
-                    </div>
-                </form>
-            </div>
-
+                <p>
+                    <button id="login-btn">Sign Up</button>
+                </p>
+            </form>
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/esm/popper-utils.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 </html>

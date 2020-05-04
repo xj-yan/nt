@@ -35,10 +35,15 @@ class App < Sinatra::Base
     # @tweet = get_tweet(@user.id)
     # @timeline = get_timeline(@user.id)
 	end
-	
+  
+  # routes for login and logout
+  get "/index" do
+    erb :index
+  end
+
 	# routes for login and logout
   get "/login" do
-    erb :index
+    erb :login
   end
 
   post "/login" do

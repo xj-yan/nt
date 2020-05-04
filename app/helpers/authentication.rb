@@ -5,7 +5,8 @@ module Authentication
   def authenticate!
     unless session[:user_id]
       flash[:notice] = "You are not logged in!"
-      redirect '/login'
+      # redirect '/login'
+      redirect '/index'
     end
   end
 

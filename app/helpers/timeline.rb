@@ -1,6 +1,19 @@
 require 'sinatra/base'
 
 module Timeline
+
+	def get_user(id)
+		user = $redis.get("user/#{id}")
+		if user.nil?
+			user = User.find_by_id(id)
+			$redis.set("user/#{id}", user.to_json)
+			# Expire the cache, every 1 hours
+			$redis.expire("user/#{id}", 1.hour.to_i)
+		else
+			user = JSON.parse(user)
+		end
+		user
+  end
 			
 	def get_timeline(id)
 		if id == session[:user_id]

@@ -27,7 +27,7 @@ class App < Sinatra::Base
       session[:user_id] = user_id
     end
     authenticate!
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user(session[:user_id])
     @tweet = get_user_timeline(session[:user_id])
     @timeline = get_timeline(session[:user_id])
     erb :new

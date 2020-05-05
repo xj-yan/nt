@@ -22,6 +22,7 @@ class App < Sinatra::Base
   helpers Timeline
   helpers Authentication
   helpers Test
+  helpers Search
 
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }

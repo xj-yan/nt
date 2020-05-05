@@ -61,6 +61,12 @@ module Test
 		end
 
 		tweet = Tweet.create(tweet: content, user_id: id, tag_str: tag_str, mention_str: mention_str)
+
+		# update the home timeline of the followees
+		update_cached_home_timeline(id)
+
+		# update the timeline of the user x
+		update_cached_user_timeline(id)
     return tweet
 	end
 

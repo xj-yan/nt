@@ -26,11 +26,11 @@
             <div class="nav-bar-container">
                 <img class="twitter-logo" src="/images/logo.png">
                 <!-- flex -->
-                <div id="current-page">
-                    <i class="fas fa-home"></i>
-                    <p class="nav-bar-text">Home</p>
-                </div>
                 <div class="nav-bar-item-wrap">
+                    <i class="fas fa-home"></i>
+                    <p class="nav-bar-text" onclick="window.location.href='/'">Home</p>
+                </div>
+                <div id="current-page">
                     <i class="fas fa-hashtag"></i>
                     <p class="nav-bar-text">Explore</p>
                 </div>
@@ -59,7 +59,7 @@
                     <p class="nav-bar-text">More</p>
                 </div>
                 <div class="nav-bar-post-btn">
-                    <button id="post-twitter" onclick="window.location.href='/'">Tweet</button>
+                    <button id="post-twitter">Tweet</button>
                 </div>
             </div> 
         </div>
@@ -107,13 +107,14 @@
         <div class="right-news">
 
             <div class="trend-block">
-                <p class="trend-block-title">Trending</p>
+                <p class="trend-block-title">Trends for you
+</p>
                 <!-- JS DOM append -->
             </div>
 
             <!-- recommended users -->
             <div class="recommendation-block">
-                <p class="trend-block-title">Users</p>
+                <p class="trend-block-title">Your might like</p>
                 <!-- JS DOM append -->
             </div>
         </div>
@@ -175,9 +176,16 @@
         <img src="/images/more.png">
     </div>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="/js/search.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+    function search() {
+            var query = document.getElementById('user-input').value;
+            console.log(query);
+            console.log("start searching");
+            window.location.href = '/search?query=' + query;
+        }
+    </script>
 </body>
 
 </html>

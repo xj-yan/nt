@@ -31,6 +31,7 @@ class App < Sinatra::Base
     @tweet = get_user_timeline(session[:user_id])
     @timeline = get_timeline(session[:user_id])
     erb :main
+    # erb :new
     # puts "id class is #{@user.id.class}"
     # @tweet = get_tweet(@user.id)
     # @timeline = get_timeline(@user.id)

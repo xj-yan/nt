@@ -42,7 +42,7 @@ module Timeline
 		timeline = $redis.get("home_timeline/#{id}")
 		if timeline.nil?
 			followee_ids = get_followee_ids(id)
-			timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(50)
+			timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(10)
 			$redis.set("home_timeline/#{id}", timeline.to_json)
 			# Expire the cache, every 1 hours
 			$redis.expire("home_timeline/#{id}", 1.hour.to_i)

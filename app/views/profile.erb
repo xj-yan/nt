@@ -11,7 +11,7 @@
 
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/profile.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 
@@ -68,35 +68,49 @@
         <!-- center: post -->
         <div class="center-main-content">
             <div class="main-title-bar">
-                <p class="main-title-text">Welcome back <span class="user-name"></span></p>
+                <p class="main-title-text">
+                    <%= @user.username %> <span class="user-name"></span></p>
             </div>
 
             <div class="post-twitter-block">
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
-                <textarea id="user-input" placeholder="What's happening？"></textarea>
-
-                <button id="post-btn" class="user-post-btn">Tweet</button>
+                <label id="follow-info" style="display:inline">
+                <a class="follow" href="#"><strong><%= @user.followee_number%></strong> Following</a> 
+                <a class="follow" href="#"><strong><%= @user.follower_number%></strong> Follower</a>
+                </label>
+                 <% if @user.id != session[:user_id] %>
+                    
+                    <button id="user-follow-btn" v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow; follower_number += 1" class="follow no opacity">
+                        Follow
+                    </button>
+                    <button id="user-follow-btn" v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow; follower_number -= 1" class="follow no opacity">
+                        Unfollow
+                    </button>
+                <% end %>
             </div>
 
             <!-- Javascript append new tweet -->
             <div id="post-container">
-            <% @timeline.each do |t| %>
+                <% @timeline.each do |t| %>
 
-            
-                <p class=current-user-name> </P>
-                <div class=user-post id="">
-                    <div class=user-post-wrap>
-                        <img class=current-user src="/images/search_user.jpg">
-                        <div class=user-post-content>
-                        <p class=current-user-name>
-                            <span class=user-post-name> <%=t["user_id"]%> </span>
-                            <span class=user-post-time>" <%=t["updated_at"]%> </span>
-                        </p>
-                        <p class=current-user-post> <%=t["tweet"]%> </p>
+
+                    <p class=current-user-name>
+                    </P>
+                    <div class=user-post id="">
+                        <div class=user-post-wrap>
+                            <img class=current-user src="/images/search_user.jpg">
+                            <div class=user-post-content>
+                                <p class=current-user-name>
+                                    <span class=user-post-name> <%=t["user_id"]%> </span>
+                                    <span class=user-post-time>" <%=t["updated_at"]%> </span>
+                                </p>
+                                <p class=current-user-post>
+                                    <%=t["tweet"]%>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <% end %>
+                    <% end %>
             </div>
             <!-- Javascript append new tweet -->
 
@@ -170,15 +184,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13) {
-            var query = document.getElementById('search').value;
-            console.log(query);
-            console.log("start searching");
-            window.location.href = '/search?query=' + query;
+        function entersearch() {
+            var event = window.event || arguments.callee.caller.arguments[0];
+            if (event.keyCode == 13) {
+                var query = document.getElementById('search').value;
+                console.log(query);
+                console.log("start searching");
+                window.location.href = '/search?query=' + query;
+            }
         }
-    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+        const app = new Vue({
+            el: ".user-follow-btn",
+            data: {
+                is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>,
+                follower_number: <%= @user.follower_number %>,
+
+            },
+            methods: {
+                followUser(e) {
+                    axios.post("/follow/<%= @user.id %>")
+                },
+                unfollowUser(e) {
+                    axios.post("/unfollow/<%= @user.id %>")
+                }
+            }
+        })
     </script>
 </body>
 

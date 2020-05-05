@@ -208,7 +208,9 @@ class App < Sinatra::Base
 			return 400, "invalid user id!"
 		end
 
-		# tweets = Tweet.where(user_id: x).sample(y)
+		if y == 0
+			return 400, "invalid tweet count!"
+		end
 		tweets = Array.new
 		y.times do
 			tweet = Tweet.create(tweet: Faker::Lorem.sentence(word_count: 6), user_id: x)
@@ -221,6 +223,7 @@ class App < Sinatra::Base
 		# update the timeline of the user x
 		update_cached_user_timeline(x)
 
+		puts "user #{x} posted #{y} tweets!"
 		return 200, tweets.to_json
 	end
 

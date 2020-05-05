@@ -83,16 +83,17 @@
             <% @timeline.each do |t| %>
 
             
-                <p class=current-user-name> </P>
-                <div class=user-post id="">
-                    <div class=user-post-wrap>
-                        <img class=current-user src="/images/search_user.jpg">
-                        <div class=user-post-content>
-                        <p class=current-user-name>
-                            <span class=user-post-name> <%=t["user_id"]%> </span>
-                            <span class=user-post-time>" <%=t["updated_at"]%> </span>
+                <p class="current-user-name"> </P>
+                <div class="user-post" id="">
+                    <div class="user-post-wrap">
+                        <img class="current-user" src="/images/search_user.jpg">
+                        <div class="user-post-content">
+                        <p class="current-user-name">
+                            <a id="post-name" class="user-post-name" href="/user/<%=t["user_id"]%>"> <%=t["user_id"]%> </a>
+                            </a>
+                            <span class="user-post-time"> <%=t["updated_at"]%> </span>
                         </p>
-                        <p class=current-user-post> <%=t["tweet"]%> </p>
+                        <p class="current-user-post"> <%=t["tweet"]%> </p>
                         </div>
                     </div>
                 </div>

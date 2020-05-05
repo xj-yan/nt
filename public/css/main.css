@@ -318,6 +318,10 @@ input[type="file"] {
     text-align: center;
 }
 
+#post-name:link {
+    text-decoration: none;
+}
+
 .user-post-nickname,
 .user-post-time {
     font-size: 14px;

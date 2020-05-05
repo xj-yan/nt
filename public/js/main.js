@@ -32,6 +32,10 @@ $(document).ready(function() {
         window.location.href = '/';
     });
 
+    $("#profile-btn").click(function() {
+        window.location.href = '/user/' + getUserID();
+    });
+
     // listen to post-btn
     $("#post-btn").click(function() {
         // get user input
@@ -70,14 +74,6 @@ $(document).ready(function() {
 
     // create new entry
     function createEle(text) {
-        // console.log(text)
-        // var $tweet = $("<div class=\"info\">\n" +
-        //     "            <p class=\"infoName\">" + getUser() + "</p>\n" +
-        //     "            <p class=\"infoOperation\">\n" +
-        //     "                <span class=\"infoTime\">" + formartDate() + "</span>\n" +
-        //     "            </p>\n" +
-        //     "            <p class=\"infoText\">" + text + "</p>\n" +
-        //     "        </div>");
         var $tweet = $("<div class=user-post id=" + "" + ">" +
             "<div class=user-post-wrap>" +
             "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
@@ -107,7 +103,7 @@ $(document).ready(function() {
 
     }
 
-    // get user
+    // get username
     function getUser() {
         var text = ""
             // api/?act=get_home_user	get username
@@ -115,6 +111,28 @@ $(document).ready(function() {
             type: "get",
             url: "/api/user",
             data: "act=get_home_user",
+            async: false,
+            dataType: "json",
+            success: function(msg) {
+                // var obj = eval("(" + msg + ")");
+                text = msg;
+                console.log(text);
+            },
+            error: function(xhr) {
+                alert(xhr.status);
+            }
+        });
+        return text;
+    }
+
+    // get user id
+    function getUserID() {
+        var text = ""
+            // api/?act=get_home_user	get username
+        $.ajax({
+            type: "get",
+            url: "/api/user",
+            data: "act=get_home_id",
             async: false,
             dataType: "json",
             success: function(msg) {

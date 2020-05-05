@@ -70,6 +70,8 @@ class App < Sinatra::Base
 		act = params[:act]
 		if act == 'get_home_user'
 			get_name(session[:user_id]).to_json
+		elsif act == 'get_home_id'
+			session[:user_id].to_json
 		end
 	end
 end

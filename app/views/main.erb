@@ -48,7 +48,7 @@
                 </div>
                 <div id="logout-btn" class="nav-bar-item-wrap">
                     <i class="fas fa-sign-out-alt"></i>
-                    <p class="nav-bar-text">Logout</p>
+                    <p class="nav-bar-text" onclick="window.location.href='/login'">Logout</p>
                 </div>
                 <div class="nav-bar-item-wrap">
                     <img id="user-profile" class="nav-bar-icon" src="/images/user.jpg">
@@ -95,7 +95,7 @@
 
             <!-- recommended users -->
             <div class="recommendation-block">
-                <p class="trend-block-title">Users</p>
+                <p class="trend-block-title">Following</p>
                 <!-- JS DOM append -->
             </div>
         </div>
@@ -157,9 +157,19 @@
         <img src="/images/more.png">
     </div>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/js/main.js"></script>
+    <script>
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13) {
+            var query = document.getElementById('search').value;
+            console.log(query);
+            console.log("start searching");
+            window.location.href = '/search?query=' + query;
+        }
+    }
+    </script>
 </body>
 
 </html>

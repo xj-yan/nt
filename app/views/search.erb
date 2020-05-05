@@ -175,9 +175,16 @@
         <img src="/images/more.png">
     </div>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="/js/search.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+    function search() {
+            var query = document.getElementById('user-input').value;
+            console.log(query);
+            console.log("start searching");
+            window.location.href = '/search?query=' + query;
+        }
+    </script>
 </body>
 
 </html>

@@ -3,10 +3,10 @@
 class App < Sinatra::Base
 
   # routes for logged in user
-	get "/user/profile" do
-		authenticate!
-		erb :profile_page, locals: {user: params}
-	end
+	# get "/user/profile" do
+	# 	authenticate!
+	# 	erb :profile_page, locals: {user: params}
+	# end
 
 	get "/user/:id" do
 		# get page count
@@ -14,14 +14,15 @@ class App < Sinatra::Base
 		authenticate!
 		id = params[:id]
 		@user = User.find(id)
-		@timeline = get_tweet(id)
+		@timeline = get_user_timeline(id)
 		# @timeline = get_tweet_list(id, count)
 		# @is_follow = Follow.find_by(followee_id: id, follower_id: session[:user_id]).nil?
 		if @user.nil?
 			return 404
 		else
 			# erb :user_main_page
-			erb :user
+			# erb :user
+			erb :profile
 		end
 	end
 

@@ -83,6 +83,9 @@
                     <button id="user-follow-btn" v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow; follower_number += 1" class="follow no opacity">
                         Follow
                     </button>
+                    <button id="user-follow-btn" v-else v-on:click="unfollowUser(); is_not_follow = !is_not_follow; follower_number -= 1" class="follow no opacity">
+                        Unfollow
+                    </button>
                 <% end %>
             </div>
 
@@ -195,7 +198,7 @@
     <script type="text/javascript">
 
         const app = new Vue({
-            el: "#follow_element",
+            el: ".user-follow-btn",
             data: {
                 is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>,
                 follower_number: <%= @user.follower_number %>,

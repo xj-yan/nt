@@ -310,6 +310,7 @@ input[type="file"] {
     margin-bottom: 10px;
     transition: all 0.5s;
     position: absolute;
+    text-decoration: none;
 }
 
 #user-follow-btn:hover {

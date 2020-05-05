@@ -74,7 +74,7 @@
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
                 <textarea id="user-input" placeholder="Search Twitter "></textarea>
 
-                <button id="post-btn" class="user-post-btn">Search</button>
+                <button id="post-btn" class="user-post-btn" onclick="search()">Search</button>
             </div>
 
             <!-- Javascript append new tweet -->
@@ -94,6 +94,9 @@
                         </div>
                     </div>
                 </div>
+            <% end %>
+            <% if @res.size == 0 %>
+                <p>Oops, try another word </p>
             <% end %>
             </div>
             <!-- Javascript append new tweet -->
@@ -174,6 +177,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/search.js"></script>
 </body>
 
 </html>

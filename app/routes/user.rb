@@ -26,6 +26,26 @@ class App < Sinatra::Base
 		end
 	end
 
+	get '/:id/follower' do
+		user_id = User.find(params[:id]).id
+		following_user = Array.new
+		Follow.where(followee_id: user_id).each do |f|
+			following_user << {id: f.follower_id, username: User.find(f.follower_id).username}
+		end
+		return following_user.to_json
+		# return User.find(params[:id]).username.to_json
+	end
+
+	get '/:id/following' do
+		user_id = User.find(params[:id]).id
+		follower_user = Array.new
+		Follow.where(follower_id: user_id).each do |f|
+			follower_user << {id: f.followee_id, username: User.find(f.followee_id).username}
+		end
+		return follower_user.to_json
+		# return User.find(params[:id]).username
+	end
+
 	post '/follow/:id' do
 		authenticate!
 		Follow.create(

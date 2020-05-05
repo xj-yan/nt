@@ -42,16 +42,15 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # 	ActiveRecord::Base.connection_pool.disconnect!
 # end
 
-on_worker_boot do
-	ActiveRecord::Base.connection_pool.disconnect! if defined?(Activerecord)
+# on_worker_boot do
+# 	ActiveRecord::Base.connection_pool.disconnect! if defined?(Activerecord)
 
-	# worker specific setup
-	ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-	# ActiveSupport.on_load(:active_record) do
-	#   ActiveRecord::Base.establish_connection
-	# end
-end
-  
+# 	# worker specific setup
+# 	ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+# 	# ActiveSupport.on_load(:active_record) do
+# 	#   ActiveRecord::Base.establish_connection
+# 	# end
+# end
 
 
   

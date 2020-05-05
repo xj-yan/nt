@@ -72,11 +72,11 @@
                     <%= @user.username %> <span class="user-name"></span></p>
             </div>
 
-            <div class="post-twitter-block">
+            <div id="user-follow-div" class="post-twitter-block">
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
                 <label id="follow-info" style="display:inline">
-                <a class="follow" href="#"><strong><%= @user.followee_number%></strong> Following</a> 
-                <a class="follow" href="#"><strong><%= @user.follower_number%></strong> Follower</a>
+                <a class="follow" href="#"><strong><%= "{{followee_number}}" %></strong> Following</a> 
+                <a class="follow" href="#"><strong><%= "{{follower_number}}" %></strong> Follower</a>
                 </label>
                  <% if @user.id != session[:user_id] %>
                     
@@ -194,14 +194,16 @@
             }
         }
     </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript">
 
         const app = new Vue({
-            el: ".user-follow-btn",
+            el: "#user-follow-div",
             data: {
                 is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>,
                 follower_number: <%= @user.follower_number %>,
+                followee_number: <%= @user.followee_number %>
 
             },
             methods: {

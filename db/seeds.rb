@@ -42,15 +42,30 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
 		tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
 		count_2 += 1
-		
 		if count_2 == 80000
 			break
 		end
 	end
 	Tweet.bulk_import tweet_list
 end
-
 puts "#{count_2} tweets now created"
+
+# tweet_list = []
+# tmp = 0
+# File.open("./lib/seeds/tweets.csv") do |tweets| 
+# 	tweets.read.each_line do |tweet|
+# 		if tmp < 8000
+# 			tmp += 1
+# 			next
+# 		end
+# 		delimiters = [',"', '",']
+# 		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
+# 		tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+# 		count_2 += 1
+# 	end
+# 	Tweet.bulk_import tweet_list
+# end
+# puts "#{count_2} tweets now created"
 
 # 100175
 

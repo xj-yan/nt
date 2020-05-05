@@ -24,4 +24,5 @@ gem 'sinatra-contrib', require: false
 
 gem 'sinatra-partial'
 
+gem "bunny", "> 2.14.1"
 

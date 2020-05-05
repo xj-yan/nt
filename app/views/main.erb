@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/logo.png">
+    <title>Twitter</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- left -->
+        <div class="left-nav-bar">
+            <div class="nav-bar-container">
+                <img class="twitter-logo" src="/images/logo.png">
+                <!-- flex -->
+                <div id="current-page">
+                    <i class="fas fa-home"></i>
+                    <p class="nav-bar-text">Home</p>
+                </div>
+                <div class="nav-bar-item-wrap">
+                    <i class="fas fa-hashtag"></i>
+                    <p class="nav-bar-text">Explore</p>
+                </div>
+                <div class="nav-bar-item-wrap">
+                    <i class="far fa-bell"></i>
+                    <p class="nav-bar-text">Notification</p>
+                </div>
+                <div class="nav-bar-item-wrap">
+                    <i class="far fa-envelope"></i>
+                    <p class="nav-bar-text">Message</p>
+                </div>
+                <div class="nav-bar-item-wrap">
+                    <i class="far fa-bookmark"></i>
+                    <p class="nav-bar-text">Bookmark</p>
+                </div>
+                <div id="logout-btn" class="nav-bar-item-wrap">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p class="nav-bar-text">Logout</p>
+                </div>
+                <div class="nav-bar-item-wrap">
+                    <img id="user-profile" class="nav-bar-icon" src="/images/user.jpg">
+                    <p id="personal-info" class="nav-bar-text">Profile</p>
+                </div>
+                <div id="info-btn" class="nav-bar-item-wrap">
+                    <i class="fas fa-info-circle"></i>
+                    <p class="nav-bar-text">More</p>
+                </div>
+                <div class="nav-bar-post-btn">
+                    <button id="post-twitter">Tweet</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- center: post -->
+        <div class="center-main-content">
+            <div class="main-title-bar">
+                <p class="main-title-text">Welcome back <span class="user-name"></span></p>
+            </div>
+
+            <div class="post-twitter-block">
+                <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
+                <textarea id="user-input" placeholder="What's happening？"></textarea>
+
+                <button id="post-btn" class="user-post-btn">Tweet</button>
+            </div>
+
+            <!-- Javascript append new tweet -->
+            <div id="post-container">
+            </div>
+            <!-- Javascript append new tweet -->
+
+        </div>
+
+        <!-- right-->
+        <div class="right-news">
+            <input class="search-bar" type="text" id="search" onkeydown="entersearch()" placeholder="Search Twitter">
+
+            <div class="trend-block">
+                <p class="trend-block-title">Trending</p>
+                <!-- JS DOM append -->
+            </div>
+
+            <!-- recommended users -->
+            <div class="recommendation-block">
+                <p class="trend-block-title">Users</p>
+                <!-- JS DOM append -->
+            </div>
+        </div>
+    </div>
+
+    <!-- user profile -->
+    <div class="user-profile-container">
+        <div class="user-profile-modal">
+            <div class="user-profile-form">
+                <div class="form-header">
+                    <p id="exit-profile-header"><i id="exit-profile" class="fas fa-arrow-left"></i>Edit Profile</p>
+                    <button id="save-profile-btn">Save</button>
+                </div>
+                <div class="form-content">
+                    <img id="change-profile-pic" src="/images/user.jpg" width="100px" height="100px">
+
+                    <p>Name：</p>
+                    <input type="text" class="form-input" id="user-name-input">
+                    <p>Nickname：</p>
+                    <input type="text" class="form-input" id="user-nickname-input">
+
+                    <input type="file" id="user-profile-upload">
+                    <label for="user-profile-upload"><i id="change-profile-icon" class="fas fa-camera"></i></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- author information -->
+    <div id="author-info-modal">
+        <div id="author-info-modal-content">
+            <i id="exit-info" class="far fa-times-circle"></i>
+            <img src="/images/user.jpg" width="100px" height="100px">
+            <p>Hello world</p>
+
+            <!-- follow icon -->
+            <div class="intro-sc-icon">
+                <a class="btn" href="https://yangliweb.firebaseapp.com">
+                    <i class="fab fa-steam"></i>
+                </a>
+                <a class="btn" href="https://www.instagram.com/yang05_li/?hl=en">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="btn" href="https://github.com/yang052513">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a class="btn" href="https://www.linkedin.com/in/yangliWeb">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 其他内容包括各种modal和信息页面，display none格式 -->
+    <div class="mobile-navbar">
+        <img src="/images/home.png">
+        <img src="/images/hashtag.png">
+        <img src="/images/bookmark.png">
+        <img src="/images/more.png">
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

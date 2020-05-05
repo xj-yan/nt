@@ -24,6 +24,14 @@ $(document).ready(function() {
         $(this).find("i").css("color", "black");
     });
 
+    $("#logout-btn").click(function() {
+        window.location.href = '/logout';
+    });
+
+    $("#post-twitter").click(function() {
+        window.location.href = '/';
+    });
+
     // listen to post-btn
     $("#post-btn").click(function() {
         // get user input

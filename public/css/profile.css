@@ -342,6 +342,7 @@ input[type="file"] {
 }
 
 #user-post-name:link {
+    color: black;
     text-decoration: none;
 }
 

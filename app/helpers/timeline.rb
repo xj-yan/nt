@@ -13,7 +13,7 @@ module Timeline
 			user = JSON.parse(user)
 		end
 		user
-  end
+  	end
 			
 	def get_timeline(id)
 		if id == session[:user_id]

@@ -816,6 +816,6 @@ input[type="file"] {
 #loading-image {
     position: absolute;
     top: 100px;
-    left: 200px;
+    left: 350px;
     z-index: 100;
 }

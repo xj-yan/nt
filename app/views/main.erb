@@ -20,10 +20,7 @@
 </head>
 
 <body>
-    <div id="loading">
-        <img id="loading-image" src="/images/loading.gif" alt="Loading..." />
-        <span class="sr-only">Loading...</span>
-    </div>
+
     <div class="container">
         <!-- left -->
         <div class="left-nav-bar">
@@ -172,10 +169,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
-        setTimeout(() => {
-            $("#loading").hide();
-            $('body').css('overflow-y','scroll');
-        }, 2000);
+        // setTimeout(() => {
+        //     $("#loading").hide();
+        //     $('body').css('overflow-y','scroll');
+        // }, 2000);
         function entersearch() {
             var event = window.event || arguments.callee.caller.arguments[0];
             if (event.keyCode == 13) {

@@ -31,6 +31,9 @@ module Test
 	
 	# tweet
 	def make_tweet(content, id)
+		$q.subscribe do |delivery_info, metadata, payload|
+			puts "Received #{payload}"
+		end
 		tag_str, mention_str = "", ""
 		if content.include? '@'
 			mention_str = content.scan(/@\w+/).map{|str| str[1..-1]}.join(";")

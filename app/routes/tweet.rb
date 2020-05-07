@@ -6,7 +6,7 @@ class App < Sinatra::Base
         if session[:user_id] && User.find(session[:user_id])
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)
-            task_str = "#{response["tweet"];#{@user.id}"
+            task_str = response["tweet"] + ";" + @user.id.to_s
             puts task_str
             # $x.publish("Hello!", :routing_key => $q.name)
             # $q.subscribe do |delivery_info, metadata, payload|

@@ -75,8 +75,8 @@
             <div id="user-follow-div" class="post-twitter-block">
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
                 <label id="follow-info" style="display:inline">
-                <a class="follow" href="#"><strong><%= "{{followee_number}}" %></strong> Following</a> 
-                <a class="follow" href="#"><strong><%= "{{follower_number}}" %></strong> Follower</a>
+                <a class="follow" href="/user/<%= @user.id%>/following"><strong><%= "{{followee_number}}" %></strong> Following</a> 
+                <a class="follow" href="/user/<%= @user.id%>/follower"><strong><%= "{{follower_number}}" %></strong> Follower</a>
                 </label>
                  <% if @user.id != session[:user_id] %>
                     
@@ -91,25 +91,23 @@
 
             <!-- Javascript append new tweet -->
             <div id="post-container">
-                <% @timeline.each do |t| %>
+            <% @timeline.each do |t| %>
 
-
+            
                 <p class="current-user-name"> </P>
                 <div class="user-post" id="">
                     <div class="user-post-wrap">
                         <img class="current-user" src="/images/search_user.jpg">
                         <div class="user-post-content">
                         <p class="current-user-name">
-                            <a id="user-post-name" href="/user/<%=t["user_id"]%>">
-                            <span class="user-post-name"> <%=t["user_id"]%> </span>
-                            </a>
-                            <span class="user-post-time"> <%=t["updated_at"]%> </span>
+                            <a id="post-name" class="user-post-name" href="/user/<%=t["user_id"]%>"> <%=t["user_id"]%> </a>
+                            <span class="user-post-time"> <%=t["created_at"]%> </span>
                         </p>
                         <p class="current-user-post"> <%=t["tweet"]%> </p>
                         </div>
                     </div>
                 </div>
-                    <% end %>
+            <% end %>
             </div>
             <!-- Javascript append new tweet -->
 

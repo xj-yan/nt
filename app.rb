@@ -23,6 +23,7 @@ class App < Sinatra::Base
   helpers Authentication
   helpers Test
   helpers Search
+  helpers Relation
 
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }

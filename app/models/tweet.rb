@@ -40,6 +40,27 @@ class Tweet < ActiveRecord::Base
 		)
 	end
 
+	# update cache after tweet search for timeline
+	after_find do |tweet|
+		puts "You have found a #{tweet.tweet} by #{tweet.user_id}"
+
+		# update cache for user_id/user_timeline  
+		$redis.LPUSH("#{tweet.user_id}/user_timeline", tweet.to_json)
+		puts "#{tweet.tweet} has added to #{tweet.user_id}/user_timeline"
+		$redis.expire("#{tweet.user_id}/user_timeline",15.minute.to_i)
+
+	end
+	 
+	# update cache after tweet creation for timeline
+	around_create do |tweet|
+		puts "#{tweet.user_id} have create a #{tweet.tweet}"
+
+		# update cache for user_id/user_timeline 
+		$redis.LPUSH("#{tweet.user_id}/user_timeline",tweet.to_json)
+		puts "#{tweet.tweet} has added to #{tweet.user_id}/user_timeline"
+		$redis.expire("#{tweet.user_id}/user_timeline",15.minute.to_i)
+  end
+
 	# def self.search query
 	# 	__elasticsearch__.search query
 	# end

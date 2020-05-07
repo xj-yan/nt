@@ -75,8 +75,8 @@
             <div id="user-follow-div" class="post-twitter-block">
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
                 <label id="follow-info" style="display:inline">
-                <a class="follow" href="#"><strong><%= "{{followee_number}}" %></strong> Following</a> 
-                <a class="follow" href="#"><strong><%= "{{follower_number}}" %></strong> Follower</a>
+                <a class="follow" href="/user/<%= @user["id"]%>/following"><strong><%= "{{followee_number}}" %></strong> Following</a> 
+                <a class="follow" href=""><strong><%= "{{follower_number}}" %></strong> Follower</a>
                 </label>
                  <% if @user["id"] != session[:user_id] %>
                     
@@ -91,7 +91,7 @@
 
             <!-- Javascript append new tweet -->
             <div id="post-container">
-                <% @following_user.each do |f| %>
+                <% @follower_user.each do |f| %>
 
 
                 <p class="current-user-name"> </P>

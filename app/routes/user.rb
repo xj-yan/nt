@@ -26,27 +26,27 @@ class App < Sinatra::Base
 		end
 	end
 
-	get '/:id/follower' do
+	get '/user/:id/follower' do
 
-		@user = get_user(params[:id])
+		@user = get_user(session[:user_id])
 		user_id = params[:id]
-		following_user = Array.new
+		follower_user = Array.new
 		Follow.where(followee_id: user_id).each do |f|
-			following_user << {id: f.follower_id, username: get_user(f.follower_id)["username"]}
+			follower_user << {id: f.follower_id, username: get_user(f.follower_id)["username"]}
 		end
-		@following_user = following_user
+		@follower_user = follower_user
 		erb :follower
 		# return User.find(params[:id]).username.to_json
 	end
 
-	get '/:id/following' do
-		@user = get_user(params[:id])
+	get '/user/:id/following' do
+		@user = get_user(session[:user_id])
 		user_id = params[:id]
-		follower_user = Array.new
+		following_user = Array.new
 		Follow.where(follower_id: user_id).each do |f|
-			follower_user << {id: f.followee_id, username: get_user(f.followee_id)["username"]}
+			following_user << {id: f.followee_id, username: get_user(f.followee_id)["username"]}
 		end
-		@follower_user = follower_user
+		@following_user = following_user
 		erb :following
 		# return User.find(params[:id]).username
 	end

@@ -13,6 +13,7 @@ class App < Sinatra::Base
                 puts "Received #{payload}"
                 arr = payload.split(";")
                 tweet = make_tweet(arr[0], arr[1].to_i)
+                return tweet.to_json
             end
             # tweet = make_tweet(response["tweet"], @user.id)
             # tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)

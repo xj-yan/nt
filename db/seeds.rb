@@ -7,7 +7,7 @@ require 'bcrypt'
 # Follow.delete_all
 
 
-# Create follows from follows.csv
+# # Create follows from follows.csv
 
 # count_1 = 0
 # follow_list = []
@@ -60,29 +60,29 @@ require 'bcrypt'
 # #1000
 
 
-# Create tweets from tweets.csv
+# # Create tweets from tweets.csv
 
-count_2 = 0
-tweet_list = []
-# tweet_column = [:tweet, :user_id, :created_at, :updated_at, :tag_str, :mention_str]
+# count_2 = 0
+# tweet_list = []
+# # tweet_column = [:tweet, :user_id, :created_at, :updated_at, :tag_str, :mention_str]
 
-File.open("./lib/seeds/tweets.csv") do |tweets| 
-	tweets.read.each_line do |tweet|
-		delimiters = [',"', '",']
-		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
-		user = User.find(user_id.to_i)
-		tweet_list << {tweet: tweet_content, user_id: user_id, username: user.username, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+# File.open("./lib/seeds/tweets.csv") do |tweets| 
+# 	tweets.read.each_line do |tweet|
+# 		delimiters = [',"', '",']
+# 		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
+# 		user = User.find(user_id.to_i)
+# 		tweet_list << {tweet: tweet_content, user_id: user_id, username: user.username, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
 		
-		# tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+# 		# tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
 
-		count_2 += 1
-		# if count_2 == 60000
-		# 	break
-		# end
-	end
-	Tweet.bulk_import tweet_list
-end
-puts "#{count_2} tweets now created"
+# 		count_2 += 1
+# 		# if count_2 == 60000
+# 		# 	break
+# 		# end
+# 	end
+# 	Tweet.bulk_import tweet_list
+# end
+# puts "#{count_2} tweets now created"
 
 # User.all.each do |user|
 # 	user.tweet_number = Tweet.where(user_id: user.id).length

@@ -31,6 +31,8 @@ module Test
 	
 	# tweet
 	def make_tweet(content, id)
+
+
 		tag_str, mention_str = "", ""
 		if content.include? '@'
 			mention_str = content.scan(/@\w+/).map{|str| str[1..-1]}.join(";")
@@ -41,7 +43,7 @@ module Test
 			tag_str = content.scan(/#\w+/).map{|str| str[1..-1]}.join(";")
 		end
 
-		tweet = Tweet.create(tweet: content, user_id: id, username: User.find(session[:user_id].username), tag_str: tag_str, mention_str: mention_str)
+		tweet = Tweet.create(tweet: content, user_id: id, username: User.find(session[:user_id]).username, tag_str: tag_str, mention_str: mention_str)
 
 		# update the home timeline of the followees
 		# update_cached_home_timeline(id)

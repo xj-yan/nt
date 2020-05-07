@@ -88,10 +88,8 @@ module Timeline
 	def get_follower_ids(id)
 		ids = $redis.get("#{id}/follower")
 		if ids.nil?
-			ids = []
-			ids << id
 			followers = Follow.where(followee_id: id)
-			followers.each do |f|
+			followees.each do |f|
 				ids << f["follower_id"]
 			end
 		# if ids.nil?

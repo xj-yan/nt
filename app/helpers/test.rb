@@ -3,25 +3,6 @@ require 'json'
 
 module Test
 
-	# # Get a list of ids
-	# def get_followee_ids(id)
-	# 	ids = $redis.get("followee_ids/#{id}")
-	# 	if ids.nil?
-	# 		followees = Follow.where(follower_id: id)
-	# 		ids = []
-	# 		ids << id
-	# 		followees.each do |f|
-	# 			ids << f["followee_id"]
-	# 		end
-	# 		$redis.set("followee_ids/#{id}", ids.uniq)
-	# 		# Expire the cache, every 1 hours
-	# 		$redis.expire("followee_ids/#{id}",1.hour.to_i)
-	# 	else
-	# 		ids = JSON.parse(ids)
-	# 	end
-	# 	ids
-	# end
-
 	# get timeline of fan who follows star
 	def get_test_timeline(star, fan)
 
@@ -67,12 +48,14 @@ module Test
 
 		# update the timeline of the user x
 		update_cached_user_timeline(id)
-    	return tweet
+    return tweet
 	end
 
 	# check follow relation
 	def check_follow(star, fan)
-		return !Follow.find_by(followee_id: star, follower_id: fan).nil?
+		# return !Follow.find_by(followee_id: star, follower_id: fan).nil?
+		ids = JSON.parse($redis.get("#{star}/follower"))
+		return ids.include?(fan)
 	end
 
 	# create follow relation

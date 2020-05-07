@@ -32,7 +32,7 @@ module Test
 	# tweet
 	def make_tweet(content, id)
 
-
+		
 		tag_str, mention_str = "", ""
 		if content.include? '@'
 			mention_str = content.scan(/@\w+/).map{|str| str[1..-1]}.join(";")

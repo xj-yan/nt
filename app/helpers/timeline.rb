@@ -41,7 +41,7 @@ module Timeline
 	def get_home_timeline(id)
 		timeline = $redis.get("home_timeline/#{id}")
 		if timeline.nil?
-			followee_ids = get_followee_ids(id)
+			followee_ids = get_following_ids(id)
 			timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(10)
 			$redis.set("home_timeline/#{id}", timeline.to_json)
 			# Expire the cache, every 1 hours
@@ -55,7 +55,7 @@ module Timeline
 	def get_user_timeline(id)
 		timeline = $redis.get("user_timeline/#{id}")
 		if timeline.nil?
-			timeline = Tweet.where(user_id: id).order(created_at: :desc).first(50)
+			timeline = Tweet.where(user_id: id).order(created_at: :desc).first(10)
 			$redis.set("user_timeline/#{id}", timeline.to_json)
 			# Expire the cache, every 1 hours
 			$redis.expire("user_timeline/#{id}", 1.hour.to_i)
@@ -65,18 +65,45 @@ module Timeline
 		timeline
 	end
 
-	def get_followee_ids(id)
-		ids = $redis.get("followee_ids/#{id}")
+	# Get a list of following ids
+	def get_following_ids(id)
+		ids = $redis.get("#{id}/following")
 		if ids.nil?
-			followees = Follow.where(follower_id: id)
 			ids = []
 			ids << id
+			followees = Follow.where(follower_id: id)
 			followees.each do |f|
 				ids << f["followee_id"]
 			end
-			$redis.set("followee_ids/#{id}", ids.uniq)
+			# $redis.set("#{id}/following", ids.uniq)
 			# Expire the cache, every 1 hours
-			$redis.expire("followee_ids/#{id}",1.hour.to_i)
+			# $redis.expire("#{id}/following",1.hour.to_i)
+		else
+			ids = JSON.parse(ids)
+		end
+		ids
+	end
+
+	# Get a list of follower ids
+	def get_follower_ids(id)
+		ids = $redis.get("#{id}/follower")
+		if ids.nil?
+			ids = []
+			ids << id
+			followers = Follow.where(followee_id: id)
+			followers.each do |f|
+				ids << f["follower_id"]
+			end
+		# if ids.nil?
+		# 	followees = Follow.where(followee_id: id)
+		# 	ids = []
+		# 	ids << id
+		# 	followees.each do |f|
+		# 		ids << f["follower_id"]
+		# 	end
+			# $redis.set("follower_ids/#{id}", ids.uniq)
+			# # Expire the cache, every 1 hours
+			# $redis.expire("follower_ids/#{id}",1.hour.to_i)
 		else
 			ids = JSON.parse(ids)
 		end

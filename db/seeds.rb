@@ -3,7 +3,7 @@ require 'faker'
 require 'bcrypt'
 
 # User.delete_all
-Tweet.delete_all
+# Tweet.delete_all
 # Follow.delete_all
 
 
@@ -72,21 +72,24 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
 		user = User.find(user_id.to_i)
 		tweet_list << {tweet: tweet_content, user_id: user_id, username: user.username, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+		
+		# tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+
 		count_2 += 1
-		if count_2 == 60000
-			break
-		end
+		# if count_2 == 60000
+		# 	break
+		# end
 	end
 	Tweet.bulk_import tweet_list
 end
 puts "#{count_2} tweets now created"
 
-User.all.each do |user|
-	user.tweet_number = Tweet.where(user_id: user.id).length
-	user.save!
-end
+# User.all.each do |user|
+# 	user.tweet_number = Tweet.where(user_id: user.id).length
+# 	user.save!
+# end
 
-puts "#{User.all.length} users are updated their tweet number."
+# puts "#{User.all.length} users are updated their tweet number."
 
 # tweet_list = []
 # tmp = 0

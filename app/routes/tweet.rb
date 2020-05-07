@@ -8,11 +8,12 @@ class App < Sinatra::Base
             response = JSON.parse(request.body.read)
             task_str = response["tweet"] + ";" + @user.id.to_s
             puts task_str
-            # $x.publish("Hello!", :routing_key => $q.name)
-            # $q.subscribe do |delivery_info, metadata, payload|
-            #     puts "Received #{payload} "
-            #     tweet = make_tweet()
-            # end
+            $x.publish(task_str, :routing_key => $q.name)
+            $q.subscribe do |delivery_info, metadata, payload|
+                puts "Received #{payload}"
+                arr = payload.split(";")
+                tweet = make_tweet(arr[0], arr[1].to_i)
+            end
             # tweet = make_tweet(response["tweet"], @user.id)
             # tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)
             # tweet.to_json

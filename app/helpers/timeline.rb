@@ -69,7 +69,8 @@ module Timeline
 			t["created_at"] = Time.parse(t["created_at"])
 			@timeline << t
 		end
-		@timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
+		# @timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
+		@timeline = @timeline.reverse!
 	end
 
 	def get_tweet_list(ids, page_num)

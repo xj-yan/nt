@@ -62,10 +62,6 @@ module Timeline
 			if Tweet.where(user_id: id).order(created_at: :desc).first(10).size == 0
 				return @timeline
 			end
-		elsif timeline.size > 10
-			while timeline.size > 10
-				$redis.LPOP("#{id}/user_timeline")
-			end
 		end
 		timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
 		timeline.each do |t|

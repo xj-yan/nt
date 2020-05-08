@@ -38,41 +38,6 @@ module Timeline
 		ids.uniq
 	end
 
-	def get_home_timeline(id)
-
-		following_ids = get_following_ids(id)
-
-		timeline = []
-
-		following_ids.each do |following_id|
-			puts get_user_timeline(following_id)
-			timeline += get_user_timeline(following_id)
-		end
-
-		timeline += get_user_timeline(id)
-
-		timeline = timeline.sort_by { |t| t["created_at"].to_i }.reverse!
-		@timeline = timeline.first(10)
-	end
-
-	def get_user_timeline(id)
-		timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
-		@timeline = []
-		if timeline.size == 0
-			if Tweet.where(user_id: id).order(created_at: :desc).first(10).size == 0
-				return @timeline
-			end
-		end
-		timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
-		timeline.each do |t|
-			t = JSON.parse(t)
-			t["created_at"] = Time.parse(t["created_at"])
-			@timeline << t
-		end
-		# @timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
-		@timeline = @timeline.reverse!
-	end
-
 	def get_tweet_list(ids, page_num)
 		tweets = get_timeline(ids)
 		tweets[(page_num.to_i - 1) * 10, page_num.to_i * 10]
@@ -90,4 +55,67 @@ module Timeline
 	def get_name(id)
 		name = User.find_by(id: id).username
 	end
+
+	def get_home_timeline(id)
+		timeline = $redis.get("#{id}/home_timeline")
+		if timeline.nil?
+			following_ids = get_following_ids(id)
+			@timeline = Tweet.where(user_id: following_ids).order(created_at: :desc).first(10)
+			$redis.set("#{id}/home_timeline", @timeline.to_json)
+			$redis.expire("#{id}/home_timeline",15.minute.to_i)
+		else
+			@timeline = JSON.parse(timeline)
+		end
+		@timeline
+	end
+
+	def get_user_timeline(id)
+		timeline = $redis.get("#{id}/user_timeline")
+		if timeline.nil?
+			@timeline = Tweet.where(user_id: id).order(created_at: :desc).first(10)
+			$redis.set("#{id}/user_timeline", @timeline.to_json)
+			$redis.expire("#{id}/user_timeline",15.minute.to_i)
+		else
+			@timeline = JSON.parse(timeline)
+		end
+		@timeline
+	end
+
+	################################################################
+
+	# def get_home_timeline(id)
+
+	# 	following_ids = get_following_ids(id)
+
+	# 	timeline = []
+
+	# 	following_ids.each do |following_id|
+	# 		puts get_user_timeline(following_id)
+	# 		timeline += get_user_timeline(following_id)
+	# 	end
+
+	# 	timeline += get_user_timeline(id)
+
+	# 	timeline = timeline.sort_by { |t| t["created_at"].to_i }.reverse!
+	# 	@timeline = timeline.first(10)
+	# end
+
+	# def get_user_timeline(id)
+	# 	timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
+	# 	@timeline = []
+	# 	if timeline.size == 0
+	# 		if Tweet.where(user_id: id).order(created_at: :desc).first(10).size == 0
+	# 			return @timeline
+	# 		end
+	# 	end
+	# 	timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
+	# 	timeline.each do |t|
+	# 		t = JSON.parse(t)
+	# 		t["created_at"] = Time.parse(t["created_at"])
+	# 		@timeline << t
+	# 	end
+	# 	# @timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
+	# 	@timeline = @timeline.reverse!
+	# end
+	
 end

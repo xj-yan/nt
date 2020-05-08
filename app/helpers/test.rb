@@ -67,20 +67,21 @@ module Test
 		User.increment_counter(:follower_number, star)
 	end
 
-	# def update_cached_home_timeline(user_id)
-	# 	# get list of follower ids for the given user
-	# 	follower_ids = get_following_ids(user_id)
-	# 	follower_ids.each do |follower_id|
-	# 		if !$redis.get("home_timeline/#{follower_id}").nil?
-	# 			ids = get_following_ids(follower_id)
-	# 			# $redis.del("home_timeline/#{follower_id}")
-	# 			home_timeline = Tweet.where(user_id: ids).order(created_at: :desc).first(10)
-	# 			$redis.set("home_timeline/#{follower_id}", home_timeline.to_json)
-	# 			# Expire the cache, every 1 hours
-	# 			$redis.expire("home_timeline/#{follower_id}",1.hour.to_i)
-	# 		end
-	# 	end
-	# end
+	def update_cached_home_timeline(user_id)
+		# get list of follower ids for the given user
+		follower_ids = get_following_ids(user_id)
+		follower_ids.each do |follower_id|
+			if !$redis.get("#{follower_id}/home_timeline").nil?
+				ids = get_following_ids(follower_id)
+				# $redis.del("home_timeline/#{follower_id}")
+				# home_timeline = Tweet.where(user_id: ids).order(created_at: :desc).first(10)
+				# $redis.del("home_timeline/#{follower_id}", home_timeline.to_json)
+				# Expire the cache, every 1 hours
+				# $redis.expire("home_timeline/#{follower_id}",1.hour.to_i)
+				$redis.del("#{follower_id}/home_timeline")
+			end
+		end
+	end
 
 	# def update_cached_user_timeline(user_id)
 	# 	if !$redis.get("user_timeline/#{user_id}").nil?

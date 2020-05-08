@@ -11,7 +11,7 @@ class App < Sinatra::Base
 
             puts task_str
             $x.publish(task_str, :routing_key => $q.name)
-            $q.subscribe(manual_ack: true) do |delivery_info, metadata, payload|
+            $q.subscribe(:manual_ack => true) do |delivery_info, metadata, payload|
                 puts "Received #{payload}"
                 arr = payload.split(";")
                 tweet = make_tweet(arr[0], arr[1].to_i)

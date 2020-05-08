@@ -32,8 +32,8 @@ require "bunny"
 conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
 conn.start
 $ch = conn.create_channel
-$q = ch.queue("bunny.test_1", :auto_delete => true)
-$x = ch.default_exchange
+$q = $ch.queue("bunny.test_1", :auto_delete => true)
+$x = $ch.default_exchange
 
 
 require_all 'app'

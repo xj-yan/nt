@@ -4,14 +4,17 @@ require 'sinatra/base'
 module Relation
   # Get a list of following ids
 	def get_following_ids(id)
-		ids = $redis.SMEMBERS("#{id}/following")
-		if ids.size == 0
+		ids = $redis.get("#{id}/following")
+		if ids.nil?
+			following = Follow.where(followee_id: id)
 			ids = []
-			# ids << id
-			followees = Follow.where(follower_id: id)
-			followees.each do |f|
-				ids << f["followee_id"]
+			ids << id
+			following.each do |f|
+				ids << f["follower_id"]
 			end
+			$redis.set("#{id}/following", ids.uniq)
+			# Expire the cache, every 15 minutes
+			$redis.expire("#{id}/following", 15.minute.to_i)
 		end
 		ids
 	end
@@ -20,20 +23,15 @@ module Relation
 	def get_follower_ids(id)
 		ids = $redis.get("#{id}/follower")
 		if ids.nil?
-			followers = Follow.where(followee_id: id)
-			followers.each do |f|
+			followees = Follow.where(followee_id: id)
+			ids = []
+			ids << id
+			followees.each do |f|
 				ids << f["follower_id"]
 			end
-		# if ids.nil?
-		# 	followees = Follow.where(followee_id: id)
-		# 	ids = []
-		# 	ids << id
-		# 	followees.each do |f|
-		# 		ids << f["follower_id"]
-		# 	end
-			# $redis.set("follower_ids/#{id}", ids.uniq)
-			# # Expire the cache, every 1 hours
-			# $redis.expire("follower_ids/#{id}",1.hour.to_i)
+			$redis.set("#{id}/follower", ids.uniq)
+			# Expire the cache, every 15 minutes
+			$redis.expire("#{id}/follower", 15.minute.to_i)
 		end
 		ids
 	end

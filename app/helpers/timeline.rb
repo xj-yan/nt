@@ -39,37 +39,17 @@ module Timeline
 	end
 
 	def get_home_timeline(id)
-		# timeline = $redis.get("home_timeline/#{id}")
-		# if timeline.nil?
-		# 	followee_ids = get_following_ids(id)
-		# 	timeline = Tweet.where(user_id: followee_ids).order(created_at: :desc).first(10)
-		# 	$redis.set("home_timeline/#{id}", timeline.to_json)
-		# 	# Expire the cache, every 1 hours
-		# 	$redis.expire("home_timeline/#{id}", 1.hour.to_i)
 		following_ids = get_following_ids(id)
-		puts "______52_____"
-		puts following_ids
+
 		timeline = []
 
 		following_ids.each do |following_id|
 			timeline += get_user_timeline(following_id)
 		end
 
-		puts "_____60____"
-		puts timeline.size
-		puts "_____63____"
-
-		timeline += get_user_timeline(id)	
-		puts "_____66____"
-		puts timeline.size
-		puts "_____68____"
-
 		timeline.sort_by { |t| t["created_at"].to_i }
-		# timeline.reverse!
+		timeline.reverse!
 
-		puts "__77__"
-		puts timeline
-		puts "__78__"
 		@timeline = timeline.first(10)
 	end
 

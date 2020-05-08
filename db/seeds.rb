@@ -34,19 +34,6 @@ File.open("./lib/seeds/users.csv") do |users|
 	users.read.each_line do |user|
 		id, username = user.chomp.split(",")
 		user_hash[id] = username
-		# follower_number = Follow.where(followee_id: id.to_i).length
-		# followee_number = Follow.where(follower_id: id.to_i).length
-		# # tweet_number = Tweet.where(user_id: id.to_i).length
-
-		# user_list << {
-		# 	id: id.to_i,
-		# 	username: username, 
-		# 	email: Faker::Internet.email, 
-		# 	password_digest: BCrypt::Password.create("123"),
-		# 	follower_number: follower_number,
-		# 	followee_number: followee_number,
-		# 	tweet_number: 0
-		# }
 	end
 end
 
@@ -64,8 +51,6 @@ File.open("./lib/seeds/tweets.csv") do |tweets|
 		user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
 		tweet_list << {tweet: tweet_content, user_id: user_id, username: user_hash[user_id], created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
 		
-		# tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
-
 		count_2 += 1
         if count_2 == 60000
             Tweet.bulk_import tweet_list

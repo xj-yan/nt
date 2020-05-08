@@ -47,8 +47,9 @@ module Timeline
 			timeline += get_user_timeline(following_id)
 		end
 
-		timeline.sort_by { |t| t["created_at"].to_i }
-		timeline.reverse!
+		timeline += get_user_timeline(id)
+
+		timeline.sort_by { |t| t["created_at"].to_i }.reverse!
 
 		@timeline = timeline.first(10)
 	end
@@ -67,8 +68,7 @@ module Timeline
 			t["created_at"] = Time.parse(t["created_at"])
 			@timeline << t
 		end
-		@timeline.sort_by { |t| t["created_at"].to_i }
-		@timeline.reverse!
+		@timeline.sort_by { |t| t["created_at"].to_i }.reverse!
 	end
 
 	def get_tweet_list(ids, page_num)

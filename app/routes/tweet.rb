@@ -20,7 +20,7 @@ class App < Sinatra::Base
             # end
 
             tweet = make_tweet(response["tweet"], @user.id)
-            tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)
+            # tweet = Tweet.create(tweet: response["tweet"], user_id: @user.id)
             tweet.to_json
         else
             flash[:notice] = "The user doesn't exit."

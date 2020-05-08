@@ -133,7 +133,8 @@ class App < Sinatra::Base
 	get '/test/tweet' do
 		x = params[:user_id].to_i
 		y = params[:tweet_count].to_i
-		user = User.find_by_id(x)
+		# user = User.find_by_id(x)
+		user = get_user(x)
 		if user.nil?
 			return 400, "invalid user id!"
 		end

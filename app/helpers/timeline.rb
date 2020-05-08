@@ -39,18 +39,19 @@ module Timeline
 	end
 
 	def get_home_timeline(id)
+
 		following_ids = get_following_ids(id)
 
 		timeline = []
 
 		following_ids.each do |following_id|
+			puts get_user_timeline(following_id)
 			timeline += get_user_timeline(following_id)
 		end
 
 		timeline += get_user_timeline(id)
 
-		timeline.sort_by { |t| t["created_at"].to_i }.reverse!
-
+		timeline = timeline.sort_by { |t| t["created_at"].to_i }.reverse!
 		@timeline = timeline.first(10)
 	end
 
@@ -68,7 +69,7 @@ module Timeline
 			t["created_at"] = Time.parse(t["created_at"])
 			@timeline << t
 		end
-		@timeline.sort_by { |t| t["created_at"].to_i }.reverse!
+		@timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
 	end
 
 	def get_tweet_list(ids, page_num)

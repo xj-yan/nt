@@ -12,15 +12,15 @@ class App < Sinatra::Base
 
             puts task_str
             $x.publish(task_str, :routing_key => $q.name)
-            $q.subscribe(:manual_ack => true) do |delivery_info, metadata, payload|
-                puts "Received #{payload}"
-                arr = payload.split(";")
-                tweet = make_tweet(arr[0], arr[1].to_i)
-                $ch.ack(delivery_info.delivery_tag)
-                tweet.to_json
-            end
+            
+            # $q.subscribe(:manual_ack => true) do |delivery_info, metadata, payload|
+            #     puts "Received #{payload}"
+            #     arr = payload.split(";")
+            #     tweet = make_tweet(arr[0], arr[1].to_i)
+            #     $ch.ack(delivery_info.delivery_tag)
+            #     tweet.to_json
+            # end
 
-            # puts response
             # tweet = make_tweet(response["tweet"], @user.id)
             # tweet.to_json
         else

@@ -40,16 +40,13 @@ module Test
 		if content.include? '#'
 			tag_str = content.scan(/#\w+/).map{|str| str[1..-1]}.join(";")
 		end
-		puts "done"
-		puts content
+
 		tweet = Tweet.create(tweet: content, user_id: id, username: User.find(session[:user_id]).username, tag_str: tag_str, mention_str: mention_str)
-		puts "created #{tweet.class}"
 		# update the home timeline of the followees
 		# update_cached_home_timeline(id)
 
 		# update the timeline of the user x
 		# update_cached_user_timeline(id)
-		puts tweet.id
     return tweet
 	end
 

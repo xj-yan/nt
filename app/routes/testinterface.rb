@@ -5,12 +5,6 @@ require 'faker'
 
 class App < Sinatra::Base
 
-	# # This is a test route
-	# get '/test' do
-	# 	@users = User.all
-	# 	erb :test
-	# end
-
 	get '/test' do
 		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc -t users nt_dev  > ./lib/backup/user_dump_file.pgsql")
 		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc -t follows nt_dev > ./lib/backup/follow_dump_file.pgsql")
@@ -57,75 +51,87 @@ class App < Sinatra::Base
 
 	get '/test/reset' do
 
-		User.delete_all
-		Follow.delete_all
-		Tweet.delete_all
+		# User.delete_all
+		# Follow.delete_all
+		# Tweet.delete_all
 		n = params[:count].to_i
 
-		if n == 1000
-		else
-			count_1 = 0
-			follow_list = []
-			set = Set.new
+		count_1 = 0
+		follow_list = []
+		set = Set.new
 
-			File.open("./lib/seeds/follows.csv") do |follows| 
-				follows.read.each_line do |follow|
-					follower_id, followee_id = follow.chomp.split(",")
-					if follower_id.to_i > n && followee_id.to_i > n
-						break
-					end
-					set << followee_id
-					set << follower_id
-					follow_list << {follower_id: follower_id, followee_id: followee_id}
-					count_1 = count_1 + 1
+		File.open("./lib/seeds/follows.csv") do |follows| 
+			follows.read.each_line do |follow|
+				follower_id, followee_id = follow.chomp.split(",")
+				if follower_id.to_i > n && followee_id.to_i > n
+					break
 				end
-				Follow.import follow_list
+				set << followee_id
+				set << follower_id
+				follow_list << {follower_id: follower_id, followee_id: followee_id}
+				count_1 += 1
 			end
-
-			count_2 = 0
-			tweet_list = []
-			File.open("./lib/seeds/tweets.csv") do |tweets| 
-				tweets.read.each_line do |tweet|
-					delimiters = [',"', '",']
-					user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
-					if user_id.to_i > n
-						break
-					end
-					tweet_list << {tweet: tweet_content, user_id: user_id, created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
-					count_2 += 1
-				end
-				Tweet.bulk_import tweet_list
-			end
-
-			count_3 = 0
-			user_list = []
-
-			File.open("./lib/seeds/users.csv") do |users| 
-				users.read.each_line do |user|
-					id, username = user.chomp.split(",")
-					if !set.include?(id)
-						next
-					end
-					follower_number = Follow.where(followee_id: id.to_i).length
-					followee_number = Follow.where(follower_id: id.to_i).length
-					tweet_number = Tweet.where(user_id: id.to_i).length
-
-					user_list << {
-						id: id.to_i,
-						username: username, 
-						email: Faker::Internet.email, 
-						password_digest: BCrypt::Password.create("123"),
-						follower_number: follower_number,
-						followee_number: followee_number,
-						tweet_number: tweet_number
-					}
-					count_3 += 1
-				end
-				User.import user_list
-			end
-
-			return 200, "#{n} users have been reset. There are #{set.size} users in the database, with #{count_2} tweets and #{count_1} follows."
+			Follow.import follow_list
 		end
+
+		# Read users from users.csv into memory
+		user_hash = Hash.new
+		File.open("./lib/seeds/users.csv") do |users| 
+			users.read.each_line do |user|
+				id, username = user.chomp.split(",")
+				if set.include?(id)
+					user_hash[id] = username
+				end
+			end
+		end
+
+		count_2 = 0
+		tweet_list = []
+		File.open("./lib/seeds/tweets.csv") do |tweets| 
+			tweets.read.each_line do |tweet|
+				delimiters = [',"', '",']
+				user_id, tweet_content, time = tweet.split(Regexp.union(delimiters))
+				if user_id.to_i > n
+					break
+				end
+				tweet_list << {tweet: tweet_content, user_id: user_id, username: user_hash[user_id], created_at: DateTime.parse(time), updated_at: DateTime.parse(time), tag_str: "",  mention_str: ""}
+				count_2 += 1
+				if count_2 == 60000
+					Tweet.bulk_import tweet_list
+					tweet_list = []
+				end
+
+			end
+			Tweet.bulk_import tweet_list
+		end
+
+		count_3 = 0
+		user_list = []
+		
+		user_hash.each do |user|
+			id, username = user
+			if !set.include?(id)
+				next
+			end
+			follower_number = Follow.where(followee_id: id.to_i).length
+			followee_number = Follow.where(follower_id: id.to_i).length
+			tweet_number = Tweet.where(user_id: id.to_i).length
+
+			user_list << {
+				id: id.to_i + 1100,
+				username: username, 
+				email: Faker::Internet.email, 
+				password_digest: BCrypt::Password.create("123"),
+				follower_number: follower_number,
+				followee_number: followee_number,
+				tweet_number: tweet_number
+			}
+			count_3 += 1
+		end
+		User.import user_list
+		
+		return 200, "#{n} users have been reset. There are #{set.size} users in the database, with #{count_2} tweets and #{count_1} follows."
+		
 	end
 
 	# # Test: get y random tweets of test user id x

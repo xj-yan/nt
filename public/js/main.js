@@ -1,4 +1,31 @@
 $(document).ready(function() {
+
+    getTweetList();
+
+    function getTweetList() {
+        $("#post-container").html("");
+        $.ajax({
+            type: "get",
+            url: "/timeline",
+            data: "user_id=" + getUserID(),
+            success: function(msg) {
+                var obj = eval("(" + msg + ")");
+                $.each(obj, function(key, value) {
+                    // console.log(value);
+                    // create entry
+                    var $tweet = createEle(value);
+                    // console.log($tweet);
+                    $tweet.get(0).obj = value;
+                    // add new tweet
+                    $("#post-container").append($tweet);
+                });
+            },
+            error: function(xhr) {
+                alert(xhr.status);
+            }
+        });
+    }
+
     $(".nav-bar-item-wrap").mouseenter(function() {
         $(this).css({
             "color": "rgb(29, 161, 242)",
@@ -138,7 +165,7 @@ $(document).ready(function() {
             success: function(msg) {
                 // var obj = eval("(" + msg + ")");
                 text = msg;
-                console.log(text);
+                // console.log(text);
             },
             error: function(xhr) {
                 alert(xhr.status);

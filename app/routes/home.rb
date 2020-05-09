@@ -28,7 +28,7 @@ class App < Sinatra::Base
     end
     authenticate!
     @user = get_user(session[:user_id])
-    @timeline = get_timeline(session[:user_id])
+    # @timeline = get_timeline(session[:user_id])
     erb :main
     # erb :new
 	end
@@ -60,6 +60,7 @@ class App < Sinatra::Base
 
   get "/logout" do
     session[:user_id] = nil
+    cookies.delete :user_id
     flash[:notice] = 'You have been logged out.'
     redirect '/'
   end

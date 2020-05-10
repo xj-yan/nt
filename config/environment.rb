@@ -28,14 +28,12 @@ $redis = Redis.new(
 	host: 'localhost'
 )
 
-# require "bunny"
-# conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
-# conn.start
-# $ch = conn.create_channel
-# $q = $ch.queue("bunny.test_2", :auto_delete => true)
-# $x = $ch.default_exchange
-
-# require_relative './app/helpers/queue'
+require "bunny"
+conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
+conn.start
+$ch = conn.create_channel
+$q = $ch.queue("bunny.test_3", :auto_delete => true)
+$x = $ch.default_exchange
 
 
 require_all 'app'

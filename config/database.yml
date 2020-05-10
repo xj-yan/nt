@@ -18,10 +18,10 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 20
-  variables:
-    tcp_keepalives_idle: 60
-    tcp_keepalives_interval: 60
-    tcp_keepalives_count: 100
+  # variables:
+  #   tcp_keepalives_idle: 60
+  #   tcp_keepalives_interval: 60
+  #   tcp_keepalives_count: 100
 
 development:
   <<: *default

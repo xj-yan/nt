@@ -12,7 +12,25 @@ q = channel.queue("bunny.test_3", :auto_delete => true)
 q.subscribe(block: true) do |delivery_info, metadata, payload|
     puts "Received #{payload}"
     arr = payload.split(";")
+
     tweet = make_tweet(arr[0], arr[1].to_i)
+
+    tag_str, mention_str = "", ""
+    if content.include? '@'
+        mention_str = arr[0].scan(/@\w+/).map{|str| str[1..-1]}.join(";")
+        puts "mention created"
+    end
+
+    if content.include? '#'
+        tag_str = arr[0].scan(/#\w+/).map{|str| str[1..-1]}.join(";")
+    end
+
+    tweet = Tweet.create(tweet: arr[0], user_id: arr[1].to_i, username: User.find(session[:user_id]).username, tag_str: tag_str, mention_str: mention_str)
+    # update the home timeline of the followees
+    # update_cached_home_timeline(id)
+
+    # update the timeline of the user x
+    # update_cached_user_timeline(id)
     tweet.to_json
 end
 

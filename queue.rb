@@ -13,8 +13,6 @@ q.subscribe(block: true) do |delivery_info, metadata, payload|
     puts "Received #{payload}"
     arr = payload.split(";")
 
-    tweet = make_tweet(arr[0], arr[1].to_i)
-
     tag_str, mention_str = "", ""
     if content.include? '@'
         mention_str = arr[0].scan(/@\w+/).map{|str| str[1..-1]}.join(";")

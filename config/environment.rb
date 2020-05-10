@@ -35,7 +35,7 @@ $redis = Redis.new(
 # $q = $ch.queue("bunny.test_2", :auto_delete => true)
 # $x = $ch.default_exchange
 
-require_relative './app/helpers/queue'
+# require_relative './app/helpers/queue'
 
 $tweetQueue = TweetQueue.new
 $tweetQueue.receive

@@ -2,7 +2,7 @@ require 'bunny'
 require 'sinatra/activerecord'
 
 require_relative "./app/models/tweet"
-require_relative "./app/helpers/test"
+# require_relative "./app/helpers/test"
 
 conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
 conn.start

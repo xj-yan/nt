@@ -1,31 +1,31 @@
-require 'bunny'
+# require 'bunny'
 
-# $q.subscribe do |delivery_info, metadata, payload|
-#     puts "Received #{payload}"
-#     arr = payload.split(";")
-#     tweet = make_tweet(arr[0], arr[1].to_i)
-#     $ch.ack(delivery_info.delivery_tag)
-#     tweet.to_json
+# # $q.subscribe do |delivery_info, metadata, payload|
+# #     puts "Received #{payload}"
+# #     arr = payload.split(";")
+# #     tweet = make_tweet(arr[0], arr[1].to_i)
+# #     $ch.ack(delivery_info.delivery_tag)
+# #     tweet.to_json
+# # end
+
+# class TweetQueue
+#     def initialize
+#         @conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
+#         @conn.start
+#         @channel = @conn.create_channel
+#         @queue = @channel.queue("tweetQueue")
+#     end
+
+#     def send tweetMsg
+#         @channel.default_exchange.publish(tweetMsg, :routing_key => @queue.name)
+#     end
+
+#     def receive
+#         @queue.subscribe do |delivery_info, metadata, payload|
+#             puts "Received #{payload}"
+#             arr = payload.split(";")
+#             tweet = make_tweet(arr[0], arr[1].to_i)
+#             tweet.to_json
+#         end
+#     end
 # end
-
-class TweetQueue
-    def initialize
-        @conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
-        @conn.start
-        @channel = @conn.create_channel
-        @queue = @channel.queue("tweetQueue")
-    end
-
-    def send tweetMsg
-        @channel.default_exchange.publish(tweetMsg, :routing_key => @queue.name)
-    end
-
-    def receive
-        @queue.subscribe do |delivery_info, metadata, payload|
-            puts "Received #{payload}"
-            arr = payload.split(";")
-            tweet = make_tweet(arr[0], arr[1].to_i)
-            tweet.to_json
-        end
-    end
-end

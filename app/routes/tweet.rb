@@ -7,9 +7,9 @@ class App < Sinatra::Base
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)
 
-            # task_str = response["tweet"] + ";" + @user.id.to_s
-            # puts task_str
-            # $x.publish(task_str, :routing_key => $q.name)
+            task_str = response["tweet"] + ";" + @user.id.to_s
+            puts task_str
+            $x.publish(task_str, :routing_key => $q.name)
 
             # $q.subscribe(block: true) do |delivery_info, metadata, payload|
             #     puts "Received #{payload}"
@@ -25,8 +25,8 @@ class App < Sinatra::Base
             # #     tweet.to_json
             # # end
 
-            tweet = make_tweet(response["tweet"], @user.id)
-            tweet.to_json
+            # tweet = make_tweet(response["tweet"], @user.id)
+            # tweet.to_json
         else
             flash[:notice] = "The user doesn't exit."
         end

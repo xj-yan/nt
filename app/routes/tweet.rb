@@ -12,8 +12,6 @@ class App < Sinatra::Base
             # $tweetQueue.send(task_str)
 
             task_str = response["tweet"] + ";" + @user.id.to_s
-            $x.publish(task_str, :routing_key => $q.name)
-
             puts task_str
             $x.publish(task_str, :routing_key => $q.name)
 

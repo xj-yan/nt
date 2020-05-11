@@ -8,7 +8,8 @@ require_relative "./app/models/user"
 conn = Bunny.new("amqp://admin:admin@167.99.1.171:5672")
 conn.start
 channel = conn.create_channel
-q = channel.queue("bunny.test_4", :auto_delete => true)
+q = channel.queue("bunny.test_5")
+
 
 q.subscribe(block: true) do |delivery_info, metadata, payload|
     puts "Received #{payload}"

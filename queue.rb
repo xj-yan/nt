@@ -25,7 +25,7 @@ q.subscribe(block: true) do |delivery_info, metadata, payload|
         tag_str = arr[0].scan(/#\w+/).map{|str| str[1..-1]}.join(";")
     end
 
-    tweet = Tweet.create(tweet: arr[0], user_id: arr[1].to_i, username: User.find(session[:user_id]).username, tag_str: tag_str, mention_str: mention_str)
+    tweet = Tweet.create(tweet: arr[0], user_id: arr[1].to_i, username: User.find(arr[1].to_i).username, tag_str: tag_str, mention_str: mention_str)
     # update the home timeline of the followees
     # update_cached_home_timeline(id)
 

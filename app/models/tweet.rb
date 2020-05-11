@@ -51,19 +51,19 @@ class Tweet < ActiveRecord::Base
 
 	# end
 	 
-	# update cache after tweet creation for timeline
-	after_create do |tweet|
-		puts "#{tweet.user_id} have post a #{tweet.tweet}"
+	# # update cache after tweet creation for timeline
+	# after_create do |tweet|
+	# 	puts "#{tweet.user_id} have post a #{tweet.tweet}"
 
-		# update cache for user_id/user_timeline 
-		# $redis.RPUSH("#{tweet.user_id}/user_timeline",tweet.to_json)
-		# $redis.LTRIM("#{tweet.user_id}/user_timeline", -10, -1)
-		# puts "#{tweet.tweet} has added to #{tweet.user_id}/user_timeline"
-		# $redis.expire("#{tweet.user_id}/user_timeline",15.minute.to_i)
-		if !$redis.get("#{tweet.user_id}/user_timeline").nil?
-			$redis.del("#{tweet.user_id}/user_timeline")
-		end
- 	end
+	# 	# update cache for user_id/user_timeline 
+	# 	# $redis.RPUSH("#{tweet.user_id}/user_timeline",tweet.to_json)
+	# 	# $redis.LTRIM("#{tweet.user_id}/user_timeline", -10, -1)
+	# 	# puts "#{tweet.tweet} has added to #{tweet.user_id}/user_timeline"
+	# 	# $redis.expire("#{tweet.user_id}/user_timeline",15.minute.to_i)
+	# 	if !$redis.get("#{tweet.user_id}/user_timeline").nil?
+	# 		$redis.del("#{tweet.user_id}/user_timeline")
+	# 	end
+ 	# end
 	
 	# def self.search query
 	# 	__elasticsearch__.search query

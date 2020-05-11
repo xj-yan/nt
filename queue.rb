@@ -14,12 +14,12 @@ q.subscribe(block: true) do |delivery_info, metadata, payload|
     arr = payload.split(";")
 
     tag_str, mention_str = "", ""
-    if content.include? '@'
+    if arr[0].include? '@'
         mention_str = arr[0].scan(/@\w+/).map{|str| str[1..-1]}.join(";")
         puts "mention created"
     end
 
-    if content.include? '#'
+    if arr[0].include? '#'
         tag_str = arr[0].scan(/#\w+/).map{|str| str[1..-1]}.join(";")
     end
 

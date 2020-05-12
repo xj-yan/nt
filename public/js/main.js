@@ -13,8 +13,8 @@ $(document).ready(function() {
                 $.each(obj, function(key, value) {
                     // console.log(value);
                     // create entry
-                    var $tweet = createEle(value);
-                    // console.log($tweet);
+                    var $tweet = createEleRec(value);
+                    console.log($tweet);
                     $tweet.get(0).obj = value;
                     // add new tweet
                     $("#post-container").append($tweet);
@@ -98,6 +98,22 @@ $(document).ready(function() {
             }
         });
     });
+    // create new entry
+    function createEleRec(text) {
+        console.log(text)
+        var $tweet = $("<div class=user-post id=" + "" + ">" +
+            "<div class=user-post-wrap>" +
+            "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
+            "<div class=user-post-content>" +
+            "<p class=current-user-name>" +
+            "<a id=post-name class=user-post-name href=/user/" + text["user_id"] + ">" + text["username"] + "</a>" +
+            "<span class=user-post-time>" + text["created_at"] + "</span>" +
+            "</p>" +
+            "<p class=current-user-post>" + text["tweet"] + "</p>" +
+            "</div>"
+        );
+        return $tweet;
+    }
 
     // create new entry
     function createEle(text) {
@@ -106,7 +122,7 @@ $(document).ready(function() {
             "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
             "<div class=user-post-content>" +
             "<p class=current-user-name>" +
-            "<span class=user-post-name>" + getUser() + "</span>" +
+            "<span class=user-post-name> " + getUser() + "</span>" +
             "<span class=user-post-time>" + formartDate() + "</span>" +
             "</p>" +
             "<p class=current-user-post>" + text + "</p>" +
@@ -159,7 +175,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/api/user",
-            data: "act=get_home_id",
+            data: "act=get_home_user_id",
             async: false,
             dataType: "json",
             success: function(msg) {

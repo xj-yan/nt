@@ -36,5 +36,10 @@ class App < Sinatra::Base
 			end
 			res.to_json
 		end
+	end
+
+	get '/timeline' do
+		user_id = params[:user_id].to_i
+		get_timeline(user_id).to_json
 	end  
 end

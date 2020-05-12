@@ -81,41 +81,4 @@ module Timeline
 		@timeline
 	end
 
-	################################################################
-
-	# def get_home_timeline(id)
-
-	# 	following_ids = get_following_ids(id)
-
-	# 	timeline = []
-
-	# 	following_ids.each do |following_id|
-	# 		puts get_user_timeline(following_id)
-	# 		timeline += get_user_timeline(following_id)
-	# 	end
-
-	# 	timeline += get_user_timeline(id)
-
-	# 	timeline = timeline.sort_by { |t| t["created_at"].to_i }.reverse!
-	# 	@timeline = timeline.first(10)
-	# end
-
-	# def get_user_timeline(id)
-	# 	timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
-	# 	@timeline = []
-	# 	if timeline.size == 0
-	# 		if Tweet.where(user_id: id).order(created_at: :desc).first(10).size == 0
-	# 			return @timeline
-	# 		end
-	# 	end
-	# 	timeline = $redis.LRANGE("#{id}/user_timeline", 0, -1)
-	# 	timeline.each do |t|
-	# 		t = JSON.parse(t)
-	# 		t["created_at"] = Time.parse(t["created_at"])
-	# 		@timeline << t
-	# 	end
-	# 	# @timeline = @timeline.sort_by { |t| t["created_at"].to_i }.reverse!
-	# 	@timeline = @timeline.reverse!
-	# end
-	
 end

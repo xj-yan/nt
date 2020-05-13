@@ -18,27 +18,27 @@ class Tweet < ActiveRecord::Base
 	has_many :has_tags
 	has_many :tags, through: :has_tags
 
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	# include Elasticsearch::Model
+	# include Elasticsearch::Model::Callbacks
 
-	settings do
-		mappings dynamic: false do
-			indexes :tweet, type: :text, analyzer: :english
-			indexes :mention_str, type: :text
-			indexes :tag_str, type: :text
-		end
-	end
+	# settings do
+	# 	mappings dynamic: false do
+	# 		indexes :tweet, type: :text, analyzer: :english
+	# 		indexes :mention_str, type: :text
+	# 		indexes :tag_str, type: :text
+	# 	end
+	# end
 
-	def as_indexed_json(options = {})
-		self.as_json(
-		only: [:tweet, :mention_str, :tag_str],
-		include: {
-			user: {
-			only: [:username]
-			}
-		}
-		)
-	end
+	# def as_indexed_json(options = {})
+	# 	self.as_json(
+	# 	only: [:tweet, :mention_str, :tag_str],
+	# 	include: {
+	# 		user: {
+	# 		only: [:username]
+	# 		}
+	# 	}
+	# 	)
+	# end
 	 
 	# update cache after tweet creation for timeline
 	# after_create do |tweet|

@@ -82,11 +82,12 @@ module Timeline
 	end
 
 	def update_cached_home_timeline(id)
-		following_ids = get_follower_ids(id)
-		following_ids.each do |following_id|
-			timeline = $redis.get("#{id}/home_timeline")
+		$redis.del("#{id}/home_timeline")
+		follower_ids = get_follower_ids(id)
+		follower_ids.each do |follower_id|
+			timeline = $redis.get("#{follower_id}/home_timeline")
 			if !timeline.nil?
-				$redis.del("#{id}/home_timeline")
+				$redis.del("#{follower_id}/home_timeline")
 			end
 		end
 	end

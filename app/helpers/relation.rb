@@ -27,7 +27,6 @@ module Relation
 		if ids.nil?
 			followees = Follow.where(followee_id: id)
 			ids = []
-			ids << id
 			followees.each do |f|
 				ids << f["follower_id"]
 			end

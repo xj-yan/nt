@@ -30,8 +30,6 @@ class App < Sinatra::Base
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }
   set :public_folder,           Proc.new { File.join(root, "public")}
-  set :service,                 'http://167.172.148.247/'
-  set :service_port,             80
 
   enable :sessions, :partial_underscores
 

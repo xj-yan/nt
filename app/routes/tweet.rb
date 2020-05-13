@@ -14,7 +14,6 @@ class App < Sinatra::Base
             task_str = response["tweet"] + ";" + @user.id.to_s
             puts task_str
             $x.publish(task_str, :routing_key => $q.name)
-
             # $q.subscribe(block: true) do |delivery_info, metadata, payload|
             #     puts "Received #{payload}"
             #     arr = payload.split(";")

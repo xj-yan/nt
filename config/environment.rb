@@ -7,18 +7,10 @@ Bundler.require(:default, ENV['RACK_ENV'])
 
 ActiveRecord::Base.establish_connection(ENV['RACK_ENV'].to_sym)
 
-# Elasticsearch::Model.client = Elasticsearch::Client.new(
-# 	url: 'http://167.99.1.171:9200',
-# 	log: true
-# )
-
-# SearchClient = Elasticsearch::Client.new(
-#   url: ApplicationConfig["ELASTICSEARCH_URL"],
-#   retry_on_failure: 5,
-#   request_timeout: 30,
-#   adapter: :typhoeus,
-#   log: Rails.env.development?,
-# )
+Elasticsearch::Model.client = Elasticsearch::Client.new(
+	url: 'http://161.35.6.102:9200',
+	log: true
+)
 
 # $redis = Redis.new(
 # 	host: 'http://167.99.1.171'

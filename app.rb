@@ -1,5 +1,7 @@
 require "sinatra/base"
 require "json"
+require "net/http"
+require "uri"
 
 require_relative 'config/environment'
 
@@ -28,7 +30,8 @@ class App < Sinatra::Base
   set :root,                    File.dirname(__FILE__)
   set :views,                   Proc.new { File.join(root, "app/views") }
   set :public_folder,           Proc.new { File.join(root, "public")}
-  set :partial_template_engine, :erb
+  set :service, ENV['SERVICE_HOST']
+  set :service_port, ENV['SERVICE_PORT'] || 80
 
   enable :sessions, :partial_underscores
 

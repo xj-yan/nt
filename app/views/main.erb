@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
     <link rel="stylesheet" href="/css/main.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
@@ -71,7 +69,7 @@
         <!-- center: post -->
         <div class="center-main-content">
             <div class="main-title-bar">
-                <p class="main-title-text">Welcome back <span class="user-name"></span></p>
+                <p class="main-title-text">Welcome back <span class="user-name"> <%= @user["username"]%> </span></p>
             </div>
 
             <div class="post-twitter-block">

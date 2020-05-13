@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var userID = getUserID();
     getTweetList();
 
     function getTweetList() {
@@ -7,7 +8,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/timeline",
-            data: "act=get_home_timeline&user_id=" + getUserID(),
+            data: "act=get_home_timeline&user_id=" + userID,
             success: function(msg) {
                 var obj = eval("(" + msg + ")");
                 $.each(obj, function(key, value) {
@@ -117,10 +118,7 @@ $(document).ready(function() {
             // data: "tweet=" + $text,
             dataType: 'json',
             contentType: "application/json",
-            data: JSON.stringify(obj),
-            error: function(xhr) {
-                alert(xhr.status);
-            }
+            data: JSON.stringify(obj)
         });
     });
 
@@ -143,12 +141,13 @@ $(document).ready(function() {
 
     // create new entry
     function createEle(text) {
+        var username = getUser();
         var $tweet = $("<div class=user-post id=" + "" + ">" +
             "<div class=user-post-wrap>" +
             "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
             "<div class=user-post-content>" +
             "<p class=current-user-name>" +
-            "<span class=user-post-name> " + getUser() + "</span>" +
+            "<a id=post-name class=user-post-name href=/user/" + userID + ">" + username + "</a>" +
             "<span class=user-post-time>" + formartDate() + "</span>" +
             "</p>" +
             "<p class=current-user-post>" + text + "</p>" +

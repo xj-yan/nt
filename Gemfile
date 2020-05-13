@@ -8,6 +8,7 @@ gem 'pg'
 gem 'puma', ">= 4.3.3"
 gem 'faker'
 gem 'rack-test'
+gem 'test-unit'
 gem 'bcrypt'
 gem 'rake', '> 12.0'
 gem 'require_all'

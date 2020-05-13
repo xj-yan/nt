@@ -48,6 +48,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.2)
     pg (1.2.2)
+    power_assert (1.2.0)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
@@ -79,6 +80,8 @@ GEM
       sinatra (>= 1.0.0)
     sinatra-partial (1.0.1)
       sinatra (>= 1.4)
+    test-unit (3.3.5)
+      power_assert
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.7)
@@ -109,6 +112,7 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-flash
   sinatra-partial
+  test-unit
 
 BUNDLED WITH
    2.1.4

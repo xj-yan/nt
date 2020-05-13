@@ -32,3 +32,25 @@ jobs:
           su - rails -c "cd /home/rails/nt && bundle"
           sudo systemctl restart rails.service
           sudo systemctl restart redis.service
+    
+    - name: (Microservice) Copy file via scp
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.SERVICE_HOST }}
+        USERNAME: root
+        PORT: 22
+        KEY: ${{ secrets.SERVICE_SSHKEY }}
+      with:
+        source: "."
+        target: "/home/rails/nt-microservice"
+
+    - name: (Microservice) Bundle and restart app server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVICE_HOST }}
+        USERNAME: root
+        PORT: 22
+        KEY: ${{ secrets.SERVICE_SSHKEY }}
+        script: |
+          su - rails -c "cd /home/rails/nt-microservice && bundle"
+          sudo systemctl restart rails.service

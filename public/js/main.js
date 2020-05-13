@@ -7,7 +7,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/timeline",
-            data: "user_id=" + getUserID(),
+            data: "act=get_home_timeline&user_id=" + getUserID(),
             success: function(msg) {
                 var obj = eval("(" + msg + ")");
                 $.each(obj, function(key, value) {
@@ -63,10 +63,51 @@ $(document).ready(function() {
         window.location.href = '/user/' + getUserID();
     });
 
+
+
+    // // listen to post-btn
+    // $("#post-btn").click(function() {
+    //     // get user input
+    //     var $text = $("#user-input").val();
+    //     var obj = {
+    //         tweet: $text
+    //     };
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/tweet",
+    //         // data: "tweet=" + $text,
+    //         dataType: 'json',
+    //         contentType: "application/json",
+    //         data: JSON.stringify(obj),
+    //         success: function(msg) {
+    //             // console.log(obj);
+    //             // create entry
+    //             var $tweet = createEle($text);
+    //             // $tweet.get(0).obj = obj;
+    //             // insert tweet
+    //             $("#post-container").prepend($tweet);
+    //             // clear input box
+    //             $("#user-input").val("");
+    //             // get new page count
+    //             // getMsgPage();
+    //             // delete the oldeest tweet
+    //             // if ($(".info").length > 10) {
+    //             //     $(".info:last-child").remove();
+    //             // }
+    //         },
+    //         error: function(xhr) {
+    //             alert(xhr.status);
+    //         }
+    //     });
+    // });
+
     // listen to post-btn
     $("#post-btn").click(function() {
         // get user input
         var $text = $("#user-input").val();
+        var $tweet = createEle($text);
+        $("#post-container").prepend($tweet);
+        $("#user-input").val("");
         var obj = {
             tweet: $text
         };
@@ -77,27 +118,12 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: "application/json",
             data: JSON.stringify(obj),
-            success: function(msg) {
-                // console.log(obj);
-                // create entry
-                var $tweet = createEle($text);
-                // $tweet.get(0).obj = obj;
-                // insert tweet
-                $("#post-container").prepend($tweet);
-                // clear input box
-                $("#user-input").val("");
-                // get new page count
-                // getMsgPage();
-                // delete the oldeest tweet
-                // if ($(".info").length > 10) {
-                //     $(".info:last-child").remove();
-                // }
-            },
             error: function(xhr) {
                 alert(xhr.status);
             }
         });
     });
+
     // create new entry
     function createEleRec(text) {
         console.log(text)

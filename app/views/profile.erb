@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 
     <link rel="icon" href="/images/logo.png">
-    <title><%= @user.username%> / Twitter</title>
+    <title><%= @user["username"]%> / Twitter</title>
 </head>
 
 <body>
@@ -69,16 +69,16 @@
         <div class="center-main-content">
             <div class="main-title-bar">
                 <p class="main-title-text">
-                    <%= @user.username %> <span class="user-name"></span></p>
+                    <%= @user["username"] %> <span class="user-name"></span></p>
             </div>
 
             <div id="user-follow-div" class="post-twitter-block">
                 <img id="user-profile-top" src="/images/user.jpg" width="auto" height="50px">
                 <label id="follow-info" style="display:inline">
-                <a class="follow" href="/user/<%= @user.id%>/following"><strong><%= "{{followee_number}}" %></strong> Following</a> 
-                <a class="follow" href="/user/<%= @user.id%>/follower"><strong><%= "{{follower_number}}" %></strong> Follower</a>
+                <a class="follow" href="/user/<%= @user["id"]%>/following"><strong><%= "{{followee_number}}" %></strong> Following</a> 
+                <a class="follow" href="/user/<%= @user["id"]%>/follower"><strong><%= "{{follower_number}}" %></strong> Follower</a>
                 </label>
-                 <% if @user.id != session[:user_id] %>
+                 <% if @user["id"] != session[:user_id] %>
                     
                     <button id="user-follow-btn" v-if="is_not_follow" v-on:click="followUser();is_not_follow = !is_not_follow; follower_number += 1" class="follow no opacity">
                         Follow
@@ -100,8 +100,8 @@
                         <img class="current-user" src="/images/search_user.jpg">
                         <div class="user-post-content">
                         <p class="current-user-name">
-                            <a id="post-name" class="user-post-name" href="/user/<%=t["user_id"]%>"> <%=t["user_id"]%> </a>
-                            <span class="user-post-time"> <%=t["created_at"]%> </span>
+                            <a id="post-name" class="user-post-name" href="/user/<%=t["user_id"]%>"> <%=t["username"]%> </a>
+                            <span class="user-post-time"> <%=t["updated_at"]%> </span>
                         </p>
                         <p class="current-user-post"> <%=t["tweet"]%> </p>
                         </div>
@@ -179,7 +179,6 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
     <script>
         function entersearch() {
             var event = window.event || arguments.callee.caller.arguments[0];
@@ -199,16 +198,16 @@
             el: "#user-follow-div",
             data: {
                 is_not_follow: <%= Follow.find_by(followee_id: params[:id], follower_id: session[:user_id]).nil? %>,
-                follower_number: <%= @user.follower_number %>,
-                followee_number: <%= @user.followee_number %>
+                follower_number: <%= @user["follower_number"] %>,
+                followee_number: <%= @user["followee_number"] %>
 
             },
             methods: {
                 followUser(e) {
-                    axios.post("/follow/<%= @user.id %>")
+                    axios.post("/follow/<%= @user["id"] %>")
                 },
                 unfollowUser(e) {
-                    axios.post("/unfollow/<%= @user.id %>")
+                    axios.post("/unfollow/<%= @user["id"] %>")
                 }
             }
         })

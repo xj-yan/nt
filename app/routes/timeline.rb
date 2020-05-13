@@ -39,7 +39,13 @@ class App < Sinatra::Base
 	end
 
 	get '/timeline' do
-		user_id = params[:user_id].to_i
-		get_timeline(user_id).to_json
+		act = params[:act]
+		if act == "get_home_timeline"
+			user_id = params[:user_id].to_i
+			get_home_timeline(user_id).to_json
+		elsif act == "get_user_timeline"
+			user_id = params[:profile_id].to_i
+			get_user_timeline(user_id).to_json
+		end
 	end  
 end

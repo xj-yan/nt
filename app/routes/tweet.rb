@@ -6,6 +6,10 @@ class App < Sinatra::Base
         if session[:user_id] && User.find(session[:user_id])
             @user = User.find(session[:user_id])
             response = JSON.parse(request.body.read)
+            # update the home timeline of the followees
+            update_cached_home_timeline(@user.id)
+            # update the timeline of the user x
+            update_cached_user_timeline(@user.id)
 
             task_str = response["tweet"] + ";" + @user.id.to_s
             puts task_str

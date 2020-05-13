@@ -32,6 +32,8 @@ module Relation
 			$redis.set("#{id}/follower", ids.uniq)
 			# Expire the cache, every 15 minutes
 			$redis.expire("#{id}/follower", 15.minute.to_i)
+		else
+			ids = JSON.parse(ids)
 		end
 		ids
 	end

@@ -126,10 +126,10 @@ class App < Sinatra::Base
 		report["follow"] = "There is #{Follow.all.size} follows."
 		report["tweet"] = "There is #{Tweet.all.size} tweets."
 		user = User.find_by(username: "testuser")
-		if user.nil?
-			return 400
-		end
-		report["testUser"] = "The id of test user is #{user.id}."
+		# if user.nil?
+		# 	return 400
+		# end
+		# report["testUser"] = "The id of test user is #{user.id}."
 		return 200, report.to_json
 	end
 

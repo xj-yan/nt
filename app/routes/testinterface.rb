@@ -125,7 +125,7 @@ class App < Sinatra::Base
 		report["user"] = "There is #{User.all.size} users."
 		report["follow"] = "There is #{Follow.all.size} follows."
 		report["tweet"] = "There is #{Tweet.all.size} tweets."
-		user = User.find_by(username: "testuser")
+		# user = User.find_by(username: "testuser")
 		# if user.nil?
 		# 	return 400
 		# end

@@ -6,6 +6,7 @@ class App < Sinatra::Base
 
 	get '/search' do
 		q = params[:query]
+		puts "search starting.."
 		result = $redis.get("search/#{q}")
 		if result.nil?
 			uri = URI("http://161.35.6.102/search")
@@ -25,6 +26,7 @@ class App < Sinatra::Base
 		else
 			@res = JSON.parse(result)
 		end
+		puts "search ending.."
 		erb :search
 	end
 

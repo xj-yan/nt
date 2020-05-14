@@ -15,22 +15,13 @@ class App < Sinatra::Base
 
   get "/" do
     user_id = params[:user_id].to_i
-    puts "#{user_id}"
-    # puts "authenticate #{!(authenticate!)}"
-      # if user_id != 0 || authenticate!
-      # if user_id != 0
-      #   @user = User.find_by(id: user_id)
-      # else
-      #   @user = User.find_by(id: session[:user_id])
-      # end
+    puts "user id is#{user_id}"
     if user_id != 0
       session[:user_id] = user_id
     end
     authenticate!
     @user = get_user(session[:user_id])
-    # @timeline = get_timeline(session[:user_id])
     erb :main
-    # erb :new
 	end
   
   # routes for login and logout
@@ -87,17 +78,7 @@ class App < Sinatra::Base
         redirect '/register'
       end
 
-      # redirect "/user/#{@user.id}"
-
     end
   end
 
-  # home is a protected route 
-  # get '/home' do
-  #   authenticate!
-  #   @user = User.find_by(id: session[:user_id])
-  #   @tweet = get_tweet(session[:user_id])
-  #   @timeline = get_timeline(session[:user_id])
-  #   erb :new
-  # end
 end

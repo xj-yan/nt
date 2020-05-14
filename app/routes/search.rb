@@ -13,7 +13,7 @@ class App < Sinatra::Base
 			params = {:query => q}
 			uri.query = URI.encode_www_form(params)
 			response = Net::HTTP.get_response(uri)
-			puts response.body if response.is_a?(Net::HTTPSuccess)
+			# puts response.body if response.is_a?(Net::HTTPSuccess)
 			res = JSON.parse(response.body)
 			if !res.nil?
 				@res = res

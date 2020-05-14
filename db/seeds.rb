@@ -82,7 +82,7 @@ user_list = []
 			password_digest: BCrypt::Password.create("123"),
 			follower_number: follower_number,
 			followee_number: followee_number,
-			tweet_number: 0
+			tweet_number: tweet_number
 		}
 		count_3 += 1
 	end

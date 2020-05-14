@@ -4,7 +4,7 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 10 }
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 15 }
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
@@ -31,7 +31,7 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 #
 preload_app!
 
-# Allow puma to be restarted by `rails restart` command.
+# # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
 on_worker_boot do

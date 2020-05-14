@@ -35,7 +35,6 @@ class UnitTestClass < Test::Unit::TestCase
     assert_equal 200, last_response.status
   end
 
-
 end
 
 

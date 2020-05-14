@@ -37,5 +37,4 @@ class App < Sinatra::Base
     enable :logging
   end
   
-  # run!
 end

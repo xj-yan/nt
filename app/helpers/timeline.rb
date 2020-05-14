@@ -2,6 +2,7 @@ require 'sinatra/base'
 
 module Timeline
 
+	# get user info
 	def get_user(id)
 		user = $redis.get("user/#{id}")
 		if user.nil?
@@ -13,21 +14,23 @@ module Timeline
 			user = JSON.parse(user)
 		end
 		user
-  	end
-			
+	end
+
+	# get username
+	def get_name(id)
+		name = get_user(id)["username"]
+	end
+	
+	# get home/user timeline
 	def get_timeline(id)
 		if id == session[:user_id]
-		# 	get_tweet(id)
-		# else
-		# 	get_tweet(get_followees(id))
-		# end
 			get_home_timeline(id)
 		else
 			get_user_timeline(id)
 		end
 	end
 
-	# Get a list of ids
+	# Get user id of tweet appear on timeline
 	def get_timeline_ids(id)
 		followees = Follow.where(follower_id: id)
 		ids = []
@@ -38,11 +41,13 @@ module Timeline
 		ids.uniq
 	end
 
+	# get a list of tweet
 	def get_tweet_list(ids, page_num)
 		tweets = get_timeline(ids)
 		tweets[(page_num.to_i - 1) * 10, page_num.to_i * 10]
 	end
 
+	# get page count
 	def get_page_count(ids)
 		size = get_timeline(ids).size
 		count = size / 10
@@ -52,10 +57,7 @@ module Timeline
 		count
 	end
 
-	def get_name(id)
-		name = User.find_by(id: id).username
-	end
-
+	# get home timeline
 	def get_home_timeline(id)
 		timeline = $redis.get("#{id}/home_timeline")
 		if timeline.nil?
@@ -69,6 +71,7 @@ module Timeline
 		@timeline
 	end
 
+	# get user timeline
 	def get_user_timeline(id)
 		timeline = $redis.get("#{id}/user_timeline")
 		if timeline.nil?
@@ -81,6 +84,7 @@ module Timeline
 		@timeline
 	end
 
+	# delete cached home timeline
 	def update_cached_home_timeline(id)
 		$redis.del("#{id}/home_timeline")
 		follower_ids = get_follower_ids(id)
@@ -92,6 +96,7 @@ module Timeline
 		end
 	end
 
+	# delete cached user timeline
 	def update_cached_user_timeline(id)
 		timeline = $redis.get("#{id}/user_timeline")
 		if !timeline.nil?

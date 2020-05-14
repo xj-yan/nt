@@ -69,7 +69,11 @@
         <!-- center: post -->
         <div class="center-main-content">
             <div class="main-title-bar">
-                <p class="main-title-text">Welcome back <span class="user-name"> </span></p>
+                <p class="main-title-text">Welcome back 
+                <% if !@user.nil?%>
+                <span class="user-name"><%= @user["username"] %></span>
+                <%end%>
+                </p>
             </div>
 
             <div class="post-twitter-block">

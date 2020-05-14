@@ -13,19 +13,19 @@ class App < Sinatra::Base
 
 		# system("PGPASSWORD=iyajy1kgp2nczrpi pg_dump -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin --clean -Fc nt_dev > ./lib/backup/db_dump_file.pgsql")
 
-		user_size = User.all.size
-		follow_size = Follow.all.size
-		tweet_size = Tweet.all.size
+		# user_size = User.all.size
+		# follow_size = Follow.all.size
+		# tweet_size = Tweet.all.size
 
-		puts user_size
-		puts follow_size
-		puts tweet_size
+		# puts user_size
+		# puts follow_size
+		# puts tweet_size
 
-		# User.delete_all
+		User.delete_all
 		Follow.delete_all
-		# Tweet.delete_all
+		Tweet.delete_all
 
-		system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/db_dump_file.pgsql")
+		# system ("PGPASSWORD=iyajy1kgp2nczrpi pg_restore -d 'postgresql://doadmin:iyajy1kgp2nczrpi@gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com:25060/nt_dev?sslmode=require' --jobs 4 ./lib/backup/db_dump_file.pgsql")
 
 
 		# system("PGPASSWORD=iyajy1kgp2nczrpi dropdb -h gigatwitter-db-postgresql-do-user-7074878-0.db.ondigitalocean.com -p 25060 -U doadmin nt_dev")
@@ -41,11 +41,11 @@ class App < Sinatra::Base
 		
 		# puts "restored"
 
-		if user_size == User.all.size && follow_size == Follow.all.size && tweet_size == Tweet.all.size
-			return 200
-		else
-			return 400
-		end
+		# if user_size == User.all.size && follow_size == Follow.all.size && tweet_size == Tweet.all.size
+		# 	return 200
+		# else
+		# 	return 400
+		# end
 	end
 
 

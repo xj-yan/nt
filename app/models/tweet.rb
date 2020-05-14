@@ -39,22 +39,7 @@ class Tweet < ActiveRecord::Base
 		}
 		)
 	end
-	 
-	# update cache after tweet creation for timeline
-	# after_create do |tweet|
-	# 	timeline = $redis.get("#{tweet.user_id}/user_timeline")
-	# 	if !timeline.nil?
-	# 		$redis.del("#{tweet.user_id}/user_timeline")
-	# 	end
- 	# end
 	
-	# def self.search query
-	# 	__elasticsearch__.search query
-	# end
-
-	# def self.import
-	# 	__elasticsearch__.import
-	# end
 end
 
 # create elasticsearch index
@@ -62,6 +47,4 @@ unless Tweet.__elasticsearch__.index_exists?
 	Tweet.__elasticsearch__.create_index!
 end
 Tweet.__elasticsearch__.refresh_index!
-# Tweet.import
-# Tweet.__elasticsearch__.import
 # Tweet.__elasticsearch__.delete_index!

@@ -75,6 +75,11 @@ class App < Sinatra::Base
 			get_name(session[:user_id]).to_json
 		elsif act == 'get_home_user_id'
 			session[:user_id].to_json
+		elsif act == 'get_profile_user_id'
+			params[:id].to_json
+		elsif act == 'get_tweet_name'
+			id = params[:user_id].to_i
+			get_name(id).to_json
 		end
 	end
 end

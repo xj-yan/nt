@@ -130,7 +130,7 @@ $(document).ready(function() {
             "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
             "<div class=user-post-content>" +
             "<p class=current-user-name>" +
-            "<a id=post-name class=user-post-name href=/user/" + text["user_id"] + ">" + text["username"] + "</a>" +
+            "<a id=post-name class=user-post-name href=/user/" + text["user_id"] + ">" + getName(text["user_id"]) + "</a>" +
             "<span class=user-post-time>" + text["created_at"] + "</span>" +
             "</p>" +
             "<p class=current-user-post>" + text["tweet"] + "</p>" +
@@ -201,6 +201,28 @@ $(document).ready(function() {
             type: "get",
             url: "/api/user",
             data: "act=get_home_user_id",
+            async: false,
+            dataType: "json",
+            success: function(msg) {
+                // var obj = eval("(" + msg + ")");
+                text = msg;
+                // console.log(text);
+            },
+            error: function(xhr) {
+                alert(xhr.status);
+            }
+        });
+        return text;
+    }
+
+    // get user id
+    function getName(id) {
+        var text = ""
+            // api/?act=get_home_user	get username
+        $.ajax({
+            type: "get",
+            url: "/api/user",
+            data: "act=get_tweet_name&user_id=" + id,
             async: false,
             dataType: "json",
             success: function(msg) {

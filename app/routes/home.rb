@@ -15,7 +15,7 @@ class App < Sinatra::Base
 
   get "/" do
     user_id = params[:user_id].to_i
-    puts "user id is#{user_id}"
+    puts "user id is #{user_id}"
     if user_id != 0
       session[:user_id] = user_id
     end
@@ -39,7 +39,6 @@ class App < Sinatra::Base
     if @user && test_password(params[:password], @user.password_digest)
       session[:user_id] = @user.id
       redirect '/'
-      # redirect "/user/#{@user.id}"
     elsif !@user
       flash[:notice] = "User not exists. Please sign up!"
       redirect '/register'

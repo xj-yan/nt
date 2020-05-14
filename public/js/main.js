@@ -130,7 +130,7 @@ $(document).ready(function() {
             "<img class=current-user src=" + "/images/search_user.jpg" + ">" +
             "<div class=user-post-content>" +
             "<p class=current-user-name>" +
-            "<a id=post-name class=user-post-name href=/user/" + text["user_id"] + ">" + getName(text["user_id"]) + "</a>" +
+            "<a id=post-name class=user-post-name href=/user/" + text["user_id"] + ">" + text["username"] + "</a>" +
             "<span class=user-post-time>" + text["created_at"] + "</span>" +
             "</p>" +
             "<p class=current-user-post>" + text["tweet"] + "</p>" +
